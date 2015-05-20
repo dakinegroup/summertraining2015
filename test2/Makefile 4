@@ -1,0 +1,9 @@
+CC=gcc
+CFLAGS=-I.
+DEPS = hellomake.h
+OBJ = f1.o f2.o
+%.o: %.c $(DEPS)
+		(CC) -c -o $@ $< $(CFLAGS)
+f3: $(OBJ)
+	gcc -o $@ $^ $(CFLAGS)
+	

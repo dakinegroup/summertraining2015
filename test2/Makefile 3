@@ -1,0 +1,7 @@
+CC=gcc
+CFLAGS=-I.
+DEPS = f3.h
+%.0: %.c $(DEPS)
+		$(CC) -c -o $@ $< $(CFLAGS)
+f3: f1.o f2.0
+	gcc -o f3 f1.0 f2.0 -I.		
