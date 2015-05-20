@@ -22,6 +22,10 @@ Without a makefile, the typical approach to the test/modify/debug cycle is to us
 * First, if you lose the compile command or switch computers you have to retype it from scratch, which is inefficient at best.
 * Second, if you are only making changes to one .c file, recompiling all of them every time is also time-consuming and inefficient.  
 
+The purpose of the make utility is to determine automatically which pieces of a large program need to be recompiled, and issue the commands to recompile them.   
+To prepare to use make, you must write a file called the makefile that describes the relationships among files in your program, and the states the commands for updating each file. In a program, typically the executable file is updated from object files, which are in turn made by compiling source files.
+
+
 
 
           
