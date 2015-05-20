@@ -1,6 +1,6 @@
 ##Introduction To Linux
 ###Basic Terminal Commands
-1. **. pwd**-pwd stands for "print working directory".The _pwd_ command will allow you to know in which directory you're located. 
+1. **pwd**-pwd stands for "print working directory".The _pwd_ command will allow you to know in which directory you're located. 
 2. **ls**-The _ls_ command will show you ('_list_') the files in your current directory.
 3. **cd**-The _cd_ command will allow you to change directories.  
           -To navigate into the root directory, use "**cd /**"  
