@@ -9,15 +9,17 @@ first program to find Vc in transitor circuit
 
 #test4
 implement truth table as per following
-|Var A|Var B|Var C|Var D|Output|
+
+| Var A | Var B | Var C | Var D  |Var E | Output |
 |----|---|----|---|--|----|
-|0 | 1 | 1| 0| 0| Red |
-|0 | 1 | 1| 1| 1| Red |
-|0 | 1 | 1| 0|1| Yellow|
-|0 | 1 | 1| 1|0| Yellow|
-|1 | 0 | 1| 0| 0| Green|
-|1 | 0 | 0 | 0| 0| Green|
-|0 | 0 | 1| 1|1| Yellow|
+| 0 | 1 | 1| 0| 0| Red |
+| 0 | 1 | 1| 1| 1| Red |
+| 0 | 1 | 1| 0|1| Yellow|
+| 0 | 1 | 1| 1|0| Yellow|
+| 1 | 0 | 1| 0| 0| Green|
+| 1 | 0 | 0 | 0| 0| Green|
+| 0 | 0 | 1| 1|1| Yellow|
+
 Other comibations by default give - Black as output
 
 Using bit-wise operators, find out codes for following set of values in an array
