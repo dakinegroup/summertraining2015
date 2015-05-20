@@ -11,3 +11,9 @@
 5. **rmdir**-The _rmdir_ command will delete an empty directory.  
            -To delete a directory and all of its contents recursively, use **rm -r** instead.
 6. **mkdir**-The _mkdir_ command will allow you to create directories.  
+
+###Compilation of C Programs
+          gcc is the "GNU" C Compiler.  
+          The standard way to compile the program is with the command    
+          **gcc programsourcecode.c -o executablefilename**    
+          
