@@ -1,4 +1,4 @@
-##Introduction To Linux
+##Learning Linux
 ###Basic Terminal Commands
 1. **pwd**-pwd stands for "print working directory".The _pwd_ command will allow you to know in which directory you're located. 
 2. **ls**-The _ls_ command will show you ('_list_') the files in your current directory.
@@ -24,6 +24,15 @@ Without a makefile, the typical approach to the test/modify/debug cycle is to us
 
 The purpose of the make utility is to determine automatically which pieces of a large program need to be recompiled, and issue the commands to recompile them.   
 To prepare to use make, you must write a file called the makefile that describes the relationships among files in your program, and the states the commands for updating each file. In a program, typically the executable file is updated from object files, which are in turn made by compiling source files.
+
+###Understanding Variables
+ **Global Variables**-These are the variables which are declared outside all the functions. These variables can be used in all the functions.  
+ 
+ **Local Variables**-These are the which are declared inside a function. These can only be used in tje dunction itself.  
+ 
+ 
+
+
 
 
 
