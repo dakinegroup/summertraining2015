@@ -13,9 +13,9 @@
 6. **mkdir**-The _mkdir_ command will allow you to create directories.  
 
 ###Compilation of C Programs
-          gcc is the "GNU" C Compiler.  
-          The standard way to compile the program is with the command    
-          gcc programsourcecode.c -o executablefilename 
+gcc is the "GNU" C Compiler.  
+The standard way to compile the program is with the command    
+ **gcc programsourcecode.c -o executablefilename -I.** 
 
 ###Command: make
 Without a makefile, the typical approach to the test/modify/debug cycle is to use the up arrow in a terminal to go back to your last compile command so you don't have to type it each time, especially once you've added a few more .c files to the mix.Unfortunately, this approach to compilation has two downfalls.  
