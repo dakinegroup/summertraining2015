@@ -57,6 +57,30 @@ Embedded system using input capture will record a timestamp in memory when a inp
 16. **I2C** - Inter-Integrated Circuit.  
 These are used for attaching lower speed peripherals to computers.
 
+17. **RTC** - Real Time Clock
+
+## Features of ATmega 8##
+
+ 1. Flash - 8kb
+ 2. Pin Count - 32
+ 3. Max. Operating Frequency - 16 MHz
+ 4. CPU - 8-bit AVR
+ 5. I/O Pins - 23
+ 6. SPI - 1
+ 7. I2C - 1
+ 8. UART - 1
+ 9. ADC Channels - 8
+ 10. Analog Comparators - 1
+ 11. SRAM - 1
+ 12. EEPROM - 512 bytes
+ 13. Operating Voltage - 2.7v to 5.5v
+ 14. O/P Compare Channels - 3
+ 15. I/P Capture Channels - 1
+ 16. PWM Channels - 3
+ 17. RTC - Counter
+ 18. Timers - 3
+ 
+
 
 
                 
