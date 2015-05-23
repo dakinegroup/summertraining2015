@@ -50,7 +50,13 @@ _PCM_ audio data is communicated between _ICs_.
 13. **Input Capture** - Method of dealing with input.  
 Embedded system using input capture will record a timestamp in memory when a input signal is received.
 
-14. 
+14. **Output Compare** - Capability to trigger an output at specific time, based on a timestamp in memory, is called _output compare_.
+
+15. **UART** - Universal Asynchronous Receiver and Transmitter.
+
+16. **I2C** - Inter-Integrated Circuit.  
+These are used for attaching lower speed peripherals to computers.
+
 
 
                 
