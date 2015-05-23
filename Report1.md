@@ -9,5 +9,11 @@
 It is used to store small amount of data.  
 While _EPROM_ is removed for erasing and programming, _EEPROM_ can be erased and programmed by applying **special programming signals.**
 
+3. **Flash Memory** - It is developed from EEPROM. It was first Developed by _Toshiba_.  
+                      It is of two types - 1.NAND 2. NOR.
+                      It is used in memory cards, USB flashdrives, SSDs.
+
+4. 
+
                 
   
