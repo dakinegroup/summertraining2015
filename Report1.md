@@ -13,7 +13,14 @@ While _EPROM_ is removed for erasing and programming, _EEPROM_ can be erased and
                       It is of two types - 1.NAND 2. NOR.
                       It is used in memory cards, USB flashdrives, SSDs.
 
-4. 
+4. **Microcontroller** - Its a small computer on single integrated circuit.  
+It contains processor core, memory and input output peripherals.  
+
+5. **AVR** - It is single chip _bit microcontroller_.  
+It was developed by _Atmel_ in 1996.  
+It uses **flash memory**.
+
+6. 
 
                 
   
