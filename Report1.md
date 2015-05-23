@@ -41,7 +41,16 @@ It is used for short communication primarily in embedded system. Communication i
 10. **CAN** - Control Area Network Bus.  
 It aloows to communicate without host computer.
 
-11. 
+11. **I2S** - Integrated Interchip Sound.  
+It is used for connecting digital audio devices together.  
+_PCM_ audio data is communicated between _ICs_.
+
+12. **Time Stamp** - Sequence of characters or encoded information identifying when an event occured is called _time stamp_.
+
+13. **Input Capture** - Method of dealing with input.  
+Embedded system using input capture will record a timestamp in memory when a input signal is received.
+
+14. 
 
 
                 
