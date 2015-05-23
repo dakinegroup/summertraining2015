@@ -28,7 +28,21 @@ GPIO in AVR is controlled by 3 **8-bit registers**.
  * _PINx_ - It is input register. It is used for pin toggling. It is used to read input signal.  
  * x is **Pin Identifier.**  
 
-7. 
+7. **MPU** - Memory Protection Unit.  
+Memory protection is a way to prevent process from accessing memory that hasn't been allocated to it.  
+It prevents a _bug_ or _malware_ within a process from affecting other processes.  
+
+8. **Watchdog Timer(_WDT_)** - It is used to detect and recover from computer malfunction.  
+During normal operation, the computer regularly restarts the watchdog timer to prevent from elapsing or timing out. If due to a hardware fault or programme error, the computer fails to restart the watchdog, the timer will elapse and generate a timeout signal. It generates timeout signal to initiate corrective measures.
+
+9. **SPI** - Serial Peripheral Interface.  
+It is used for short communication primarily in embedded system. Communication is in full duplex mode.
+
+10. **CAN** - Control Area Network Bus.  
+It aloows to communicate without host computer.
+
+11. 
+
 
                 
   
