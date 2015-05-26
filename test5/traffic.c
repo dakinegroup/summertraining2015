@@ -1,19 +1,19 @@
 #include <stdio.h>
 int main()
 {
-	int duration[]={35,5,40};
-	int i,j;
-	int poles[]={0x09,0x01,0x01,0x04};
+	int duration[]={5,2,3};
+	int i,j, k;
+	int poles[4]={0x09,0x01,0x01,0x04};
 	int tick=0;
-	while (true)
+	while (1)
 	{
 		tick++;
-		for (i = 0; i < poles[i]; i++)
+		for (i = 0; i < sizeof(poles) / sizeof(int); i++)
 		{
-			if (poles[i] & 0x06 !=0)
-			i=j;
+			if ((poles[i] & 0x06) !=0) {
+				j=i;
 				break;
-			
+			}
 		}
 		if (poles[j]==0x02)
 		{
@@ -21,8 +21,8 @@ int main()
 			{
 				poles[j]=0x04;
 				tick=0;
+			    poles[(j+1)%4]=0x09;
 			}
-			poles[j+1]%4=0x09;
 		}
 		else if (poles[j]==0x04)
 		{
@@ -30,9 +30,13 @@ int main()
 			{
 				poles[j]=0x01;
 				tick=0;
+			    poles[(j+1)%4]=0x02;
 			}
-			poles[j+1]%4=0x02;
 		}
-		printf("%d",poles[j]);
+		for( k=0; k < sizeof(poles)/sizeof(int); k++){
+			printf("%0x ",poles[k]);			
+		}
+		printf("\n");
+		sleep(1);
 	}
 }
