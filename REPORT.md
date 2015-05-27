@@ -25,13 +25,23 @@ Without a makefile, the typical approach to the test/modify/debug cycle is to us
 The purpose of the make utility is to determine automatically which pieces of a large program need to be recompiled, and issue the commands to recompile them.   
 To prepare to use make, you must write a file called the makefile that describes the relationships among files in your program, and the states the commands for updating each file. In a program, typically the executable file is updated from object files, which are in turn made by compiling source files.
 
+TODO: Put the extract from the makefiles that helped you understand:
+* variables and it's use (system defined, user defined)
+* phony targets
+* dependency
+* distributing code across various files
+* Use of array of variables and invoking make in those as sub-directories
+
+
 ###Understanding Variables
  **Global Variables**-These are the variables which are declared outside all the functions. These variables can be used in all the functions.  
  
  **Local Variables**-These are the which are declared inside a function. These can only be used in the function itself.  
  **Static Variable**- These variables don't disappear when function is not active. When again function comes in action the variables retain their value which they had last time.  
  
- **Volatile Variable**-
+ **Volatile Variable** -
+
+ **TODO:** Update this understanding with application example, as discussed.**
  
  
 

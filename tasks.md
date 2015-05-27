@@ -63,4 +63,29 @@ Create software logic to simulate traffic lights, with following problem stateme
 
 Further extend this to support
 
-* Make it four lights
+* Make it four lights and 6 crossings. See if your software is scalable.
+
+#task7
+
+Implement echo loop with serial communication port of atmel controller.
+Do serial out on one port, loop tx with Rx and read Rx register, if it is same as was transmitted. If yes, you are now able to use UART registers
+
+Connect UART input to UART to USB connector and loop it up on the USB connector and conduct same test. If again results are good, proceed.
+
+Now write windows driver (or pick from internet) to read serial data from USB and display it on the terminal. On windows, use hyperterm to read such data.
+
+If above is successful, you understand serial communications and lets move further to make a communications application.
+
+On controller board lets read voltage from analog source 0 - 5V and send to the machine the digital value, which should be displayed by the software.
+
+Lets extend this further, we put up 4 such cards on a bus. What needs to be done now? Think about addressing, conflicts etc. There is no LAN port, we can't do LAN solution, however, is there any solution that can be deployed here? HInt: RS485, Master Slave, One-Wire
+
+#task8
+
+Visit to lajpat Rai Market to buy some components for project work
+Create inventory of items in excel sheet
+List of components to buy:
+* 74HC594
+* ATMEL 328 chip
+* More LEDs
+* 
