@@ -3,7 +3,7 @@
 ## Technical Documents
 Following documents are to be created:
 * Plan for 6 weeks training. [Click here](plan_for_training.md)
-* Weekly update on what is learnt, delivered out on the plan
+* Weekly update on what is learnt, delivered out on the plan. [Click here](attendance.md)
 * [Project Report](project_report.md)
   * Circuit Diagram and Design Document for the circuits studied / made
   * Quick intro to the tools learnt
