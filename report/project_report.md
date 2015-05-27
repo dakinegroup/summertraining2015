@@ -29,8 +29,13 @@ Overall, world of software and hardware, when fused together to open new world o
 
 ##Learnings - Software
 
-### Object Oriented Design
+### Learning - Linux
+[Click here](learning_linux.md)
+### Make Utility
+[Click here](learning_linux.md)
 
+### Object Oriented Design
+TODO: Write a separate document for this topic and sub-topics
 #### Objects and Classes
 
 #### Inheritance
@@ -42,6 +47,21 @@ Overall, world of software and hardware, when fused together to open new world o
 #### Example Testing Code
 
 ##Learnings - Electronics
+
+### Learning ATMEL328 Controller
+[Click here](learning_atmel328.md)
+
+### Learning 8051 Controller
+
+### Learning AM335
+
+### Learning Peripherals
+
+**74HC595 - Serial in Paralle Out shift register**
+
+**UART Chip**
+
+**ULN2003 - Motor Driver**
 
 ##Learnings - Processes
 
