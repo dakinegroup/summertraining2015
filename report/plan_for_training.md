@@ -16,6 +16,7 @@
 * Visit Industry at least one
 * Enhance software to run traffic lights
 * Prototype for Communications with host machine using ATMEL328 and UART interface
+* Study Macro Economics - Purchase / Consumer Cycle and start to write your analysis based on this theory to explain decision of holding rate of interest by RBI Governor
 
 ### Week of 8-Jun
 * Further work on Communications
