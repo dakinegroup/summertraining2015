@@ -1,4 +1,4 @@
-#ATmega
+#ATmega 8
 ##Basic Terminology
 1. **EPROM** - Erasable Programmable Read Only Memory.  
                 It is erased by exposing to strong UV light source.  
