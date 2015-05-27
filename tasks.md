@@ -46,4 +46,21 @@ Above logic is to
 * evolving requirements
 * organizing code into functions, files and make as is already learnt
 
-#
+#task6
+
+Create software logic to simulate traffic lights, with following problem statement
+
+* It is four roads crossing with each one two way
+* Red light, Yellow and Green lights glow for durations which should be configurable through variable settings
+* Green light gives way to all the three directions. For example: if traffic is coming from south, it shall be able to go to North, east and west.
+* Green signal shall move in clock-wise direction i.e. if now traffic is coming from south, than next will be from west  and so on..
+* Traffic adjacent to active (green) signal shall be able to move to it's left side freely
+* while doing the above, keep in mind, the software so written should be able to support hardware, where we are limited by number of output pins
+* for example: 4 nibbles or 2 bytes i.e. 16 bits should be sufficient to hold state of all the lights on four poles
+* write a function to emit these two bytes in serial manner that complies with 74HC594. This will consume 3 pins.
+* Draw circuit diagram capturing use of this IC
+
+
+Further extend this to support
+
+* Make it four lights
