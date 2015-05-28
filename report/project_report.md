@@ -45,6 +45,8 @@ For example - there are fruits in a basket like banana, orange and apple. In thi
 It is the property in oop in which sub classes  inherit or acquire the properties of its main class.
 
 #### Polymorphism
+Means the ability to take more than on form.  
+Consider a situation. There is a class names Area. It has three objects circle, square & triangle with functions area(circle), area(square) & area(triangle) respectively. But the operation area is different for all three figures. So polymorphism will be helpful in objects with different internal functions to show same external functions. 
 
 #### Operator Overloading
 It is the process in which a operator is asked to do different tast at different instances.  
