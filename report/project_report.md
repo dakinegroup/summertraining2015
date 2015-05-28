@@ -37,7 +37,10 @@ Overall, world of software and hardware, when fused together to open new world o
 ### Object Oriented Design
 TODO: Write a separate document for this topic and sub-topics
 #### Objects and Classes
-
+**Objects** - These are the things with independent runtime existance. These are entities in object oriented systems.  
+At run time objects interact with each other by sending messages.  
+**Class** - Class is a collection of objects of same type.  
+For example - there are fruits in a basket like banana, orange and apple. In this example fruit is a class and banana , orange and apple are its objects.
 #### Inheritance
 
 #### Polymorphism
@@ -82,6 +85,8 @@ TODO: Write a separate document for this topic and sub-topics
 ##Project - Traffic Lights
 
 ### Problem Statement
+**Implement a logic for traffic lights of square.**  
+Suppose there
 
 ### Solution Overview
 
