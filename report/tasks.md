@@ -88,4 +88,18 @@ List of components to buy:
 * 74HC594
 * ATMEL 328 chip
 * More LEDs
-* 
+* 9-pin d connector female x 4
+* 9-pin d connector male x 4
+* 16F887(pref) x 2, 16F886 or 16877 -- module
+* 8051 kit
+* Cordless battery
+* max485 x 10
+* max232 x 2
+* 120ohm x 10
+* 470ohm x 10
+* 1uf x 5
+* 100uf x 5
+* LCD module x 2
+* Wifi wifi shield
+* xbee development kit / arduino shield
+* LED bulbs 11w
