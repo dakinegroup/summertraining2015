@@ -84,11 +84,15 @@ These are used for attaching lower speed peripherals to computers.
  * [Datasheet] (http://www.atmel.com/Images/Atmel-8159-8-bit-AVR-microcontroller-ATmega8A_datasheet.pdf)
     * [Programmer User Manual](http://www.elesof.com/electronics/data/admin-files/AVRUPro+_V02.pdf)
  * [Programmer Used for flashing ATMEGA8A](http://www.elesof.com/electronics/product/avrupro_plus)
+ * Buses
+     - [I2C](http://www.nxp.com/documents/user_manual/UM10204.pdf)
+     - [UART/232]()
+     - [SPI]()
+     - [RS485]()
  ## Software
  Useful URLs to read:
  * [Tool Chain](http://nongnu.org/avr-libc/user-manual)
     * specifically this project [Simple Project](http://nongnu.org/avr-libc/user-manual/group__demo__project.html)
- * 
  
 
 
