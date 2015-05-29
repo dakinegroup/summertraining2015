@@ -101,5 +101,10 @@ List of components to buy:
 * 100uf x 5
 * LCD module x 2
 * Wifi wifi shield
-* xbee development kit / arduino shield
+* xbee development kit / arduino shield, XBee 2mW Wire Antenna
 * LED bulbs 11w
+* 74FST3257 - De-Multiplexer
+* Female Connectors x 20
+* Veroboard x 2
+* 28 pin base
+* Ribbon wire
