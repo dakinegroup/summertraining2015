@@ -85,7 +85,11 @@ Lets extend this further, we put up 4 such cards on a bus. What needs to be done
 Visit to lajpat Rai Market to buy some components for project work
 Create inventory of items in excel sheet
 List of components to buy:
-* 74HC594
+* 74HC594, 74HC164
+* PCF 8574
+* 74HC00, 74HC04, 74HC14, 74HC86, x 2 each
+* 74HC390 - BCD counter
+* 7 Segment Displays x 8
 * ATMEL 328 chip
 * More LEDs
 * 9-pin d connector female x 4
@@ -104,7 +108,16 @@ List of components to buy:
 * xbee development kit / arduino shield, XBee 2mW Wire Antenna
 * LED bulbs 11w
 * 74FST3257 - De-Multiplexer
+* 74HC153 x 2
+* 74HC257 x 2
+* 74HC85 x 2
+* 74HC148 x 2
+* 74HS48 x 2 - 7 segment LED decoder
+* Transistors - NPN: BC182 x 10, BC184 x 10, 2N3055 x 2, BC107 x 2
 * Female Connectors x 20
 * Veroboard x 2
 * 28 pin base
 * Ribbon wire
+* Potentio meter
+* induction coil?? -- varying
+* 

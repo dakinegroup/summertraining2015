@@ -93,6 +93,10 @@ These are used for attaching lower speed peripherals to computers.
  Useful URLs to read:
  * [Tool Chain](http://nongnu.org/avr-libc/user-manual)
     * specifically this project [Simple Project](http://nongnu.org/avr-libc/user-manual/group__demo__project.html)
+## Useful Tutorials
+* [Learning about electronics - Digital](http://www.learnabout-electronics.org/Digital)
+* [Transistors](http://www.electronics-tutorials.ws/transistor)
+* 
  
 
 
