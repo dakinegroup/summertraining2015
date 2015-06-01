@@ -94,15 +94,52 @@ Suppose there
 
 ### Solution Overview
 
-![ATmega8 and Traffic Lights](images/IMG_20150601_110247.jpg)
-
-![Arduino Uno and Traffic Lights](images/IMG_20150601_153505.jpg)
 
 ### Schematic Diagram
 
 ### Snap of actual circuitry
 
+#### Working on breadboard
+![ATmega8 and Traffic Lights](images/IMG_20150601_110247.jpg)
+
+![Arduino Uno and Traffic Lights](images/IMG_20150601_153505.jpg)
+
+#### Working on PCB, hard-wired
+
 ### Extracts of code and explanation
+#### Pushing data to shift register
+```c
+void shiftOutClockedData(unsigned int dat1) {
+     unsigned int i, opser, srclk=0;
+     unsigned int data = 0xFFFF - dat1;
+    for(i=0;i<16;i++) {
+      
+      digitalWrite(8, data & 0x01);
+      data = data >>1;
+      digitalWrite(13, HIGH); 
+      digitalWrite(13, LOW); 
+    }
+}
+```
+
+```c
+if(tState & 0x02) {/*Yellow is on*/
+        delay(duration[1]);
+        startingState = (startingState & ~(0x0F << i*4)) | (0x04 << i*4) ;
+       ...
+} 
+```
+
+```
+ if(i == 3) {
+         /* Glow yellow led for 0th pole*/
+         startingState = (startingState & ~0x0F) | (0x09) ;
+       } else {
+         /* Glow yellow led for next pole in sequence */
+         startingState = (startingState & ~(0x0F << ((i+1)*4))) | (0x09 <<( (i+1)*4)) ;
+         ...
+}
+```
 
 ##Project - Remote Monitor for analog levels
 
