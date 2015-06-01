@@ -24,7 +24,7 @@ void shiftOutClockedData(data) {
 void runTrafficLight(unsigned int startingState) {
 	int i=0;
 	unsigned int tState;
-	shiftOutClockedData(startingState);
+	shiftOutClockedData(startingState);                                              
 do {
    for(i=0; i < 4; i ++) { /* go over all the traffic poles */
      /* which is green right now */
@@ -35,23 +35,27 @@ do {
      } else if(tState & 0x02) {/*Yellow is on*/
         //delay(duration[1]);
         startingState = (startingState & ~(0x0F << i*4)) | (0x04 << i*4) ;
-        if(i == 3) {
+        if(i == 0) {
          /* Glow yellow led for 0th pole*/
-         startingState = (startingState & ~0x0F) | (0x09) ;
+         startingState = (startingState & ~(0x0F << ((i+3)*4))) | (0x09 << ((i+3)*4)) ;
        } else {
          /* Glow yellow led for next pole in sequence */
-         startingState = (startingState & ~(0x0F << ((i+1)*4))) | (0x09 <<( (i+1)*4)) ;
+         startingState = (startingState & ~(0x0F << ((i-1)*4))) | (0x09 <<( (i-1)*4)) ;
   shiftOutClockedData(startingState);
       }
      } else if(tState & 0x04) {/*Green is on */
        //delay(duration[0]);
        startingState = (startingState & ~(0x0F << i*4)) | (0x01 << i*4) ;
-       if(i == 3) {
+       
          /* Glow yellow led for 0th pole*/
-         startingState = (startingState & ~0x0F) | (0x02) ;
-       } else {
+         
+
+       if(i == 0){
+       	startingState = (startingState & ~(0x0F << ((i+3)*4))) | (0x02 << ((i+3)*4)) ;
+       }
+        else {
          /* Glow yellow led for next pole in sequence */
-         startingState = (startingState & ~(0x0F << ((i+1)*4))) | (0x02 << ((i+1)*4)) ;
+         startingState = (startingState & ~(0x0F << ((i-1)*4))) | (0x02 << ((i-1)*4)) ;
        }
   shiftOutClockedData(startingState);
     } else if(tState & 0x08) {/* Left is on */
