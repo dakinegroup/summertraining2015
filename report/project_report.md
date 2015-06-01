@@ -12,14 +12,10 @@ DKTPL current focus area is internet technologies, though the abilities cover qu
 
 ###Products
 
-DKTPL is creating a product, ComLiive, that is aimed at enabling access of small players to Android and iOS market places, with their own shops setup.
-
-DKTPL has also a product in delivering services online for dieticians to their customers.
-
-DKTPL has provided consultancy in creating similar platforms to other startups.
+DKTPL is a research and development organization, enaged in creating products that enable SME (small and medium scale industries) to automate e.g. ComLiive (customer - vendor networking solution), dietician providing diet services through mobile apps, embedded automation solutions around micro-controllers, sensors.
 
 ##Synopsis of Training
-6 weeks of training at DKT enabled exposure to mix of software and hardware practical knowledge. During this period, there were couple of visits to Industries to see use of electronics and software. Electronics and software are interdependent disciplines and together serve several industries, via automation, recording, analysis etc. Electronics enables the capturing, access to the real world, while software is much bigger pie as it explores various possibilities of application of data and controls.
+6 weeks of training at DKT enabled exposure to mix of software and hardware practical knowledge. During this period, there were couple of visits to Industries to see use of electronics and software. Electronics and software are interdependent disciplines and together serve several industries, via automation, recording, anutioalysis etc. Electronics enables the capturing, access to the real world, while software is much bigger pie as it explores various possibilities of application of data and controls.
 
 Knowledge in C-Language and digital electronics was heavily used and further strengthened while trying to implement new things. Logical reasoning and conceptualising / doing things on paper is key to design and solving problems using software and hardware.
 
