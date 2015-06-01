@@ -94,6 +94,10 @@ Suppose there
 
 ### Solution Overview
 
+![ATmega8 and Traffic Lights](images/IMG_20150601_110247.jpg)
+
+![Arduino Uno and Traffic Lights](images/IMG_20150601_153505.jpg)
+
 ### Schematic Diagram
 
 ### Snap of actual circuitry
