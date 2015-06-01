@@ -82,6 +82,23 @@ For example - operation of addition adds two integers. But wern this operator is
 
 ### Scope of electronics and software in operations
 
+##Learnings - Procurement
+
+Following steps followed:
+
++ Solution Design
++ Prepare Bill Of Materials
++ Vendor Selection - research through internet and other known sources
++ In-Market research for costly items
++ Procurement
++ Components Entry / Management in ERP
+
+##Learnings - CAD Design
+
+KiCAD is an open source software on Ubuntu, which can be used for schematic design, routing PCB and sending the gerber files to manufacturer for getting the developed PCBs.
+
+**TODO:** Capture various features within schematic design that you have learnt.
+
 ##Project - Traffic Lights
 
 ### Problem Statement
