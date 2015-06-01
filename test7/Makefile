@@ -1,5 +1,5 @@
-PRG            = demo
-OBJ            = demo.o
+PRG            = tl
+OBJ            = tl.o
 #MCU_TARGET     = at90s2313
 #MCU_TARGET     = at90s2333
 #MCU_TARGET     = at90s4414
@@ -74,15 +74,13 @@ $(PRG).elf: $(OBJ)
 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $^ $(LIBS)
 
 # dependency:
-demo.o: demo.c iocompat.h
+tl.o: tl.c iocompat.h
 
 clean:
 	rm -rf *.o $(PRG).elf *.eps *.png *.pdf *.bak 
 	rm -rf *.lst *.map $(EXTRA_CLEAN_FILES)
 flash: all
-	sudo avrdude -p atmega8 -U flash:w:demo.hex -c usbasp
-       
-
+	sudo avrdude -p atmega8 -U flash:w:tl.hex -c usbasp
 lst:  $(PRG).lst
 
 %.lst: %.elf
