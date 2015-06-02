@@ -93,33 +93,34 @@ These are used for attaching lower speed peripherals to computers.
  
  **TODO:** Attach photograph of the glowing LEDs when being programmed (Green LED)
  
- ### Connecting Programmer to Kit
+### Connecting Programmer to Kit
  
  **TODO:** Refer to MISO, MOSI PIN functionality
  
- ### Connecting Programmer to Ubuntu
+### Connecting Programmer to Ubuntu
  **TODO:** Refer to the URLs, from where avrdued was downloaded and some 2-3 lines about it
  
  
  
- ### Write a simple program
+### Write a simple program
  
  **TODO:** Refer to the URLs, from where GCC tool chain for AVR was downloaded
  
  **TODO:** Refer to the URLs, from where the simple program for testing is reused
  
 
- ### Make 
+### Make 
  
  **TODO:** Write your understanding about different intermediate files being generated, .lst, .hex, .map
  
- ### Flash
+### Flash
 
 Command used for flashing code to ATMEGA8
 
  `sudo avrdude -p atmega8 -U flash:w:demo.hex -c usbasp`
 
  ## Hardware
+ 
  * [Datasheet] (http://www.atmel.com/Images/Atmel-8159-8-bit-AVR-microcontroller-ATmega8A_datasheet.pdf)
     * [Programmer User Manual](http://www.elesof.com/electronics/data/admin-files/AVRUPro+_V02.pdf)
  * [PIN Mapping of Arduino UNO with ATMEGA 328] (http://www.arduino.cc/en/Hacking/PinMapping168)
@@ -130,11 +131,14 @@ Command used for flashing code to ATMEGA8
      - [SPI]()
      - [RS485]()
  * MAX RS232 Interface -  [(Datasheet)](http://www.ti.com/lit/ds/symlink/max232.pdf), [(Example Circuitry)](https://arduinodiy.files.wordpress.com/2012/03/max232.jpg)
+
  ## Software
+
  Useful URLs to read:
  * [Tool Chain](http://nongnu.org/avr-libc/user-manual)
     * specifically this project [Simple Project](http://nongnu.org/avr-libc/user-manual/group__demo__project.html)
  * CAD Tools - KiCAD (for Schematic Design, PCB Design, Net List, Gerber file) [Software](http://www.kicad-pcb.org/display/KICAD/KiCad+EDA+Software+Suite)
+
 ## Useful Tutorials
 * [Learning about electronics - Digital](http://www.learnabout-electronics.org/Digital)
 * [Transistors](http://www.electronics-tutorials.ws/transistor)
