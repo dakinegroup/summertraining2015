@@ -119,7 +119,7 @@ Command used for flashing code to ATMEGA8
 
  `sudo avrdude -p atmega8 -U flash:w:demo.hex -c usbasp`
 
- ## Hardware
+## Hardware
  
  * [Datasheet] (http://www.atmel.com/Images/Atmel-8159-8-bit-AVR-microcontroller-ATmega8A_datasheet.pdf)
     * [Programmer User Manual](http://www.elesof.com/electronics/data/admin-files/AVRUPro+_V02.pdf)
