@@ -81,7 +81,12 @@ Create software logic to simulate traffic lights, with following problem stateme
   |4|0x04| GREEN-MSB, GREEN-LSB, YELLOW-MSB, YELLOW-LSB | To get currently active duration setings. CPU shall respond with train of 4 bytes capturing the values of green and yellow light duration|
   |5|0x05| #status #optional-pole| Get Currrent status - Status -> can take values 0x01 - Normal, 0x02 - Emergency stop, 0x03 - Pole permanent Green followed by pole which is permanent green|
   
-   For above, UART communication is required, where from serial console, user shall give commands to the remote CPU and fetch status / change the status
+   For above, UART communication is required (partly discussed in task8), where from serial console, user shall give commands to the remote CPU and fetch status / change the status
+   
+Above needs to be replicated with raw unit (earlier it was Uno kit). Following challenges will need to be overcome:
+
+* UART interface
+* PIN support library not available in same format in regular gcc based project
 
 Further extend this to support (optional)
 
