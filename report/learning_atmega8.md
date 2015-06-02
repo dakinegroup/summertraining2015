@@ -129,7 +129,7 @@ Command used for flashing code to ATMEGA8
 ## Useful Tutorials
 * [Learning about electronics - Digital](http://www.learnabout-electronics.org/Digital)
 * [Transistors](http://www.electronics-tutorials.ws/transistor)
-
+* [Using make with Arduino Uno](https://www.ashleymills.com/node/327)
  
 
 
