@@ -1,22 +1,38 @@
 ### 20-May
 
 * Ramp-Up for 1 week - electronics (ATMEL328)
-* Ramp-up for 1 wejek - software (make, c/c++, design)
+** in progress **
+* Ramp-up for 1 week - software (make, c/c++, design)
+** done, lot of work/practice required at personal time to use it effectively **
 * Boot up hardware
+** done **
+
+* Report
+** Updates to report done **
 
 ### Week of 25-May
 * Ready schematic for traffic lights
+** done - familiarity level **
 * Generate BoM
+** done - introduction level **
 * Rought Software Outline
+** done - several tasks done, in progress as well, good level **
 * Start Project work at least 1 - Traffic lights or similar complex thing
+** in progress - done with Kit based TL system **
 * Visit to electronics market
+** done **
+* Report
+** Updates to report done **
 
 ### Week of 1-Jun
 * Get Hardware Ready for Traffic Lights
+** done with kit, on veroboard to be done **
 * Visit Industry at least one
+
 * Enhance software to run traffic lights
 * Prototype for Communications with host machine using ATMEL328 and UART interface
 * Study Macro Economics - Purchase / Consumer Cycle and start to write your analysis based on this theory to explain decision of holding rate of interest by RBI Governor
+* Report
 
 ### Week of 8-Jun
 * Further work on Communications
