@@ -65,7 +65,7 @@ Create software logic to simulate traffic lights, with following problem stateme
 * Put a DIP switch to change the timings of the traffic lights on the fly. These are as following:
    
 |SW 3 | SW 2 | SW 1 | SW 0 | Duration - Green | Duration - Yellow|
-|----|---|----|----|----|
+|----|---|----|----|----|----|
 |1|1|1|0| 1000|300|
 |1|1|0|1| 5000|500|
 |1|1|0|0| 15000|1000|
