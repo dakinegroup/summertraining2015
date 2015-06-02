@@ -26,6 +26,6 @@ PORTxn is accessed at PORTx i/o Address.
 PINxn is accessed at PINx i/o Address.  
 
 
-###interrupts
+###Interrupts
 
 
