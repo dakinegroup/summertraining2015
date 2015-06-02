@@ -10,29 +10,17 @@ first program to find Vc in transitor circuit
 #test4
 implement truth table as per following
 
-|Date| Time In | Time Out | At Place |Theme for day|
-|----|-----|----|------|----|
-|20-May-2015| 8:45am | 5:30pm| DKTPL |C-Lang|
-|21-May-2015| 8:45am | 5:30pm| DKTPL |C++|
-|23-May-2015| 8:45am | 5:30pm| DKTPL |Test Programs|
-|26-May-2015| 8:45am | 5:30pm| DKTPL |Test Programs|
-|27-May-2015| 8:45am | 5:30pm| DKTPL |ATMel328, Shift Register|
-|28-May-2015| 8:45am | 5:30pm| DKTPL |Traffic Light / Code|
-|29-May-2015| 8:45am | 5:30pm| DKTPL |Traffic Light / Code|
-|30-May-2015| 8:45am | 5:30pm| LajpatRai Market |Procurement|
-|1-June-2015| 8:45am | 5:30pm| DKTPL |Trafic Light HW|
-|2-June-2015| 8:45am | 5:30pm| DKTPL |Trafic Light HW|
-
-
-| Var A | Var B | Var C | Var D  |Var E | Output |
-|----|---|----|---|--|----|
-| 0 | 1 | 1| 0| 0| Red |
+|Var A| Var B | Var C | Var D |Var E|Output|
+|----|-----|----|------|----|----|
+|0| 1 | 1| 0 |0| Red|
 | 0 | 1 | 1| 1| 1| Red |
 | 0 | 1 | 1| 0|1| Yellow|
 | 0 | 1 | 1| 1|0| Yellow|
 | 1 | 0 | 1| 0| 0| Green|
 | 1 | 0 | 0 | 0| 0| Green|
 | 0 | 0 | 1| 1|1| Yellow|
+
+
 
 Other combinations by default give - Black as output
 
