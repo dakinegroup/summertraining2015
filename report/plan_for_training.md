@@ -72,7 +72,7 @@
 
 ### Week of 26-Jun
 * Working on robotic kit - IR sensor, Wheel Drive - PWM
-* 
+* Minor Concluding test for the learnings till date - Written (practical orientation, around digital electronics and atmega 328)
 
 ### Week of 3-Jul
 * Visit to Lajpat Rai Market - Purchase for 8051 kit and additional items
