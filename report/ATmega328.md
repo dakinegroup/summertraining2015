@@ -11,6 +11,21 @@
 9. Output Compare Channels - 6
 10. Input Capture Channels - 1
 11. PWM channels - 6
-12. Watchdog
+12. Watchdog    
+
+###Memory Map
+###Instructions
+###I/O Ports Registers
+Every port has three register bit.
+ * DDxn
+ * PORTxn
+ * PINxn
+
+DDxn is accessed at DDRx i/o Address.  
+PORTxn is accessed at PORTx i/o Address.  
+PINxn is accessed at PINx i/o Address.  
+
+
+###interrupts
 
 
