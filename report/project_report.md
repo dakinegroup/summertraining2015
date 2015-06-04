@@ -52,7 +52,7 @@ For example - operation of addition adds two integers. But wern this operator is
 ##Learnings - Electronics
 
 ### Learning ATMEL328 Controller
-[Click here](learning_atmel328.md)
+[Click here](learning_atmega8.md)
 
 ### Learning 8051 Controller
 
