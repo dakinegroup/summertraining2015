@@ -11,6 +11,7 @@ void setup() {
   pinMode(13, OUTPUT);  
   pinMode(8, OUTPUT);    
   digitalWrite(13, LOW); 
+  Serial.begin(9600);
   
 }
 
@@ -26,11 +27,11 @@ void shiftOutClockedData(unsigned int dat1) {
      // delay(500); 
       digitalWrite(13, LOW); 
     }
-      delay(10000);  
+      //delay(10000);  
 }
 void loop() {
   /* main logic of traffic light shall work from here */
-  int duration[2] = {3000, 1000}; 
+  int duration[2] = {2000, 300}; 
   //int tick = 0;
   int i = 0, tState = 0;
   /* 0th pole is BIT:0-3, 1st pole: BIT:4-7, 2nd pole: BIT:8:11, 3rd pole: BIT:12:15*/
@@ -38,6 +39,7 @@ void loop() {
    shiftOutClockedData(startingState);
 do {
    for(i=0; i < 4; i ++) { /* go over all the traffic poles */
+         Serial.println("Place0"); 
      /* which is green right now */
      /* first get the pole */
      tState  = (startingState >> (i*4)) & 0x0F;
@@ -49,10 +51,12 @@ do {
         if(i == 3) {
          /* Glow yellow led for 0th pole*/
          startingState = (startingState & ~0x0F) | (0x09) ;
+         Serial.println("Place1"); 
        } else {
          /* Glow yellow led for next pole in sequence */
          startingState = (startingState & ~(0x0F << ((i+1)*4))) | (0x09 <<( (i+1)*4)) ;
   shiftOutClockedData(startingState);
+  Serial.println("Place2"); 
       }
      } else if(tState & 0x04) {/*Green is on */
        delay(duration[0]);
@@ -60,9 +64,11 @@ do {
        if(i == 3) {
          /* Glow yellow led for 0th pole*/
          startingState = (startingState & ~0x0F) | (0x02) ;
+         Serial.println("Place3"); 
        } else {
          /* Glow yellow led for next pole in sequence */
          startingState = (startingState & ~(0x0F << ((i+1)*4))) | (0x02 << ((i+1)*4)) ;
+         Serial.println("Place4"); 
        }
   shiftOutClockedData(startingState);
     } else if(tState & 0x08) {/* Left is on */
