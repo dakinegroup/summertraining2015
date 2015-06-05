@@ -25,7 +25,11 @@ Hindustan Pumps manufactures variety of pumps. Some of the products are:-
   9. Drying - For fast drying of paint and preventing it from dust the pumps were put in oven.
   10. Testing speed , torque.
 
-###
+###ABC
+CNC and VMC machines , these machines are controlled my computer. The programs produce a computer file that is interpreted to extract the commands needed to operate a particular machine via a post processor, and then loaded into the CNC machines for working.
+
+The part which is appreciable about this firm is that maximum work of production of pumps is done in the factory itself. There is no outsourcing. At the startup to reduce the cost various things like racks for stores , lifts and several transporting machines were made in the factory itself. This plant needs huge amount of cooperation , hardwork and sincereness among the workers and we saw it at much greater extent than we expected, ehich is also appreciable. 
+
 
 
 
