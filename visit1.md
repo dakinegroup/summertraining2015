@@ -13,6 +13,19 @@ Hindustan Pumps manufactures variety of pumps. Some of the products are:-
   3. Indusction Motors - These are for domestic puposes.
   4. Sewerage Pumps - These are used in drainiage and sewerage pumping systems.
 
+###Processes seen in Pump Manufacture
+  1. Drilling - This process was done by VMC machines.
+  2. Cutting - This process was done in CNC machines. Manual Lathe machines were also there.
+  3. Winding - For bigger pumps winding was done manually as they require less number of turns which can be easily counted. But for small motors various machines were there for widing.
+  4. Assembling
+  5. Compressing
+  6. Balancing - Rods were fitted horizontally in balancing machine and through meter they were seeing at which angle the weight on the rod is more. At that point they drilled that rod to reduce the weight.
+  7. Casting and Moulding
+  8. Painiting
+  9. Drying - For fast drying of paint and preventing it from dust the pumps were put in oven.
+  10. Testing speed , torque.
+
+###
 
 
 
