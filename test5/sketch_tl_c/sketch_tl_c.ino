@@ -10,16 +10,20 @@ void setup() {
   // Pin 13 has an LED connected on most Arduino boards:
   pinMode(13, OUTPUT);  
   pinMode(8, OUTPUT);    
+  pinMode(7,INPUT);
   digitalWrite(13, LOW); 
+  
   Serial.begin(9600);
   
 }
 
 void shiftOutClockedData(unsigned int dat1) {
-     unsigned int i, opser, srclk=0;
+     unsigned int i, opser, srclk=0,val=0;
      unsigned int data = 0xFFFF - dat1;
+    val=digitalRead(7);
+    Serial.println(val);
+    if (val==1){
     for(i=0;i<16;i++) {
-      
       digitalWrite(8, data & 0x01);
       data = data >>1;
       //delay(500); 
@@ -27,6 +31,7 @@ void shiftOutClockedData(unsigned int dat1) {
      // delay(500); 
       digitalWrite(13, LOW); 
     }
+    }else{digitalWrite(8,LOW);}
       //delay(10000);  
 }
 void loop() {
@@ -38,7 +43,7 @@ void loop() {
   unsigned int startingState = 0x9114;
    shiftOutClockedData(startingState);
 do {
-  Serial.println("ab");
+  Serial.println("startingState");
    for(i=0; i < 4; i ++) { /* go over all the traffic poles */
      /* which is green right now */
      /* first get the pole */

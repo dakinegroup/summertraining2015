@@ -10,15 +10,17 @@ first program to find Vc in transitor circuit
 #test4
 implement truth table as per following
 
-| Var A | Var B | Var C | Var D  |Var E | Output |
-|----|---|----|---|--|----|
-| 0 | 1 | 1| 0| 0| Red |
+|Var A| Var B | Var C | Var D |Var E|Output|
+|----|-----|----|------|----|----|
+|0| 1 | 1| 0 |0| Red|
 | 0 | 1 | 1| 1| 1| Red |
 | 0 | 1 | 1| 0|1| Yellow|
 | 0 | 1 | 1| 1|0| Yellow|
 | 1 | 0 | 1| 0| 0| Green|
 | 1 | 0 | 0 | 0| 0| Green|
 | 0 | 0 | 1| 1|1| Yellow|
+
+
 
 Other combinations by default give - Black as output
 
@@ -46,7 +48,7 @@ Above logic is to
 * evolving requirements
 * organizing code into functions, files and make as is already learnt
 
-#task6
+#task6 - 7
 
 Create software logic to simulate traffic lights, with following problem statement
 
@@ -59,13 +61,38 @@ Create software logic to simulate traffic lights, with following problem stateme
 * for example: 4 nibbles or 2 bytes i.e. 16 bits should be sufficient to hold state of all the lights on four poles
 * write a function to emit these two bytes in serial manner that complies with 74HC594. This will consume 3 pins.
 * Draw circuit diagram capturing use of this IC
+* Once a working circuit is created on breadboard and software is working, enhance it further as per following
+* Put a DIP switch to change the timings of the traffic lights on the fly. These are as following:
+   
+    |SW 3 | SW 2 | SW 1 | SW 0 | Duration - Green | Duration - Yellow|
+    |----|---|----|----|----|----|
+    |1|1|1|0| 1000|300|
+    |1|1|0|1| 5000|500|
+    |1|1|0|0| 15000|1000|
+    |1|0|1|1| 60000|2000|
 
+* Once this is also done, further enhance the functionality, to do remote control of these lights for following things
 
-Further extend this to support
+  |#|Command (Hex)| Response (Hex) | Command Description |
+  |---|---|---|---|
+  |1|0x01| - | To resume traffic light sequence|
+  |2|0x02| - | To stop traffic light sequence in state where it is, even if it is yellow somewhere|
+  |3|0x03 #pole| - | To make green for the pole, defined by #pole. It can take values 0x01 - 0x04|
+  |4|0x04| GREEN-MSB, GREEN-LSB, YELLOW-MSB, YELLOW-LSB | To get currently active duration setings. CPU shall respond with train of 4 bytes capturing the values of green and yellow light duration|
+  |5|0x05| #status #optional-pole| Get Currrent status - Status -> can take values 0x01 - Normal, 0x02 - Emergency stop, 0x03 - Pole permanent Green followed by pole which is permanent green|
+  
+   For above, UART communication is required (partly discussed in task8), where from serial console, user shall give commands to the remote CPU and fetch status / change the status
+   
+Above needs to be replicated with raw unit (earlier it was Uno kit). Following challenges will need to be overcome:
+
+* UART interface
+* PIN support library not available in same format in regular gcc based project
+
+Further extend this to support (optional)
 
 * Make it four lights and 6 crossings. See if your software is scalable.
 
-#task7
+#task8
 
 Implement echo loop with serial communication port of atmel controller.
 Do serial out on one port, loop tx with Rx and read Rx register, if it is same as was transmitted. If yes, you are now able to use UART registers
