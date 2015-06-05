@@ -57,6 +57,8 @@
 * Further work on Communications
 * Create circuitry to measure analog voltage 0-5V
 * Write software on host machine to display remote values
+* Understanding software development processes
+* Understanding HW / SW Integrated development processes
 
 ### Week of 12-Jun
 * Further work on Communications project to extend it to multiple terminals
