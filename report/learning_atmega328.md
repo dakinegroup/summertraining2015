@@ -35,4 +35,7 @@ If PINx is 1 , it toggles the value of PORTx irrespective of the value of DDx.
 
 ###Interrupts
 
+###Connections for Atmega328
+
+![Atmega328Connections](images/atmel328_connections.jpg)
 
