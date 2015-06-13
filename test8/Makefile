@@ -1,5 +1,5 @@
 PRG            = demo
-OBJ            = demo.o
+OBJ            = demo.o usart.o
 #MCU_TARGET     = at90s2313
 #MCU_TARGET     = at90s2333
 #MCU_TARGET     = at90s4414
@@ -54,7 +54,7 @@ MCU_TARGET     = atmega328p
 #MCU_TARGET     = attiny861
 OPTIMIZE       = -O2
 
-DEFS           = -dF_CPU=16000000UL
+DEFS           = -DF_CPU=16000000UL
 LIBS           =
 
 # You should not have to change anything below here.
@@ -64,7 +64,8 @@ CC             = avr-gcc
 # Override is only needed by avr-lib build system.
 
 override CFLAGS        = -g -Wall $(OPTIMIZE) -mmcu=avr5 -D__AVR_ATmega328P__ $(DEFS)
-override LDFLAGS       = -Wl,-Map,$(PRG).map
+#override LDFLAGS       = -Wl,-Map,$(PRG).map -Wl,-Tdata=0x800200 -Wl,-Tbss=0x800300
+override LDFLAGS       = -Wl,-Map,$(PRG).map 
 
 OBJCOPY        = avr-objcopy
 OBJDUMP        = avr-objdump
@@ -75,13 +76,15 @@ $(PRG).elf: $(OBJ)
 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $^ $(LIBS)
 
 # dependency:
-demo.o: demo.c iocompat.h
+demo.o: demo.c usart.c iocompat.h
 
 clean:
 	rm -rf *.o $(PRG).elf *.eps *.png *.pdf *.bak 
 	rm -rf *.lst *.map $(EXTRA_CLEAN_FILES)
 flash: all
 	sudo avrdude -p atmega328p -U flash:w:demo.hex -c usbasp
+#	sudo avrdude -p atmega328p -F -U lfuse:w:0x62:m -U flash:w:demo.hex -c usbasp
+#	sudo avrdude -p atmega328p -U lfuse:w:0xFF:m -U flash:w:demo.hex -c usbasp
        
 
 lst:  $(PRG).lst
