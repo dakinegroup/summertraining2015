@@ -12,3 +12,13 @@ If we see our past, nearly 20 years ago and compare it with present we come to k
 It focuses on describing how the signal will flow in the circuit. It is used in logic design phase on IC design cycle.
 
 **EAD or ECAD** - Electronic Design Automation. It is software tools for designing PCB and ICs.
+
+##Processor
+
+**RISC** - Reduced Instruction Set Computing. 
+ * Simplified instructions are used in RISC.  
+ * It provides high performance.  
+ * It uses fewer microprocessor cycles per instruction.
+ * RISC have separate intructions of I/O and data processing.
+
+**CISC** - 
