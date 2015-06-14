@@ -20,5 +20,21 @@ It focuses on describing how the signal will flow in the circuit. It is used in 
  * It provides high performance.  
  * It uses fewer microprocessor cycles per instruction.
  * RISC have separate intructions of I/O and data processing.
+ * ARM, Atmel AVR uses RICS.
 
-**CISC** - 
+**CISC** - Complex instruction set computing.
+ * Complex instructions are used in CISC.
+ * Single instruction can execute low level operation such as load from memory set.
+ * Intel x86 processors uses CISC.
+
+In RISC the amount of work done by a instruction is reduced as compared to CISC in which execution of a single instruction take many memory cycles. RICS uses less energy than CISC chips. Therefore these are used in mobile phones.
+
+**Multicore Processor** - It is a single compnent with two or more processing units.  
+In multicore they can run multiple instructions at same time which increases overall speed programs managable to parallel computing.  
+I consumes less energy and give high performance.
+
+**Multithreading** - 
+It is the ability of a CPU or a single core in a multicore processor to execute multiple processes.  
+It aims to increase utilization of a ssingle core by using instruction level parallelism.
+
+Multicore processors have replaced multithreading technique and they are also used in mobile phones. But Intel still uses multithreadin in Multicore processors.
