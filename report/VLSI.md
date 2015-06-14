@@ -6,4 +6,9 @@ If we see our past, nearly 20 years ago and compare it with present we come to k
 
 **HDL** - Hardware Descriptive Language. It is the language used to program the structure, design and operation of electronic circuits. It gives description of an electronic circuit that allows for analysis, simulation and testing of that circuit.  
 
-**Verilog** - 
+**Verilog** - It is a HDL used to model electronic systems. It is useed for design and verification of digital circuits at RTL.
+
+**RTL**-Register Transfer Level. It is a design abstraction which models a  synchronous digital circuit in terms of the flow of digital signals between hardware registers, and the logical operations performed on those signals.  
+It focuses on describing how the signal will flow in the circuit. It is used in logic design phase on IC design cycle.
+
+**EAD or ECAD** - Electronic Design Automation. It is software tools for designing PCB and ICs.
