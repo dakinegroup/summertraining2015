@@ -29,7 +29,7 @@ void runTrafficLight(unsigned int startingState) {
   int duration[]= {5,2,3};                         
 do {
     tick++;
-    printf("%d",tick);
+
    for(i=0; i < 4; i ++) { /* go over all the traffic poles */
      /* which is green right now */
      /* first get the pole */
@@ -37,7 +37,7 @@ do {
      if(tState & 0x01) {/* Red is on */
        
      } else if(tState & 0x02) 
-     {/*Yellow is on*/
+     {/*Yellow is on*/                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
         //delay(duration[1]);
               if (tick>=duration[1])
                 {
