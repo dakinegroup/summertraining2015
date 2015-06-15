@@ -131,6 +131,7 @@ Command used for flashing code to ATMEGA8
      - [SPI]()
      - [RS485]()
  * MAX RS232 Interface -  [(Datasheet)](http://www.ti.com/lit/ds/symlink/max232.pdf), [(Example Circuitry)](https://arduinodiy.files.wordpress.com/2012/03/max232.jpg)
+ * [LCD](http://www.limetrace.co.uk/how-to-connect-an-lcd-to-the-arduino)
 
 ## Software
 
