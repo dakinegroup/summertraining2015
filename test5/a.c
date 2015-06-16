@@ -18,7 +18,7 @@ int main()
 			led = 0;
 		}
 
-			
+		sleep(1); 	
 	}
 			printf("%d",sum);
 		

@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <unistd.h>
 char * getBinaryString(unsigned int);
 void runTrafficLight(unsigned int);
 int main()
@@ -22,32 +23,46 @@ void shiftOutClockedData(data) {
 	printf("%s\n", getBinaryString(data));
 }
 void runTrafficLight(unsigned int startingState) {
-	int i=0;
+	int i=0,counter=0,ctr,st,glt;
 	unsigned int tState;
 	shiftOutClockedData(startingState);   
   int tick = 0;                  
-  int duration[]= {5,2,3};                         
+  int duration[]= {5,4,8};                         
 do {
     tick++;
 
-   for(i=0; i < 4; i ++) { /* go over all the traffic poles */
-     /* which is green right now */
-     /* first get the pole */
+   for(i=0; i < 4; i ++) { 
      tState  = (startingState >> (i*4)) & 0x0F;
-     if(tState & 0x01) {/* Red is on */
+     if(tState & 0x01) {
        
      } else if(tState & 0x02) 
-     {/*Yellow is on*/                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
-        //delay(duration[1]);
+                 {printf("enter sleep time");
+                  scanf("%d",&st); 
+                  do
+                  {
+                    usleep(st);
+                    counter++;
+                    ctr=counter;
+                    printf("%d\n",ctr);
+                    tick++;
+                  }while(counter<((duration[1]*1000000)/st));
+                  if (ctr>=100)
+                  {
+                    printf("time for green light");
+                    scanf("%d",&glt);
+                    duration[2]=glt;
+                  } 
+                  counter=0;
+                 
               if (tick>=duration[1])
                 {
                  startingState = (startingState & ~(0x0F << i*4)) | (0x04 << i*4) ;
                  tick=0;
                  if(i == 0) {
-         /* Glow yellow led for 0th pole*/
+
          startingState = (startingState & ~(0x0F << ((i+3)*4))) | (0x09 << ((i+3)*4)) ;
        } else {
-         /* Glow yellow led for next pole in sequence */
+        
          startingState = (startingState & ~(0x0F << ((i-1)*4))) | (0x09 <<( (i-1)*4)) ;
   
                 }  
@@ -55,8 +70,7 @@ do {
         
         
       }
-     } else if(tState & 0x04) {/*Green is on */
-       //delay(duration[0]);
+     } else if(tState & 0x04) {
        
        if (tick>=duration[2])
       {
@@ -66,20 +80,18 @@ do {
         startingState = (startingState & ~(0x0F << ((i+3)*4))) | (0x02 << ((i+3)*4)) ;
        }
         else {
-         /* Glow yellow led for next pole in sequence */
+         
          startingState = (startingState & ~(0x0F << ((i-1)*4))) | (0x02 << ((i-1)*4)) ;
        }
   shiftOutClockedData(startingState);
+  duration[2]=8;
       }
-       
-         /* Glow yellow led for 0th pole*/
-         
 
-       
-    } else if(tState & 0x08) {/* Left is on */
+      } else if(tState & 0x08) {
         
      }
    }
+
    sleep(1);  
   } while (1);
 }
