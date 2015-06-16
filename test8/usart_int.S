@@ -6,18 +6,12 @@ inttmp  =       19
 .section .data
     .global tx_buffer
     .type tx_buffer, @object
-    .size   tx_buffer, 10
 tx_buffer:
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 0
-    .byte 0
+    .space 100
+
+    .global tx_buffer_data_length
+tx_buffer_data_length: 
+    .byte 1
 
 .section .text
 
@@ -34,7 +28,19 @@ USART_TX_vect:
         ;write next byte
         ldi r30, lo8(UDR0)
         ldi r31, hi8(UDR0)
+        ldi r28, lo8(tx_buffer)
+        ldi r29, hi8(tx_buffer)
+        ld r24, Y        
         st Z, R24
+ ; decrease data length, check for zero value
+       ldi r28, lo8(tx_buffer_data_length)
+        ldi r29, hi8(tx_buffer_data_length)
+        ld r24, Y
+        tst r24
+        breq zero
+        dec r24       
+        st Y, r24
+    zero:
         reti
 
         .global USART_TX_vect                 

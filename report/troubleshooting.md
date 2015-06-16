@@ -54,4 +54,8 @@ Still unresolved
 
 ### Passing String or Array argument in a subroutine corrupts
 
-Still unresolved
+Whenever a function was called with an argument, it was causing the processor to run wierdly. This weird behaviour was visible in terms of traffic lights running irregularly and weird characters coming on the serial terminal.
+
+After long debugging, it was found that initially what was thought as relevant flag i.e. -mmcu=avr5 is not correct, -mmcu=atmega328p. Use of internet to solve one of the problems had led to induction of this fault and was never doubted in the whole process of debugging.
+
+Now after this, even the UBRR of 51 is also working perfectly, 41 does not work any more.

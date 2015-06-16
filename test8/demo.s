@@ -23,9 +23,9 @@ Disassembly of section .text:
   3c:	0c 94 9a 00 	jmp	0x134	; 0x134 <__bad_interrupt>
   40:	0c 94 9a 00 	jmp	0x134	; 0x134 <__bad_interrupt>
   44:	0c 94 9a 00 	jmp	0x134	; 0x134 <__bad_interrupt>
-  48:	0c 94 09 03 	jmp	0x612	; 0x612 <__vector_18>
+  48:	0c 94 0d 03 	jmp	0x61a	; 0x61a <__vector_18>
   4c:	0c 94 9a 00 	jmp	0x134	; 0x134 <__bad_interrupt>
-  50:	0c 94 00 03 	jmp	0x600	; 0x600 <__vector_20>
+  50:	0c 94 04 03 	jmp	0x608	; 0x608 <__vector_20>
   54:	0c 94 9a 00 	jmp	0x134	; 0x134 <__bad_interrupt>
   58:	0c 94 9a 00 	jmp	0x134	; 0x134 <__bad_interrupt>
   5c:	0c 94 9a 00 	jmp	0x134	; 0x134 <__bad_interrupt>
@@ -77,18 +77,18 @@ Disassembly of section .text:
  106:	11 e0       	ldi	r17, 0x01	; 1
  108:	a0 e0       	ldi	r26, 0x00	; 0
  10a:	b1 e0       	ldi	r27, 0x01	; 1
- 10c:	ec e2       	ldi	r30, 0x2C	; 44
+ 10c:	e4 e3       	ldi	r30, 0x34	; 52
  10e:	f6 e0       	ldi	r31, 0x06	; 6
  110:	02 c0       	rjmp	.+4      	; 0x116 <__do_copy_data+0x10>
  112:	05 90       	lpm	r0, Z+
  114:	0d 92       	st	X+, r0
- 116:	aa 32       	cpi	r26, 0x2A	; 42
+ 116:	a0 32       	cpi	r26, 0x20	; 32
  118:	b1 07       	cpc	r27, r17
  11a:	d9 f7       	brne	.-10     	; 0x112 <__do_copy_data+0xc>
 
 0000011c <__do_clear_bss>:
  11c:	11 e0       	ldi	r17, 0x01	; 1
- 11e:	aa e2       	ldi	r26, 0x2A	; 42
+ 11e:	a0 e2       	ldi	r26, 0x20	; 32
  120:	b1 e0       	ldi	r27, 0x01	; 1
  122:	01 c0       	rjmp	.+2      	; 0x126 <.do_clear_bss_start>
 
@@ -96,11 +96,11 @@ Disassembly of section .text:
  124:	1d 92       	st	X+, r1
 
 00000126 <.do_clear_bss_start>:
- 126:	ac 35       	cpi	r26, 0x5C	; 92
+ 126:	a2 35       	cpi	r26, 0x52	; 82
  128:	b1 07       	cpc	r27, r17
  12a:	e1 f7       	brne	.-8      	; 0x124 <.do_clear_bss_loop>
- 12c:	0e 94 0a 03 	call	0x614	; 0x614 <main>
- 130:	0c 94 14 03 	jmp	0x628	; 0x628 <_exit>
+ 12c:	0e 94 0e 03 	call	0x61c	; 0x61c <main>
+ 130:	0c 94 18 03 	jmp	0x630	; 0x630 <_exit>
 
 00000134 <__bad_interrupt>:
  134:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
@@ -135,7 +135,7 @@ Disassembly of section .text:
  16c:	08 95       	ret
 
 0000016e <getBinaryString>:
- 16e:	eb e2       	ldi	r30, 0x2B	; 43
+ 16e:	e1 e2       	ldi	r30, 0x21	; 33
  170:	f1 e0       	ldi	r31, 0x01	; 1
  172:	20 e0       	ldi	r18, 0x00	; 0
  174:	30 e0       	ldi	r19, 0x00	; 0
@@ -165,8 +165,8 @@ Disassembly of section .text:
  1a4:	20 31       	cpi	r18, 0x10	; 16
  1a6:	31 05       	cpc	r19, r1
  1a8:	41 f7       	brne	.-48     	; 0x17a <getBinaryString+0xc>
- 1aa:	10 92 4a 01 	sts	0x014A, r1
- 1ae:	8a e2       	ldi	r24, 0x2A	; 42
+ 1aa:	10 92 40 01 	sts	0x0140, r1
+ 1ae:	80 e2       	ldi	r24, 0x20	; 32
  1b0:	91 e0       	ldi	r25, 0x01	; 1
  1b2:	08 95       	ret
 
@@ -276,66 +276,66 @@ Disassembly of section .text:
  278:	5d c0       	rjmp	.+186    	; 0x334 <runTrafficLight+0xf4>
  27a:	8a e6       	ldi	r24, 0x6A	; 106
  27c:	90 e0       	ldi	r25, 0x00	; 0
- 27e:	0e 94 93 02 	call	0x526	; 0x526 <USART_Transmit_String_P>
- 282:	0e 94 b5 02 	call	0x56a	; 0x56a <USART_Transmit_Bytes_P>
+ 27e:	0e 94 97 02 	call	0x52e	; 0x52e <USART_Transmit_String_P>
+ 282:	0e 94 b9 02 	call	0x572	; 0x572 <USART_Transmit_Bytes_P>
  286:	94 e3       	ldi	r25, 0x34	; 52
  288:	90 93 00 02 	sts	0x0200, r25
  28c:	84 e3       	ldi	r24, 0x34	; 52
  28e:	90 e0       	ldi	r25, 0x00	; 0
- 290:	0e 94 6c 02 	call	0x4d8	; 0x4d8 <printByte>
+ 290:	0e 94 70 02 	call	0x4e0	; 0x4e0 <printByte>
  294:	80 91 00 02 	lds	r24, 0x0200
  298:	99 27       	eor	r25, r25
  29a:	87 fd       	sbrc	r24, 7
  29c:	90 95       	com	r25
- 29e:	0e 94 6c 02 	call	0x4d8	; 0x4d8 <printByte>
+ 29e:	0e 94 70 02 	call	0x4e0	; 0x4e0 <printByte>
  2a2:	80 91 00 02 	lds	r24, 0x0200
  2a6:	99 27       	eor	r25, r25
  2a8:	87 fd       	sbrc	r24, 7
  2aa:	90 95       	com	r25
- 2ac:	0e 94 6c 02 	call	0x4d8	; 0x4d8 <printByte>
+ 2ac:	0e 94 70 02 	call	0x4e0	; 0x4e0 <printByte>
  2b0:	80 91 61 00 	lds	r24, 0x0061
  2b4:	99 27       	eor	r25, r25
  2b6:	87 fd       	sbrc	r24, 7
  2b8:	90 95       	com	r25
- 2ba:	0e 94 6c 02 	call	0x4d8	; 0x4d8 <printByte>
+ 2ba:	0e 94 70 02 	call	0x4e0	; 0x4e0 <printByte>
  2be:	80 91 62 00 	lds	r24, 0x0062
  2c2:	99 27       	eor	r25, r25
  2c4:	87 fd       	sbrc	r24, 7
  2c6:	90 95       	com	r25
- 2c8:	0e 94 6c 02 	call	0x4d8	; 0x4d8 <printByte>
+ 2c8:	0e 94 70 02 	call	0x4e0	; 0x4e0 <printByte>
  2cc:	80 91 60 00 	lds	r24, 0x0060
  2d0:	99 27       	eor	r25, r25
  2d2:	87 fd       	sbrc	r24, 7
  2d4:	90 95       	com	r25
- 2d6:	0e 94 65 02 	call	0x4ca	; 0x4ca <USART_Transmit>
+ 2d6:	0e 94 69 02 	call	0x4d2	; 0x4d2 <USART_Transmit>
  2da:	80 91 60 00 	lds	r24, 0x0060
  2de:	99 27       	eor	r25, r25
  2e0:	87 fd       	sbrc	r24, 7
  2e2:	90 95       	com	r25
- 2e4:	0e 94 65 02 	call	0x4ca	; 0x4ca <USART_Transmit>
+ 2e4:	0e 94 69 02 	call	0x4d2	; 0x4d2 <USART_Transmit>
  2e8:	8d e4       	ldi	r24, 0x4D	; 77
  2ea:	90 e0       	ldi	r25, 0x00	; 0
- 2ec:	0e 94 65 02 	call	0x4ca	; 0x4ca <USART_Transmit>
+ 2ec:	0e 94 69 02 	call	0x4d2	; 0x4d2 <USART_Transmit>
  2f0:	8d e4       	ldi	r24, 0x4D	; 77
  2f2:	90 e0       	ldi	r25, 0x00	; 0
- 2f4:	0e 94 65 02 	call	0x4ca	; 0x4ca <USART_Transmit>
- 2f8:	0e 94 dc 02 	call	0x5b8	; 0x5b8 <USART_Transmit_Bytes>
+ 2f4:	0e 94 69 02 	call	0x4d2	; 0x4d2 <USART_Transmit>
+ 2f8:	0e 94 e0 02 	call	0x5c0	; 0x5c0 <USART_Transmit_Bytes>
  2fc:	80 91 60 00 	lds	r24, 0x0060
  300:	99 27       	eor	r25, r25
  302:	87 fd       	sbrc	r24, 7
  304:	90 95       	com	r25
- 306:	0e 94 65 02 	call	0x4ca	; 0x4ca <USART_Transmit>
+ 306:	0e 94 69 02 	call	0x4d2	; 0x4d2 <USART_Transmit>
  30a:	8a e0       	ldi	r24, 0x0A	; 10
  30c:	90 e0       	ldi	r25, 0x00	; 0
- 30e:	0e 94 65 02 	call	0x4ca	; 0x4ca <USART_Transmit>
+ 30e:	0e 94 69 02 	call	0x4d2	; 0x4d2 <USART_Transmit>
  312:	88 e6       	ldi	r24, 0x68	; 104
  314:	90 e0       	ldi	r25, 0x00	; 0
- 316:	0e 94 93 02 	call	0x526	; 0x526 <USART_Transmit_String_P>
+ 316:	0e 94 97 02 	call	0x52e	; 0x52e <USART_Transmit_String_P>
  31a:	80 91 60 00 	lds	r24, 0x0060
  31e:	99 27       	eor	r25, r25
  320:	87 fd       	sbrc	r24, 7
  322:	90 95       	com	r25
- 324:	0e 94 65 02 	call	0x4ca	; 0x4ca <USART_Transmit>
+ 324:	0e 94 69 02 	call	0x4d2	; 0x4d2 <USART_Transmit>
  328:	c0 e0       	ldi	r28, 0x00	; 0
  32a:	d0 e0       	ldi	r29, 0x00	; 0
  32c:	c4 30       	cpi	r28, 0x04	; 4
@@ -344,7 +344,7 @@ Disassembly of section .text:
  332:	a3 cf       	rjmp	.-186    	; 0x27a <runTrafficLight+0x3a>
  334:	80 ef       	ldi	r24, 0xF0	; 240
  336:	90 e0       	ldi	r25, 0x00	; 0
- 338:	0e 94 93 02 	call	0x526	; 0x526 <USART_Transmit_String_P>
+ 338:	0e 94 97 02 	call	0x52e	; 0x52e <USART_Transmit_String_P>
  33c:	8e 01       	movw	r16, r28
  33e:	00 0f       	add	r16, r16
  340:	11 1f       	adc	r17, r17
@@ -407,7 +407,7 @@ Disassembly of section .text:
  3b2:	4f c0       	rjmp	.+158    	; 0x452 <runTrafficLight+0x212>
  3b4:	81 ee       	ldi	r24, 0xE1	; 225
  3b6:	90 e0       	ldi	r25, 0x00	; 0
- 3b8:	0e 94 93 02 	call	0x526	; 0x526 <USART_Transmit_String_P>
+ 3b8:	0e 94 97 02 	call	0x52e	; 0x52e <USART_Transmit_String_P>
  3bc:	21 01       	movw	r4, r2
  3be:	8f e0       	ldi	r24, 0x0F	; 15
  3c0:	58 22       	and	r5, r24
@@ -423,7 +423,7 @@ Disassembly of section .text:
  3d6:	fa cf       	rjmp	.-12     	; 0x3cc <runTrafficLight+0x18c>
  3d8:	8f e7       	ldi	r24, 0x7F	; 127
  3da:	90 e0       	ldi	r25, 0x00	; 0
- 3dc:	0e 94 93 02 	call	0x526	; 0x526 <USART_Transmit_String_P>
+ 3dc:	0e 94 97 02 	call	0x52e	; 0x52e <USART_Transmit_String_P>
  3e0:	21 96       	adiw	r28, 0x01	; 1
  3e2:	47 cf       	rjmp	.-370    	; 0x272 <runTrafficLight+0x32>
  3e4:	20 ed       	ldi	r18, 0xD0	; 208
@@ -447,7 +447,7 @@ Disassembly of section .text:
  408:	79 f7       	brne	.-34     	; 0x3e8 <runTrafficLight+0x1a8>
  40a:	8f eb       	ldi	r24, 0xBF	; 191
  40c:	90 e0       	ldi	r25, 0x00	; 0
- 40e:	0e 94 93 02 	call	0x526	; 0x526 <USART_Transmit_String_P>
+ 40e:	0e 94 97 02 	call	0x52e	; 0x52e <USART_Transmit_String_P>
  412:	17 01       	movw	r2, r14
  414:	00 2e       	mov	r0, r16
  416:	02 c0       	rjmp	.+4      	; 0x41c <runTrafficLight+0x1dc>
@@ -472,7 +472,7 @@ Disassembly of section .text:
  43c:	21 f5       	brne	.+72     	; 0x486 <runTrafficLight+0x246>
  43e:	88 ea       	ldi	r24, 0xA8	; 168
  440:	90 e0       	ldi	r25, 0x00	; 0
- 442:	0e 94 93 02 	call	0x526	; 0x526 <USART_Transmit_String_P>
+ 442:	0e 94 97 02 	call	0x52e	; 0x52e <USART_Transmit_String_P>
  446:	21 01       	movw	r4, r2
  448:	9f e0       	ldi	r25, 0x0F	; 15
  44a:	59 22       	and	r5, r25
@@ -481,7 +481,7 @@ Disassembly of section .text:
  450:	ba cf       	rjmp	.-140    	; 0x3c6 <runTrafficLight+0x186>
  452:	80 ed       	ldi	r24, 0xD0	; 208
  454:	90 e0       	ldi	r25, 0x00	; 0
- 456:	0e 94 93 02 	call	0x526	; 0x526 <USART_Transmit_String_P>
+ 456:	0e 94 97 02 	call	0x52e	; 0x52e <USART_Transmit_String_P>
  45a:	04 50       	subi	r16, 0x04	; 4
  45c:	11 09       	sbc	r17, r1
  45e:	27 01       	movw	r4, r14
@@ -506,7 +506,7 @@ Disassembly of section .text:
  484:	a0 cf       	rjmp	.-192    	; 0x3c6 <runTrafficLight+0x186>
  486:	80 e9       	ldi	r24, 0x90	; 144
  488:	90 e0       	ldi	r25, 0x00	; 0
- 48a:	0e 94 93 02 	call	0x526	; 0x526 <USART_Transmit_String_P>
+ 48a:	0e 94 97 02 	call	0x52e	; 0x52e <USART_Transmit_String_P>
  48e:	04 50       	subi	r16, 0x04	; 4
  490:	11 09       	sbc	r17, r1
  492:	27 01       	movw	r4, r14
@@ -533,172 +533,177 @@ Disassembly of section .text:
 000004ba <USART_Init>:
  4ba:	90 93 c5 00 	sts	0x00C5, r25
  4be:	80 93 c4 00 	sts	0x00C4, r24
- 4c2:	88 e1       	ldi	r24, 0x18	; 24
- 4c4:	80 93 c1 00 	sts	0x00C1, r24
- 4c8:	08 95       	ret
+ 4c2:	e1 ec       	ldi	r30, 0xC1	; 193
+ 4c4:	f0 e0       	ldi	r31, 0x00	; 0
+ 4c6:	88 e0       	ldi	r24, 0x08	; 8
+ 4c8:	80 83       	st	Z, r24
+ 4ca:	80 81       	ld	r24, Z
+ 4cc:	80 64       	ori	r24, 0x40	; 64
+ 4ce:	80 83       	st	Z, r24
+ 4d0:	08 95       	ret
 
-000004ca <USART_Transmit>:
- 4ca:	90 91 c0 00 	lds	r25, 0x00C0
- 4ce:	95 ff       	sbrs	r25, 5
- 4d0:	fc cf       	rjmp	.-8      	; 0x4ca <USART_Transmit>
- 4d2:	80 93 c6 00 	sts	0x00C6, r24
- 4d6:	08 95       	ret
+000004d2 <USART_Transmit>:
+ 4d2:	90 91 c0 00 	lds	r25, 0x00C0
+ 4d6:	95 ff       	sbrs	r25, 5
+ 4d8:	fc cf       	rjmp	.-8      	; 0x4d2 <USART_Transmit>
+ 4da:	80 93 c6 00 	sts	0x00C6, r24
+ 4de:	08 95       	ret
 
-000004d8 <printByte>:
- 4d8:	98 2f       	mov	r25, r24
- 4da:	92 95       	swap	r25
- 4dc:	9f 70       	andi	r25, 0x0F	; 15
- 4de:	9a 30       	cpi	r25, 0x0A	; 10
- 4e0:	d8 f4       	brcc	.+54     	; 0x518 <printByte+0x40>
- 4e2:	20 e3       	ldi	r18, 0x30	; 48
- 4e4:	29 0f       	add	r18, r25
- 4e6:	90 91 c0 00 	lds	r25, 0x00C0
- 4ea:	95 ff       	sbrs	r25, 5
- 4ec:	fc cf       	rjmp	.-8      	; 0x4e6 <printByte+0xe>
- 4ee:	20 93 c6 00 	sts	0x00C6, r18
- 4f2:	8f 70       	andi	r24, 0x0F	; 15
- 4f4:	8a 30       	cpi	r24, 0x0A	; 10
- 4f6:	40 f4       	brcc	.+16     	; 0x508 <printByte+0x30>
- 4f8:	80 5d       	subi	r24, 0xD0	; 208
- 4fa:	90 91 c0 00 	lds	r25, 0x00C0
- 4fe:	95 ff       	sbrs	r25, 5
- 500:	fc cf       	rjmp	.-8      	; 0x4fa <printByte+0x22>
- 502:	80 93 c6 00 	sts	0x00C6, r24
- 506:	08 95       	ret
- 508:	89 5c       	subi	r24, 0xC9	; 201
- 50a:	90 91 c0 00 	lds	r25, 0x00C0
- 50e:	95 ff       	sbrs	r25, 5
- 510:	fc cf       	rjmp	.-8      	; 0x50a <printByte+0x32>
- 512:	80 93 c6 00 	sts	0x00C6, r24
- 516:	08 95       	ret
- 518:	27 e3       	ldi	r18, 0x37	; 55
- 51a:	29 0f       	add	r18, r25
- 51c:	90 91 c0 00 	lds	r25, 0x00C0
- 520:	95 ff       	sbrs	r25, 5
- 522:	fc cf       	rjmp	.-8      	; 0x51c <printByte+0x44>
- 524:	e4 cf       	rjmp	.-56     	; 0x4ee <printByte+0x16>
+000004e0 <printByte>:
+ 4e0:	98 2f       	mov	r25, r24
+ 4e2:	92 95       	swap	r25
+ 4e4:	9f 70       	andi	r25, 0x0F	; 15
+ 4e6:	9a 30       	cpi	r25, 0x0A	; 10
+ 4e8:	d8 f4       	brcc	.+54     	; 0x520 <printByte+0x40>
+ 4ea:	20 e3       	ldi	r18, 0x30	; 48
+ 4ec:	29 0f       	add	r18, r25
+ 4ee:	90 91 c0 00 	lds	r25, 0x00C0
+ 4f2:	95 ff       	sbrs	r25, 5
+ 4f4:	fc cf       	rjmp	.-8      	; 0x4ee <printByte+0xe>
+ 4f6:	20 93 c6 00 	sts	0x00C6, r18
+ 4fa:	8f 70       	andi	r24, 0x0F	; 15
+ 4fc:	8a 30       	cpi	r24, 0x0A	; 10
+ 4fe:	40 f4       	brcc	.+16     	; 0x510 <printByte+0x30>
+ 500:	80 5d       	subi	r24, 0xD0	; 208
+ 502:	90 91 c0 00 	lds	r25, 0x00C0
+ 506:	95 ff       	sbrs	r25, 5
+ 508:	fc cf       	rjmp	.-8      	; 0x502 <printByte+0x22>
+ 50a:	80 93 c6 00 	sts	0x00C6, r24
+ 50e:	08 95       	ret
+ 510:	89 5c       	subi	r24, 0xC9	; 201
+ 512:	90 91 c0 00 	lds	r25, 0x00C0
+ 516:	95 ff       	sbrs	r25, 5
+ 518:	fc cf       	rjmp	.-8      	; 0x512 <printByte+0x32>
+ 51a:	80 93 c6 00 	sts	0x00C6, r24
+ 51e:	08 95       	ret
+ 520:	27 e3       	ldi	r18, 0x37	; 55
+ 522:	29 0f       	add	r18, r25
+ 524:	90 91 c0 00 	lds	r25, 0x00C0
+ 528:	95 ff       	sbrs	r25, 5
+ 52a:	fc cf       	rjmp	.-8      	; 0x524 <printByte+0x44>
+ 52c:	e4 cf       	rjmp	.-56     	; 0x4f6 <printByte+0x16>
 
-00000526 <USART_Transmit_String_P>:
- 526:	20 e0       	ldi	r18, 0x00	; 0
- 528:	30 e0       	ldi	r19, 0x00	; 0
- 52a:	fc 01       	movw	r30, r24
- 52c:	e2 0f       	add	r30, r18
- 52e:	f3 1f       	adc	r31, r19
- 530:	e4 91       	lpm	r30, Z
- 532:	ee 23       	and	r30, r30
- 534:	59 f0       	breq	.+22     	; 0x54c <USART_Transmit_String_P+0x26>
- 536:	40 91 c0 00 	lds	r20, 0x00C0
- 53a:	45 ff       	sbrs	r20, 5
- 53c:	fc cf       	rjmp	.-8      	; 0x536 <USART_Transmit_String_P+0x10>
- 53e:	e0 93 c6 00 	sts	0x00C6, r30
- 542:	2f 5f       	subi	r18, 0xFF	; 255
- 544:	3f 4f       	sbci	r19, 0xFF	; 255
- 546:	24 36       	cpi	r18, 0x64	; 100
- 548:	31 05       	cpc	r19, r1
- 54a:	79 f7       	brne	.-34     	; 0x52a <USART_Transmit_String_P+0x4>
- 54c:	80 91 c0 00 	lds	r24, 0x00C0
- 550:	85 ff       	sbrs	r24, 5
- 552:	fc cf       	rjmp	.-8      	; 0x54c <USART_Transmit_String_P+0x26>
- 554:	8d e0       	ldi	r24, 0x0D	; 13
- 556:	80 93 c6 00 	sts	0x00C6, r24
- 55a:	80 91 c0 00 	lds	r24, 0x00C0
- 55e:	85 ff       	sbrs	r24, 5
- 560:	fc cf       	rjmp	.-8      	; 0x55a <USART_Transmit_String_P+0x34>
- 562:	8a e0       	ldi	r24, 0x0A	; 10
- 564:	80 93 c6 00 	sts	0x00C6, r24
- 568:	08 95       	ret
+0000052e <USART_Transmit_String_P>:
+ 52e:	20 e0       	ldi	r18, 0x00	; 0
+ 530:	30 e0       	ldi	r19, 0x00	; 0
+ 532:	fc 01       	movw	r30, r24
+ 534:	e2 0f       	add	r30, r18
+ 536:	f3 1f       	adc	r31, r19
+ 538:	e4 91       	lpm	r30, Z
+ 53a:	ee 23       	and	r30, r30
+ 53c:	59 f0       	breq	.+22     	; 0x554 <USART_Transmit_String_P+0x26>
+ 53e:	40 91 c0 00 	lds	r20, 0x00C0
+ 542:	45 ff       	sbrs	r20, 5
+ 544:	fc cf       	rjmp	.-8      	; 0x53e <USART_Transmit_String_P+0x10>
+ 546:	e0 93 c6 00 	sts	0x00C6, r30
+ 54a:	2f 5f       	subi	r18, 0xFF	; 255
+ 54c:	3f 4f       	sbci	r19, 0xFF	; 255
+ 54e:	24 36       	cpi	r18, 0x64	; 100
+ 550:	31 05       	cpc	r19, r1
+ 552:	79 f7       	brne	.-34     	; 0x532 <USART_Transmit_String_P+0x4>
+ 554:	80 91 c0 00 	lds	r24, 0x00C0
+ 558:	85 ff       	sbrs	r24, 5
+ 55a:	fc cf       	rjmp	.-8      	; 0x554 <USART_Transmit_String_P+0x26>
+ 55c:	8d e0       	ldi	r24, 0x0D	; 13
+ 55e:	80 93 c6 00 	sts	0x00C6, r24
+ 562:	80 91 c0 00 	lds	r24, 0x00C0
+ 566:	85 ff       	sbrs	r24, 5
+ 568:	fc cf       	rjmp	.-8      	; 0x562 <USART_Transmit_String_P+0x34>
+ 56a:	8a e0       	ldi	r24, 0x0A	; 10
+ 56c:	80 93 c6 00 	sts	0x00C6, r24
+ 570:	08 95       	ret
 
-0000056a <USART_Transmit_Bytes_P>:
- 56a:	1f 93       	push	r17
- 56c:	cf 93       	push	r28
- 56e:	df 93       	push	r29
- 570:	ca eb       	ldi	r28, 0xBA	; 186
- 572:	d5 e0       	ldi	r29, 0x05	; 5
- 574:	10 e2       	ldi	r17, 0x20	; 32
- 576:	fe 01       	movw	r30, r28
- 578:	84 91       	lpm	r24, Z
- 57a:	0e 94 6c 02 	call	0x4d8	; 0x4d8 <printByte>
- 57e:	80 91 c0 00 	lds	r24, 0x00C0
- 582:	85 ff       	sbrs	r24, 5
- 584:	fc cf       	rjmp	.-8      	; 0x57e <USART_Transmit_Bytes_P+0x14>
- 586:	10 93 c6 00 	sts	0x00C6, r17
- 58a:	21 96       	adiw	r28, 0x01	; 1
- 58c:	ce 31       	cpi	r28, 0x1E	; 30
- 58e:	f6 e0       	ldi	r31, 0x06	; 6
- 590:	df 07       	cpc	r29, r31
- 592:	89 f7       	brne	.-30     	; 0x576 <USART_Transmit_Bytes_P+0xc>
- 594:	80 91 c0 00 	lds	r24, 0x00C0
- 598:	85 ff       	sbrs	r24, 5
- 59a:	fc cf       	rjmp	.-8      	; 0x594 <USART_Transmit_Bytes_P+0x2a>
- 59c:	8d e0       	ldi	r24, 0x0D	; 13
- 59e:	80 93 c6 00 	sts	0x00C6, r24
- 5a2:	80 91 c0 00 	lds	r24, 0x00C0
- 5a6:	85 ff       	sbrs	r24, 5
- 5a8:	fc cf       	rjmp	.-8      	; 0x5a2 <USART_Transmit_Bytes_P+0x38>
- 5aa:	8a e0       	ldi	r24, 0x0A	; 10
- 5ac:	80 93 c6 00 	sts	0x00C6, r24
- 5b0:	df 91       	pop	r29
- 5b2:	cf 91       	pop	r28
- 5b4:	1f 91       	pop	r17
- 5b6:	08 95       	ret
+00000572 <USART_Transmit_Bytes_P>:
+ 572:	1f 93       	push	r17
+ 574:	cf 93       	push	r28
+ 576:	df 93       	push	r29
+ 578:	ca eb       	ldi	r28, 0xBA	; 186
+ 57a:	d5 e0       	ldi	r29, 0x05	; 5
+ 57c:	10 e2       	ldi	r17, 0x20	; 32
+ 57e:	fe 01       	movw	r30, r28
+ 580:	84 91       	lpm	r24, Z
+ 582:	0e 94 70 02 	call	0x4e0	; 0x4e0 <printByte>
+ 586:	80 91 c0 00 	lds	r24, 0x00C0
+ 58a:	85 ff       	sbrs	r24, 5
+ 58c:	fc cf       	rjmp	.-8      	; 0x586 <USART_Transmit_Bytes_P+0x14>
+ 58e:	10 93 c6 00 	sts	0x00C6, r17
+ 592:	21 96       	adiw	r28, 0x01	; 1
+ 594:	ce 31       	cpi	r28, 0x1E	; 30
+ 596:	f6 e0       	ldi	r31, 0x06	; 6
+ 598:	df 07       	cpc	r29, r31
+ 59a:	89 f7       	brne	.-30     	; 0x57e <USART_Transmit_Bytes_P+0xc>
+ 59c:	80 91 c0 00 	lds	r24, 0x00C0
+ 5a0:	85 ff       	sbrs	r24, 5
+ 5a2:	fc cf       	rjmp	.-8      	; 0x59c <USART_Transmit_Bytes_P+0x2a>
+ 5a4:	8d e0       	ldi	r24, 0x0D	; 13
+ 5a6:	80 93 c6 00 	sts	0x00C6, r24
+ 5aa:	80 91 c0 00 	lds	r24, 0x00C0
+ 5ae:	85 ff       	sbrs	r24, 5
+ 5b0:	fc cf       	rjmp	.-8      	; 0x5aa <USART_Transmit_Bytes_P+0x38>
+ 5b2:	8a e0       	ldi	r24, 0x0A	; 10
+ 5b4:	80 93 c6 00 	sts	0x00C6, r24
+ 5b8:	df 91       	pop	r29
+ 5ba:	cf 91       	pop	r28
+ 5bc:	1f 91       	pop	r17
+ 5be:	08 95       	ret
 
-000005b8 <USART_Transmit_Bytes>:
- 5b8:	1f 93       	push	r17
- 5ba:	cf 93       	push	r28
- 5bc:	df 93       	push	r29
- 5be:	c0 e6       	ldi	r28, 0x60	; 96
- 5c0:	d0 e0       	ldi	r29, 0x00	; 0
- 5c2:	10 e2       	ldi	r17, 0x20	; 32
- 5c4:	89 91       	ld	r24, Y+
- 5c6:	0e 94 6c 02 	call	0x4d8	; 0x4d8 <printByte>
- 5ca:	80 91 c0 00 	lds	r24, 0x00C0
- 5ce:	85 ff       	sbrs	r24, 5
- 5d0:	fc cf       	rjmp	.-8      	; 0x5ca <USART_Transmit_Bytes+0x12>
- 5d2:	10 93 c6 00 	sts	0x00C6, r17
- 5d6:	c4 3c       	cpi	r28, 0xC4	; 196
- 5d8:	d1 05       	cpc	r29, r1
- 5da:	a1 f7       	brne	.-24     	; 0x5c4 <USART_Transmit_Bytes+0xc>
- 5dc:	80 91 c0 00 	lds	r24, 0x00C0
- 5e0:	85 ff       	sbrs	r24, 5
- 5e2:	fc cf       	rjmp	.-8      	; 0x5dc <USART_Transmit_Bytes+0x24>
- 5e4:	8d e0       	ldi	r24, 0x0D	; 13
- 5e6:	80 93 c6 00 	sts	0x00C6, r24
- 5ea:	80 91 c0 00 	lds	r24, 0x00C0
- 5ee:	85 ff       	sbrs	r24, 5
- 5f0:	fc cf       	rjmp	.-8      	; 0x5ea <USART_Transmit_Bytes+0x32>
- 5f2:	8a e0       	ldi	r24, 0x0A	; 10
- 5f4:	80 93 c6 00 	sts	0x00C6, r24
- 5f8:	df 91       	pop	r29
- 5fa:	cf 91       	pop	r28
- 5fc:	1f 91       	pop	r17
- 5fe:	08 95       	ret
+000005c0 <USART_Transmit_Bytes>:
+ 5c0:	1f 93       	push	r17
+ 5c2:	cf 93       	push	r28
+ 5c4:	df 93       	push	r29
+ 5c6:	c0 e6       	ldi	r28, 0x60	; 96
+ 5c8:	d0 e0       	ldi	r29, 0x00	; 0
+ 5ca:	10 e2       	ldi	r17, 0x20	; 32
+ 5cc:	89 91       	ld	r24, Y+
+ 5ce:	0e 94 70 02 	call	0x4e0	; 0x4e0 <printByte>
+ 5d2:	80 91 c0 00 	lds	r24, 0x00C0
+ 5d6:	85 ff       	sbrs	r24, 5
+ 5d8:	fc cf       	rjmp	.-8      	; 0x5d2 <USART_Transmit_Bytes+0x12>
+ 5da:	10 93 c6 00 	sts	0x00C6, r17
+ 5de:	c4 3c       	cpi	r28, 0xC4	; 196
+ 5e0:	d1 05       	cpc	r29, r1
+ 5e2:	a1 f7       	brne	.-24     	; 0x5cc <USART_Transmit_Bytes+0xc>
+ 5e4:	80 91 c0 00 	lds	r24, 0x00C0
+ 5e8:	85 ff       	sbrs	r24, 5
+ 5ea:	fc cf       	rjmp	.-8      	; 0x5e4 <USART_Transmit_Bytes+0x24>
+ 5ec:	8d e0       	ldi	r24, 0x0D	; 13
+ 5ee:	80 93 c6 00 	sts	0x00C6, r24
+ 5f2:	80 91 c0 00 	lds	r24, 0x00C0
+ 5f6:	85 ff       	sbrs	r24, 5
+ 5f8:	fc cf       	rjmp	.-8      	; 0x5f2 <USART_Transmit_Bytes+0x32>
+ 5fa:	8a e0       	ldi	r24, 0x0A	; 10
+ 5fc:	80 93 c6 00 	sts	0x00C6, r24
+ 600:	df 91       	pop	r29
+ 602:	cf 91       	pop	r28
+ 604:	1f 91       	pop	r17
+ 606:	08 95       	ret
 
-00000600 <__vector_20>:
- 600:	e0 ec       	ldi	r30, 0xC0	; 192
- 602:	f0 e0       	ldi	r31, 0x00	; 0
- 604:	80 81       	ld	r24, Z
- 606:	85 ff       	sbrs	r24, 5
- 608:	18 95       	reti
- 60a:	e6 ec       	ldi	r30, 0xC6	; 198
- 60c:	f0 e0       	ldi	r31, 0x00	; 0
- 60e:	80 83       	st	Z, r24
+00000608 <__vector_20>:
+ 608:	e0 ec       	ldi	r30, 0xC0	; 192
+ 60a:	f0 e0       	ldi	r31, 0x00	; 0
+ 60c:	80 81       	ld	r24, Z
+ 60e:	85 ff       	sbrs	r24, 5
  610:	18 95       	reti
+ 612:	e6 ec       	ldi	r30, 0xC6	; 198
+ 614:	f0 e0       	ldi	r31, 0x00	; 0
+ 616:	80 83       	st	Z, r24
+ 618:	18 95       	reti
 
-00000612 <__vector_18>:
- 612:	18 95       	reti
+0000061a <__vector_18>:
+ 61a:	18 95       	reti
 
-00000614 <main>:
- 614:	84 b1       	in	r24, 0x04	; 4
- 616:	83 62       	ori	r24, 0x23	; 35
- 618:	84 b9       	out	0x04, r24	; 4
- 61a:	53 9a       	sbi	0x0a, 3	; 10
- 61c:	83 e3       	ldi	r24, 0x33	; 51
- 61e:	90 e0       	ldi	r25, 0x00	; 0
- 620:	0e 94 5d 02 	call	0x4ba	; 0x4ba <USART_Init>
- 624:	0e 94 20 01 	call	0x240	; 0x240 <runTrafficLight>
+0000061c <main>:
+ 61c:	84 b1       	in	r24, 0x04	; 4
+ 61e:	83 62       	ori	r24, 0x23	; 35
+ 620:	84 b9       	out	0x04, r24	; 4
+ 622:	53 9a       	sbi	0x0a, 3	; 10
+ 624:	83 e3       	ldi	r24, 0x33	; 51
+ 626:	90 e0       	ldi	r25, 0x00	; 0
+ 628:	0e 94 5d 02 	call	0x4ba	; 0x4ba <USART_Init>
+ 62c:	0e 94 20 01 	call	0x240	; 0x240 <runTrafficLight>
 
-00000628 <_exit>:
- 628:	f8 94       	cli
+00000630 <_exit>:
+ 630:	f8 94       	cli
 
-0000062a <__stop_program>:
- 62a:	ff cf       	rjmp	.-2      	; 0x62a <__stop_program>
+00000632 <__stop_program>:
+ 632:	ff cf       	rjmp	.-2      	; 0x632 <__stop_program>

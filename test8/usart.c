@@ -14,9 +14,9 @@ void USART_Init( unsigned int ubrr)
 UBRR0H = (unsigned char)(ubrr>>8);
 UBRR0L = (unsigned char)ubrr;
 /*Enable receiver and transmitter */
-UCSR0B = (1<<TXEN0) 
+UCSR0B = (1<<TXEN0) ;
 //| (1<<RXEN0);
-//UCSR0B = UCSR0B | (1 << TXCIE0);
+UCSR0B = UCSR0B | (1 << TXCIE0);
 //UCSR0B = UCSR0B | (1 << RXCIE0);
 /* Set frame format: 8data, no parity, 1stop bit */
 //UCSR0C = (3<<UCSZ00);
