@@ -19,6 +19,7 @@ If we see our past, nearly 20 years ago and compare it with present we come to k
 ##Introduction to VLSI
 **VLSI** - Very Large Scale Integration. Many ICs had a limited funtion to perform. VLSI overcame it. It is the process of creating an IC by combining thousands of transistors into a single chip.  
 
+
   * **TODO** What is the density of chips, in number. Checkout graph that shows this trend and paste it here.
 
 **HDL** - Hardware Descriptive Language. It is the language used to program the structure, design and operation of electronic circuits. It gives description of an electronic circuit that allows for analysis, simulation and testing of that circuit.  
