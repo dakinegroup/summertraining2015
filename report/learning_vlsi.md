@@ -57,15 +57,19 @@ In RISC the amount of work done by a instruction is reduced as compared to CISC 
 **Multicore Processor** - It is a single compnent with two or more processing units.  
 In multicore they can run multiple instructions at same time which increases overall speed programs managable to parallel computing.  
 I consumes less energy and give high performance.
+
 **TODO** it consumes less energy as it operates at lower frequency (Checkout some numbers here)
+
 **TODO** puneet referred to challenge of multicore w.r.t. CISC and RISC. It is easier done in RISC architecture. Work needs to be divided amongst cores and it has a conflict at hardware level, where it is expected to pre-fetch instructions, where the next set of instructions might have been delegated to different processor.. (Read more and write)
 
 **Multithreading** - 
 It is the ability of a CPU or a single core in a multicore processor to execute multiple processes.  
 It aims to increase utilization of a ssingle core by using instruction level parallelism.
+
 **TODO** Use some diagrams from your research to explain it more, above statements are not sufficient.
 
 Multicore processors have replaced multithreading technique and they are also used in mobile phones. But Intel still uses multithreading in Multicore processors.
+
 **TODO** above statement is vague. Expand it to specifics. Intel does have cores and has hyperthreading.. What do you want to say in above paragraph?
 
 
