@@ -19,16 +19,21 @@ If we see our past, nearly 20 years ago and compare it with present we come to k
 ##Introduction to VLSI
 **VLSI** - Very Large Scale Integration. Many ICs had a limited funtion to perform. VLSI overcame it. It is the process of creating an IC by combining thousands of transistors into a single chip.  
 
+
   * **TODO** What is the density of chips, in number. Checkout graph that shows this trend and paste it here.
 
 **HDL** - Hardware Descriptive Language. It is the language used to program the structure, design and operation of electronic circuits. It gives description of an electronic circuit that allows for analysis, simulation and testing of that circuit.  
    * **TODO** If I am not wrong, it was VHDL, which he said is obsolete and is now being replaced by Verilog. HDL seems is a generic term. Update your text keeping this in mind.
 
+**VHDL** - VHSIC Hardware Description Language.  
+It is a HDL which is used in design automation to describe the behavior and structure of system and circuit designs.
+
 **Verilog** - It is a HDL used to model electronic systems. It is used for design and verification of digital circuits at RTL.
    * **TODO** Is it from Open Source, under which license. Get that link and add here.
 
 **RTL**-Register Transfer Level. It is a design abstraction which models a  synchronous digital circuit in terms of the flow of digital signals between hardware registers, and the logical operations performed on those signals.  
-It focuses on describing how the signal will flow in the circuit. It is used in logic design phase on IC design cycle.
+It focuses on describing how the signal will flow in the circuit. It is used in logic design phase on IC design cycle.  
+Both _VHDL_ and _Verilog_ implement register-transfer-level abstractions.
 
 **EAD or ECAD** - Electronic Design Automation. It is software tools for designing PCB and ICs.
    * **TODO** Write the name of the companies, which are pioneers here. Is there anything in open source here? What about ready to use modules?
