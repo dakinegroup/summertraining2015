@@ -1,5 +1,5 @@
-PRG            = demo
-OBJ            = demo.o usart.o usart_int.o
+PRG            = traffic_lights
+OBJ            = tc_ctrl.o usart.o usart_int.o
 #MCU_TARGET     = at90s2313
 #MCU_TARGET     = at90s2333
 #MCU_TARGET     = at90s4414
@@ -76,7 +76,7 @@ $(PRG).elf: $(OBJ)
 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $^ $(LIBS)
 
 # dependency:
-demo.o: demo.c usart.c usart_int.S iocompat.h
+tc_ctrl.o: tc_ctrl.c usart.c usart_int.S iocompat.h
 
 clean:
 	rm -rf *.o $(PRG).elf *.eps *.png *.pdf *.bak 

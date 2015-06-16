@@ -32,6 +32,22 @@ char * getBinaryString(unsigned int);
 void runTrafficLight(/*unsigned int*/);
 void shiftOutClockedData(unsigned int);
 
+extern volatile unsigned char* tx_buffer;
+#include <avr/interrupt.h>
+
+/*ISR(USART_RX_vect)
+{
+    // user code here
+}
+ISR(USART_TX_vect)
+{
+    // user code here
+}
+ISR(BADISR_vect)
+{
+    // user code here
+}*/
+
 void ourDelay(unsigned int delay) {
 	unsigned int x,y,z;
 	for(x = 0; x < delay; x++) {
@@ -52,8 +68,10 @@ main (void)
 //ioinit ();
 DDROC = DDROC | _BV (OC1) | _BV(0) | _BV(DDB5) ;
 DDRD = DDRD | _BV(DDD3);
+
 //PORTD = !_BV(PORTD3);
-USART_Init(41);
+USART_Init(51); /* IMPORTANT: 41 values works with -mmcu=avr5, where it should have been */
+/* IMPORTANT: 51 works with -mmcu=atmega328p, strange.. what is the secret here???*/
 
 runTrafficLight(/*a*/);
 
@@ -224,7 +242,8 @@ do {
    }  
   USART_Transmit_String_P(PSTR("one round done !!\n\n\n"));        
   USART_Transmit_Bytes_P();
-  /**((char *)0x00200) = 0x34;
+  *((char *)0x00200) = 0x34; /* now it has started to work, no memory corruption*/
+                            /* only change made was that -mmcu atmega328p was placed instead of -mmcu avr5, this was misread/wrongly guided from one of the blogs */
   printByte(*((char *)0x0200));
   printByte(*((char *)0x0200));
   printByte(*((char *)0x0200));
@@ -233,7 +252,7 @@ do {
   USART_Transmit(*((char *)0x0060));
   USART_Transmit(*((char *)0x0060));
   USART_Transmit('M');
-  USART_Transmit('M');*/
+  USART_Transmit('M');
   USART_Transmit_Bytes();
   USART_Transmit(*((char *)0x0060));
   USART_Transmit('\n');
