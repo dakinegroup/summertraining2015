@@ -4,6 +4,8 @@
 #include <avr/io.h>
 #include <avr/pgmspace.h>
 #include <stdlib.h>
+extern volatile unsigned char* tx_buffer;
+extern volatile unsigned char* tx_buffer_data_length;
 
 void USART_Init( unsigned int ubrr)
 {
@@ -16,7 +18,16 @@ UBRR0L = (unsigned char)ubrr;
 /*Enable receiver and transmitter */
 UCSR0B = (1<<TXEN0) ;
 //| (1<<RXEN0);
-UCSR0B = UCSR0B | (1 << TXCIE0);
+
+asm("sei");
+/*UCSR0B = _BV(UDRIE0);
+UCSR0B = _BV(TXCIE0) ;
+UDR0 = 'A';*/
+
+//strcpy(tx_buffer, "this is a test");
+//*(tx_buffer_data_length) = 8;
+//UDR0 = 'A';
+
 //UCSR0B = UCSR0B | (1 << RXCIE0);
 /* Set frame format: 8data, no parity, 1stop bit */
 //UCSR0C = (3<<UCSZ00);

@@ -32,7 +32,7 @@ char * getBinaryString(unsigned int);
 void runTrafficLight(/*unsigned int*/);
 void shiftOutClockedData(unsigned int);
 
-extern volatile unsigned char* tx_buffer;
+//extern volatile unsigned char* tx_buffer;
 #include <avr/interrupt.h>
 
 /*ISR(USART_RX_vect)
@@ -68,7 +68,7 @@ main (void)
 //ioinit ();
 DDROC = DDROC | _BV (OC1) | _BV(0) | _BV(DDB5) ;
 DDRD = DDRD | _BV(DDD3);
-
+//PORTB = _BV(0);
 //PORTD = !_BV(PORTD3);
 USART_Init(51); /* IMPORTANT: 41 values works with -mmcu=avr5, where it should have been */
 /* IMPORTANT: 51 works with -mmcu=atmega328p, strange.. what is the secret here???*/
