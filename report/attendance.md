@@ -10,3 +10,12 @@
 |30-May-2015| 8:45am | 5:30pm| LajpatRai Market |Procurement|
 |1-June-2015| 8:45am | 5:30pm| DKTPL |Trafic Light HW|
 |2-June-2015| 8:45am | 5:30pm| DKTPL |Trafic Light HW|
+|3-June-2015| 8:45am | 5:30pm| DKTPL |Trafic Light HW|
+|4-June-2015| 8:45am | 5:30pm| DKTPL |Trafic Light HW|
+|5-June-2015| 8:45am | 5:30pm| DKTPL |Trafic Light HW|
+|8-June-2015| 8:45am | 5:30pm| DKTPL |Trafic Light HW|
+|9-June-2015| 8:45am | 5:30pm| DKTPL |usart |
+|13-June-2015| 8:45am | 5:30pm| DKTPL |VLSI visit|
+|15-June-2015| 8:45am | 5:30pm| DKTPL |testin lcd, uploading bootloader|
+|16-June-2015| 8:45am | 5:30pm| DKTPL |Trafic Light counter|
+|17-June-2015| 8:45am | 5:30pm| DKTPL |Trafic Light counter|
