@@ -33,7 +33,11 @@ It is a HDL which is used in design automation to describe the behavior and stru
 
 **RTL**-Register Transfer Level. It is a design abstraction which models a  synchronous digital circuit in terms of the flow of digital signals between hardware registers, and the logical operations performed on those signals.  
 It focuses on describing how the signal will flow in the circuit. It is used in logic design phase on IC design cycle.  
-Both _VHDL_ and _Verilog_ implement register-transfer-level abstractions.
+Both _VHDL_ and _Verilog_ implement register-transfer-level abstractions.  
+Verilog is derived from C programming language whereas VHDL has its roots in Ada programming language.  
+Verilog is case sensitive whereas VHDL is not case sensitive.  
+
+
 
 **EAD or ECAD** - Electronic Design Automation. It is software tools for designing PCB and ICs.
    * **TODO** Write the name of the companies, which are pioneers here. Is there anything in open source here? What about ready to use modules?
