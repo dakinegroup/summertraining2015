@@ -218,6 +218,7 @@ void runTrafficLight(/*unsigned int startingState*/) {
    shiftOutClockedData(startingState);
 do {
   //Serial.println("startingState");
+  USART_Transmit_String("Waiting for your inputs");
   USART_Receive_String();
    for(i=0; i < 4; i ++) { /* go over all the traffic poles */
   USART_Transmit_String("next pole");

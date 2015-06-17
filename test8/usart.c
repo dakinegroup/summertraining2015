@@ -124,7 +124,7 @@ unsigned char USART_Receive_Byte() {
 
 unsigned char* USART_Receive_String() {
 	static char inputs[50];
-	static unsigned char i=0;;
+	unsigned char i=0;;
 	while(1) {
 		while ( !( UCSR0A & (1<<RXC0)) )
 ;
