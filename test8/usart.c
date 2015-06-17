@@ -132,6 +132,7 @@ unsigned char* USART_Receive_String() {
 		inputs[i] = UDR0;
 		USART_Transmit(inputs[i]);
 		if(!inputs[i] || inputs[i] == '\r' || inputs[i] == '\n') {
+			inputs[i] = 0;
 			break;
 		}
 		i++;
