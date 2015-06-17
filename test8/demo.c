@@ -35,24 +35,31 @@ void shiftOutClockedData(unsigned int);
 volatile unsigned char tx_buffer[100];
 volatile unsigned char tx_buffer_last_write = 0;
 volatile unsigned char tx_buffer_last_read = 0;
+
+volatile unsigned char rx_buffer[100];
+volatile unsigned char rx_buffer_last_write = 0;
+volatile unsigned char rx_buffer_last_read = 0;
+
 #include <avr/interrupt.h>
 
 ISR(USART_RX_vect)
 {
-    // user code here
+  rx_buffer[rx_buffer_last_write] = UDR0;
+  rx_buffer_last_write++;
 }
 ISR(USART_UDRE_vect)
 {
-  PORTB = PORTB | (_BV(0) | _BV(1) | _BV(2));
-  if(tx_buffer_last_write > tx_buffer_last_read) {
+  //PORTB = PORTB | (_BV(0) | _BV(1) | _BV(2));
+  /*if(tx_buffer_last_read < tx_buffer_last_write) {
     UDR0 = tx_buffer[tx_buffer_last_read];
     tx_buffer_last_read++;
   }
   if(tx_buffer_last_write == tx_buffer_last_read) {
     tx_buffer_last_read = tx_buffer_last_write = 0;
-  }
+  }*/
 }
 
+ISR(USART_TX_vect, ISR_ALIASOF(USART_UDRE_vect));
 
 ISR(BADISR_vect)
 {
@@ -203,6 +210,7 @@ void shiftOutClockedData(unsigned int dat1) {
 void runTrafficLight(/*unsigned int startingState*/) {
   /* main logic of traffic light shall work from here */
   int duration[2] = {2000, 500}; 
+  char *inputUser;
   //int tick = 0;
   int i = 0, tState = 0;
   /* 0th pole is BIT:0-3, 1st pole: BIT:4-7, 2nd pole: BIT:8:11, 3rd pole: BIT:12:15*/
@@ -210,8 +218,9 @@ void runTrafficLight(/*unsigned int startingState*/) {
    shiftOutClockedData(startingState);
 do {
   //Serial.println("startingState");
+  USART_Receive_String();
    for(i=0; i < 4; i ++) { /* go over all the traffic poles */
-  USART_Transmit_String_P(PSTR("next pole"));
+  USART_Transmit_String("next pole");
      /* which is green right now */
      /* first get the pole */
      tState  = (startingState >> (i*4)) & 0x0F;
@@ -221,11 +230,11 @@ do {
         startingState = (startingState & ~(0x0F << i*4)) | (0x04 << i*4) ;
         if(i == 0) {
          /* Glow yellow led for 0th pole*/
-  USART_Transmit_String_P(PSTR("glowing yellow"));
+  USART_Transmit_String("glowing yellow");
        startingState = (startingState & ~(0x0F << ((i+3)*4))) | (0x09 << ((i+3)*4)) ;
        } else {
          /* Glow yellow led for next pole in sequence */
-  USART_Transmit_String_P(PSTR("glowing yellow 2"));
+  USART_Transmit_String("glowing yellow 2");
          startingState = (startingState & ~(0x0F << ((i-1)*4))) | (0x09 <<( (i-1)*4)) ;
       }
         shiftOutClockedData(startingState);
@@ -233,40 +242,24 @@ do {
      } else if(tState & 0x04) {/*Green is on */
        ourDelay(duration[0]);
        //after this delay switch off green, switch on red
-  USART_Transmit_String_P(PSTR("switch off green"));
+  USART_Transmit_String("switch off green");
        startingState = (startingState & ~(0x0F << i*4)) | (0x01 << i*4) ;
        if(i == 0) {
          /* Glow yellow led for 4th pole*/
-  USART_Transmit_String_P(PSTR("and start yellow, next"));
+  USART_Transmit_String("and start yellow, next");
         	startingState = (startingState & ~(0x0F << ((i+3)*4))) | (0x02 << ((i+3)*4)) ;
        } else {
          /* Glow yellow led for next pole in sequence */
-  USART_Transmit_String_P(PSTR("and start yellow, next2"));
+  USART_Transmit_String("and start yellow, next2");
          startingState = (startingState & ~(0x0F << ((i-1)*4))) | (0x02 << ((i-1)*4)) ;
        }
   shiftOutClockedData(startingState);
   //printf("%0x",startingState);
     } else if(tState & 0x08) {/* Left is on */
-  USART_Transmit_String_P(PSTR("left green is on"));        
+  USART_Transmit_String("left green is on");        
      }
    }  
-  USART_Transmit_String_P(PSTR("one round done !!\n\n\n"));        
-  USART_Transmit_Bytes_P();
-  *((char *)0x00200) = 0x34; /* now it has started to work, no memory corruption*/
-                            /* only change made was that -mmcu atmega328p was placed instead of -mmcu avr5, this was misread/wrongly guided from one of the blogs */
-  printByte(*((char *)0x0200));
-  printByte(*((char *)0x0200));
-  printByte(*((char *)0x0200));
-  printByte(*((char *)0x0061));
-  printByte(*((char *)0x0062));
-  USART_Transmit(*((char *)0x0060));
-  USART_Transmit(*((char *)0x0060));
-  USART_Transmit('M');
-  USART_Transmit('M');
-  USART_Transmit_Bytes();
-  USART_Transmit(*((char *)0x0060));
-  USART_Transmit('\n');
-  USART_Transmit_String_P(PSTR("\n"));
-  USART_Transmit(*((char *)0x0060));
+  USART_Transmit_String("one round done !!\n\n\n");        
+  USART_Transmit_String("\n");
   } while (1);
 }
