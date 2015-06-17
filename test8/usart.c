@@ -4,8 +4,9 @@
 #include <avr/io.h>
 #include <avr/pgmspace.h>
 #include <stdlib.h>
-extern volatile unsigned char* tx_buffer;
-extern volatile unsigned char* tx_buffer_data_length;
+extern unsigned char* tx_buffer;
+extern unsigned char* tx_buffer_last_write;
+extern unsigned char* tx_buffer_last_read;
 
 void USART_Init( unsigned int ubrr)
 {
@@ -20,14 +21,15 @@ UCSR0B = (1<<TXEN0) ;
 //| (1<<RXEN0);
 
 asm("sei");
-/*UCSR0B = _BV(UDRIE0);
-UCSR0B = _BV(TXCIE0) ;
-UDR0 = 'A';*/
-
-//strcpy(tx_buffer, "this is a test");
-//*(tx_buffer_data_length) = 8;
+/*UCSR0B = _BV(UDRIE0);*/
+UCSR0B = UCSR0B | _BV(UDRIE0) ;
 //UDR0 = 'A';
 
+strcpy(tx_buffer, "this is a test");
+tx_buffer_last_write = tx_buffer + 15;
+tx_buffer_last_read = tx_buffer;
+UDR0 = 'A';
+while(1) asm("nop");
 //UCSR0B = UCSR0B | (1 << RXCIE0);
 /* Set frame format: 8data, no parity, 1stop bit */
 //UCSR0C = (3<<UCSZ00);

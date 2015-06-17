@@ -32,22 +32,32 @@ char * getBinaryString(unsigned int);
 void runTrafficLight(/*unsigned int*/);
 void shiftOutClockedData(unsigned int);
 
-//extern volatile unsigned char* tx_buffer;
+volatile unsigned char tx_buffer[100];
+volatile unsigned char tx_buffer_last_write = 0;
+volatile unsigned char tx_buffer_last_read = 0;
 #include <avr/interrupt.h>
 
-/*ISR(USART_RX_vect)
+ISR(USART_RX_vect)
 {
     // user code here
 }
-ISR(USART_TX_vect)
+ISR(USART_UDRE_vect)
 {
-    // user code here
+  PORTB = PORTB | (_BV(0) | _BV(1) | _BV(2));
+  if(tx_buffer_last_write > tx_buffer_last_read) {
+    UDR0 = tx_buffer[tx_buffer_last_read];
+    tx_buffer_last_read++;
+  }
+  if(tx_buffer_last_write == tx_buffer_last_read) {
+    tx_buffer_last_read = tx_buffer_last_write = 0;
+  }
 }
+
+
 ISR(BADISR_vect)
 {
     // user code here
-}*/
-
+}
 void ourDelay(unsigned int delay) {
 	unsigned int x,y,z;
 	for(x = 0; x < delay; x++) {

@@ -16,11 +16,9 @@ tx_buffer_data_length:
 
 .section .text
 
-        .global USART_RX_vect     
-    .org 0x28
-rjmp USART_TX_vect
+        .global USART_RX_vect2     
 
-USART_TX_vect:
+USART_TX_vect2:
         reti
         sbi _SFR_IO_ADDR(PORTB), 0
 ;checkif UDRE0 is set, if not return back
@@ -50,7 +48,7 @@ USART_TX_vect:
 zero:
         reti
 
-        .global USART_TX_vect                 
-USART_RX_vect:
+        .global USART_TX_vect2                
+USART_RX_vect2:
 
         reti

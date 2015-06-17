@@ -63,7 +63,7 @@ CC             = avr-gcc
 
 # Override is only needed by avr-lib build system.
 
-override CFLAGS        = -g -Wall $(OPTIMIZE) -mmcu=avr5 -D__AVR_ATmega328P__ $(DEFS)
+override CFLAGS        = -g -Wall $(OPTIMIZE) -mmcu=atmega328p -D__AVR_ATmega328P__ $(DEFS)
 override LDFLAGS       = -Wl,-Map,$(PRG).map
 
 OBJCOPY        = avr-objcopy
