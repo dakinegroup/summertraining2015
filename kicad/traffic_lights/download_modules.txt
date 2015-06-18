@@ -1,0 +1,3 @@
+https://github.com/lowvoltage/KiCAD-Libraries
+http://library.oshec.org/
+

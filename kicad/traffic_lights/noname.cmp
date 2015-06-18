@@ -1,0 +1,38 @@
+Cmp-Mod V01 Created by CvPcb (2013-jul-07)-stable date = Thursday 18 June 2015 05:38:35 PM IST
+
+BeginCmp
+TimeStamp = /5582AF46;
+Reference = IC1;
+ValeurCmp = ATMEGA328-P;
+IdModule  = DIP-28__300;
+EndCmp
+
+BeginCmp
+TimeStamp = /5582AF13;
+Reference = IC2;
+ValeurCmp = 74164N;
+IdModule  = DIP-14__300;
+EndCmp
+
+BeginCmp
+TimeStamp = /5582B405;
+Reference = IC3;
+ValeurCmp = 74164N;
+IdModule  = DIP-14__300;
+EndCmp
+
+BeginCmp
+TimeStamp = /5582B0C8;
+Reference = R1;
+ValeurCmp = R;
+IdModule  = R3-5;
+EndCmp
+
+BeginCmp
+TimeStamp = /5582B026;
+Reference = SW1;
+ValeurCmp = SW_PUSH;
+IdModule  = SW_PUSH;
+EndCmp
+
+EndListe
