@@ -95,3 +95,28 @@ do {
    sleep(1);  
   } while (1);
 }
+
+
+
+
+
+
+
+
+
+          /*  if(i==0 || i==1)
+            {
+              b=(startingState>>(i*4+4)) & 0x0F;
+              c=(startingState>>(i*4+8)) & 0x0F;
+            }
+
+            else if(i==2)
+            {
+              b=(startingState>>(i*4+4)) & 0x0F;
+              c=startingState & 0x0F;
+            }
+            else if(i==3)
+            {
+              b=startingState & 0x0F;
+              c=startingState>>4 & 0x0F; 
+            }*/

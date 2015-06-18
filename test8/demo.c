@@ -84,7 +84,7 @@ main (void)
 	unsigned char flag = 0;
 //ioinit ();
 DDROC = DDROC | _BV (OC1) | _BV(0) | _BV(DDB5) ;
-DDRD = DDRD | _BV(DDD3);
+DDRD = DDRD | _BV(DDD2);
 //PORTB = _BV(0);
 //PORTD = !_BV(PORTD3);
 USART_Init(51); /* IMPORTANT: 41 values works with -mmcu=avr5, where it should have been */
@@ -163,9 +163,9 @@ char * getBinaryString(unsigned int bytes) {
 void digitalWrite(int pin, unsigned int state) {
   if(pin == 8) {
   	if(state) {
-  		PORTD = PORTD | _BV(3);
+  		PORTD = PORTD | _BV(2);
   	} else {
-  		PORTD = PORTD & ~(_BV(3));
+  		PORTD = PORTD & ~(_BV(2));
   	}
   } else if(pin == 13) {
   	if(state) {
@@ -213,8 +213,10 @@ void runTrafficLight(/*unsigned int startingState*/) {
   char *inputUser;
   //int tick = 0;
   int i = 0, tState = 0;
+
   /* 0th pole is BIT:0-3, 1st pole: BIT:4-7, 2nd pole: BIT:8:11, 3rd pole: BIT:12:15*/
   unsigned int startingState = 0x9114;
+  USART_Transmit_String("Starting Traffic Lights");
    shiftOutClockedData(startingState);
 do {
   //Serial.println("startingState");

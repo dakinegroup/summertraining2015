@@ -17,8 +17,8 @@ int main()
     	usleep(b);
     	counter++;
     	a=counter;
-    	printf("%d\n",a);
+    	
 	}while(counter<((dur*1000000)/b));
-     
+     printf("%d\n",a);
     
 }

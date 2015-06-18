@@ -126,18 +126,24 @@ unsigned char* USART_Receive_String() {
 	static char inputs[50];
 	unsigned char i=0;;
 	while(1) {
+		if(i >= 49) {
+			inputs[49] = 0;
+			break;
+		}
 		while ( !( UCSR0A & (1<<RXC0)) )
 ;
 //loop_until_bit_is_set(UCSR0A, );
 		inputs[i] = UDR0;
 		USART_Transmit(inputs[i]);
 		if(!inputs[i] || inputs[i] == '\r' || inputs[i] == '\n') {
+			inputs[i] = 0;
 			break;
 		}
 		i++;
 	}
-	USART_Transmit_String("\r\n");
-	USART_Transmit_String(strcat("You have typed: ",inputs));
+	USART_Transmit_String("\r\n You have typed: ");
+	//Issue: Here use of strcat("You have typed", inputs) had caused crash
+	USART_Transmit_String(inputs);
 	USART_Transmit_String("\r\n");
 	return inputs;
 }
