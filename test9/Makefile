@@ -1,5 +1,5 @@
 PRG            = demo
-OBJ            = demo.o usart.o lib/bytes.c
+OBJ            = demo.o lib/bytes.o lib/usart.o lib/timer.o
 #MCU_TARGET     = at90s2313
 #MCU_TARGET     = at90s2333
 #MCU_TARGET     = at90s4414
@@ -54,7 +54,7 @@ MCU_TARGET     = atmega328p
 #MCU_TARGET     = attiny861
 OPTIMIZE       = -O2
 
-DEFS           = -DF_CPU=16000000UL
+DEFS           = -DF_CPU=16000000UL -I./include
 LIBS           =
 
 # You should not have to change anything below here.
@@ -76,7 +76,7 @@ $(PRG).elf: $(OBJ)
 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $^ $(LIBS)
 
 # dependency:
-demo.o: demo.c usart.c iocompat.h lib/bytes.c
+demo.o: iocompat.h lib/bytes.c lib/usart.c lib/timer.c demo.c 
 
 clean:
 	rm -rf *.o $(PRG).elf *.eps *.png *.pdf *.bak 
