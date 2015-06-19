@@ -149,7 +149,6 @@ ISR(USART_TX_vect)
   if(tx_buffer_last_read < tx_buffer_last_write) {
   UDR0 = tx_buffer[tx_buffer_last_read];
   tx_buffer_last_read=tx_buffer_last_read+1;  	
-
   } else {
   	tx_buffer_last_read = 0;
   	tx_buffer_last_write= 0;
@@ -187,13 +186,13 @@ int logs_dropped = 0;
 int logs_truncated = 0;
 void USART_Transmit_String2(char *x) {
 	int diff,i=0;
-/*     USART_Transmit_String(x);
-*/ 	cli();
-	for(i=0; i < 5; i++) {
-		tx_buffer[i] = x[i];
+ 	cli();
+ 	if(tx_buffer_last_write == 0) {
+		for(i=0; i < 50 && x[i] != 0; i++) {
+			tx_buffer[i] = x[i];
+		}
+		tx_buffer_last_write = i;
 	}
-	UDR0 = tx_buffer[0];
-	tx_buffer_last_read = tx_buffer_last_read + 1;
 	sei();
 	return;
 	if(tx_buffer_nearly_full == 1)  {

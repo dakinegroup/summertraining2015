@@ -78,14 +78,17 @@ main (void)
   int i;
   unsigned int readValue[2];
   ioinit ();
-USART_Transmit_String("Restarted: "); 
-for(i=0; i < 10000; i++) {
-  asm("nop");
-}
-tx_buffer_last_write = 10;
+//USART_Transmit_String("Restarted: "); 
+UDR0 = 'A';
 UCSR0B = UCSR0B |  (1 << TXCIE0) ;//|(1 << UDRIE0);
 
-strcpy(tx_buffer, "this is a test");
+USART_Transmit_String2("Thsi is a test..");
+for(i = 0;i < 30000; i++) {
+  asm("nop");
+}
+UDR0 = 'A';
+
+USART_Transmit_String2("How are you???");
 //UDR0 = 'A';
    //  USART_Transmit_String2("TimeValue: "); 
 
