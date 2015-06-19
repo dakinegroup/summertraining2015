@@ -32,6 +32,8 @@ File description:
 #include "usart.h"
 
 /* Remember there is only 2k of RAM */
+#define BUFFER_SIZE  200
+#define RX_BUFFER_SIZE  100
 
 struct{
 	unsigned char buffer[BUFFER_SIZE];
