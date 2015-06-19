@@ -1,0 +1,1 @@
+char * getBinaryString(unsigned int bytes);
