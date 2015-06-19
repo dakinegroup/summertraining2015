@@ -1,4 +1,14 @@
-
+/* File: timer.c
+ * Copyright (C) da Kine Technologies (P) Ltd. - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Vineet Maheshwari <vineet@dakinegroup.com>, June 2015
+ * Revision History
+ * Date        Ticket   Change Note
+ * -----------------------------------
+ * 20-Jun-2015  N/A     First Version Ready
+ * 
+ */
 #include <inttypes.h>
 #include <avr/io.h>
 #include <avr/interrupt.h>

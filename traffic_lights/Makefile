@@ -1,5 +1,5 @@
 PRG            = traffic_lights
-OBJ            = tc_ctrl.o usart.o usart_int.o
+OBJ            = tc_main.o tc_ctrl.o lib/usart_int.o lib/timer.o lib/timer_int.o
 #MCU_TARGET     = at90s2313
 #MCU_TARGET     = at90s2333
 #MCU_TARGET     = at90s4414
@@ -54,7 +54,7 @@ MCU_TARGET     = atmega328p
 #MCU_TARGET     = attiny861
 OPTIMIZE       = -O2
 
-DEFS           = -DF_CPU=16000000UL
+DEFS           = -DF_CPU=16000000UL -I./include
 LIBS           =
 
 # You should not have to change anything below here.
@@ -76,13 +76,13 @@ $(PRG).elf: $(OBJ)
 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $^ $(LIBS)
 
 # dependency:
-tc_ctrl.o: tc_ctrl.c usart.c usart_int.S iocompat.h
+tc_main.o: tc_ctrl.c lib/usart_int.c iocompat.h lib/timer.c lib/timer.c
 
 clean:
 	rm -rf *.o $(PRG).elf *.eps *.png *.pdf *.bak 
 	rm -rf *.lst *.map $(EXTRA_CLEAN_FILES)
 flash: all
-	sudo avrdude -p atmega328p -U flash:w:demo.hex -c usbasp
+	sudo avrdude -p atmega328p -U flash:w:traffic_lights.hex -c usbasp
 #	sudo avrdude -p atmega328p -F -U lfuse:w:0x62:m -U flash:w:demo.hex -c usbasp
 #	sudo avrdude -p atmega328p -U lfuse:w:0xFF:m -U flash:w:demo.hex -c usbasp
        

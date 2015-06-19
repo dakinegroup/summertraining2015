@@ -1,4 +1,4 @@
-#ifdef __MYTIMER_H__
+#ifndef __MYTIMER_H__
 #define __MYTIMER_H__
 
 extern unsigned int timestamp[];
