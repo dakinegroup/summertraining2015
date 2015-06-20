@@ -36,7 +36,50 @@ void ioinit() {
 #define LOW 0
 
 void initLCD() {
+  DDRD = DDRD | _BV(3) | _BV(4) |_BV(5) |_BV(6) ;
+}
 
+#define SR_SHCP 3
+#define SR_STCP 6
+#define SR_DS 5
+#define LCD_EN 6
+
+void sendShClockFallingEdge(){
+  PORTD = PORTD | _BV(SR_SHCP);
+  PORTD = PORTD & (~ _BV(SR_SHCP));
+  PORTD = PORTD | _BV(SR_SHCP);
+}
+void sendStClockFallingEdge(){
+  PORTD = PORTD | _BV(SR_STCP);
+  PORTD = PORTD & (~ _BV(SR_STCP));
+  PORTD = PORTD | _BV(SR_STCP);
+}
+void enableLCD() {
+  PORTD = PORTD | _BV(LCD_EN);
+  PORTD = PORTD & (~ _BV(LCD_EN));
+  PORTD = PORTD | _BV(LCD_EN);
+}
+void sendDataToLCD(unsigned char data) {
+    unsigned int i, bit;
+    for(i=0;i<8;i++) { 
+    /* though only 4bits are relevant, lets do it all */
+      /* extract bit */
+      bit = data & 0x01;
+
+      if(bit) 
+        PORTD = PORTD | _BV(SR_DS);
+      else
+        PORTD = PORTD & (~ _BV(SR_DS));    
+      /* time to clock it in */
+      sendShClockFallingEdge();
+      /* next bit */
+      data = data >>1;
+    }
+    
+    /* now move out data to output register */
+    sendStClockFallingEdge();
+    /* now let it be registered by LCD */
+    enableLCD();
 }
 /*
   Green on the cable is 1
