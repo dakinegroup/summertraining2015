@@ -15,10 +15,9 @@
 #include <avr/interrupt.h>
 #include "iocompat.h" /* Note [1] */
 #include "usart.h"
-#include "mytimer.h"
 
 #define FOSC 16000000UL // Clock Speed
-#define BAUD 9600
+#define BAUD 19200
 #define MYUBRR FOSC/16/BAUD-1
 
 enum { UP, DOWN };
@@ -26,53 +25,80 @@ enum { UP, DOWN };
 
 ISR(BADISR_vect)
 {
-    // user code here
 }
 
 void ioinit() {
-
-USART_Init(51); 
-/* IMPORTANT: 41 values works with -mmcu=avr5, where it should have been */
-/* IMPORTANT: 51 works with -mmcu=atmega328p, strange.. what is the secret here???*/
-
-//Below code may be removed, i believe this was for PWM
-//TCCR1B = (TCCR1B & 0xF8) | 0x01;
-//TIMSK1 = TIMSK1 | _BV(TOIE1);
-
-initTimer();
-sei ();
+  USART_Init(MYUBRR); 
+  sei ();
 }
 
 #define HIGH 1
 #define LOW 0
 
+void initLCD() {
+
+}
+/*
+  Green on the cable is 1
+  On board, where first green is seen that side is towards pin 1 of connector
+
+|Connector | 328 Pins  |  595 pins  | LCD Pins|
+|----------|-----------|------------|---------|
+|1 (Green) |  1/RESET  |  10/MR#    |    x    |
+|----------|-----------|------------|---------|
+|     2    |    5/PD3  |   11/SHCP  |    x    |
+|----------|-----------|------------|---------|
+|     3    |     6/PD4 |   12/STCP  |         |
+|----------|-----------|------------|---------|
+|     4    |   11/PD5  |   14/DS    |         |
+|----------|-----------|------------|---------|
+|     5    |    12/PD6 |      x     |   E     |
+|----------|-----------|------------|---------|
+|6 (Black) |  13/PD7   |      x     |         |
+|----------|-----------|------------|---------|
+|     x    |    x      |      1/Q1  |   D4    |
+|----------|-----------|------------|---------|
+|     x    |    x      |      2/Q2  |   D5    |
+|----------|-----------|------------|---------|
+|     x    |    x      |      3/Q3  |   D6    |
+|----------|-----------|------------|---------|
+|     x    |    x      |      4/Q4  |   D7    |
+|----------|-----------|------------|---------|
+|     x    |    x      |      5/Q5  |  RS     |   
+|----------|-----------|------------|---------|
+|     x    |    x      |      x     |RW to GND|     
+|----------|-----------|------------|---------|
+|     x    |    x      |  OE#to GND |    x    |
+|----------|-----------|------------|---------|
+
+To give command to LCD
+     BITs --->
+Data at 595:    x x x 0 A B C D
+Data at PD5:    00 - 0F (command)
+Data at PD3:    clock to put it in input shift
+Data at PD4:    high and low, to transfer out
+Data at PD6:    high and low, to transfer to LCD
+
+To give data to LCD
+Data at 595:    x x x 1 A B C D
+Data at PD5:    00 - 0F (data)
+Data at PD3:    same as above
+Data at PD4:    same as above
+Data at PD6:    same as above
+
+To give data to shift register
+*/
+
 int
 main (void)
 {
-  int i;
-  char testIntStr[10];
-  unsigned int readValue[2];
   ioinit ();
-//USART_Transmit_String("Restarted: "); 
-USART_Transmit_String2("Thsi is a test..");
-
-USART_Transmit_String2("How are you???");
-itoa(0x23,testIntStr,16);
-USART_Transmit_String2(testIntStr);
-USART_Transmit_String2("Very well, thank you???");
-USART_Transmit_String2("Very well, thank you7???");
-
-//USART_Receive_String();
-USART_Transmit_String2("This is what is typed in ..");
-USART_Transmit_String2(USART_Receive_String());
-#if STATS_ENABLED
-USART_PrintStats();
-#endif
-USART_Transmit_String2("Very well, thank you8???");
-
-/* this probably is taken care of by gcc main program exit */
- while(1) {
-  asm("nop");
+  USART_Transmit_String("Restarting..."); 
+  USART_Transmit_String("Version to do testing of LCD write");
+  USART_Transmit_String("Welcome to DKT - Embedded!!");
+  initLCD();
+  while(1) {
+    asm("nop");
   }
   return (0);
 }

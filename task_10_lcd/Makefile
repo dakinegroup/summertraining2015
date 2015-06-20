@@ -1,5 +1,5 @@
 PRG            = demo
-OBJ            = demo.o lib/bytes.o lib/usart.o lib/timer.o
+OBJ            = demo.o lib/usart_int.o
 #MCU_TARGET     = at90s2313
 #MCU_TARGET     = at90s2333
 #MCU_TARGET     = at90s4414
@@ -76,7 +76,7 @@ $(PRG).elf: $(OBJ)
 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $^ $(LIBS)
 
 # dependency:
-demo.o: iocompat.h lib/bytes.c lib/usart.c lib/timer.c demo.c 
+demo.o: iocompat.h demo.c  lib/usart_int.c
 
 clean:
 	rm -rf *.o $(PRG).elf *.eps *.png *.pdf *.bak 
