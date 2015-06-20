@@ -23,8 +23,6 @@ ISR (TIMER1_OVF_vect) /* Note [2] */
 {
 static uint16_t pwm; /* Note [3] */
 static uint8_t direction;
-PORTB = PORTB & ~(_BV(0));
-//PORTB = PORTB | (_BV(0));
 switch (direction) /* Note [4] */
 {
 case UP:
@@ -50,7 +48,6 @@ TCCR1A = TIMER1_PWM_INIT;
 * take care to not clobber it.
 */
 TCCR1B |= TIMER1_CLOCKSOURCE;
-//TCCR1B |= 0x08;
 /*
 * Run any device-dependent timer 1 setup hook if present.
 */
@@ -60,9 +57,7 @@ TIMER1_SETUP_HOOK();
 /* Set PWM value to 0. */
 OCR = 0;
 /* Enable OC1 as output. */
-//DDROC = _BV (OC1) ;
-DDROC = _BV (OC1) | _BV(0);
-//PORTB = 0x03;
+DDROC = _BV (OC1);
 /* Enable timer 1 overflow interrupt. */
 TIMSK = _BV (TOIE1);
 sei ();
@@ -74,11 +69,5 @@ ioinit ();
 /* loop forever, the interrupts are doing the rest */
 for (;;) /* Note [7] */
 sleep_mode();
-/* if(PINB & 0x04) {
-    PORTB = 0x01;
-} else {
-  PORTB = 0x00;
-}*/
 return (0);
 }
-
