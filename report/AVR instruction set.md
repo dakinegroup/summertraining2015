@@ -1,1 +1,36 @@
+##Operational Instructions
+By these instructions we can perform various operations like addition , multiplication and subtraction.  
+Various instructions for addition are :-  
+ 1. **ADC**- It adds two registers with carry flag and put value in the destination register.
+ 2. **ADD**- It adds two registers and put final value in the destination register.
+ 3. **ADIW**- It adds immediate value to register pair and places the result in register pair.d={24,26,28,30}                        k=0-63;
+
+Various instructions for multiplication are :-
+ 1. **MUL**- It multiplies two unsigned numbers contained in Rd and Rr. R1:R0=Rd*Rr. Where R1 is contains MSB and R0 contains LSB.  
+ 2. **MULS**-It multiply two signed numbers in Rd and Rr.
+ 3. **MULSU**- Multiply signed with unsigned. In this Rd is signed and Rr is unsigned number. d=16-23   r=16-23
+
+Various instructions for subtraction are :-
+ 1. **SBC**
+ 2. **SBCI**
+ 3. **SBIW**
+ 4. **SUB**
+ 5. **SUBI**  
+ _**NOTE**_-_In all these instructions the all are subtracted from number present in Rd and then the resultant numbers are stored in Rd._
+
+ 
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+
+
 
