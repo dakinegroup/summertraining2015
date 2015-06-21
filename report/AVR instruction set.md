@@ -16,16 +16,27 @@ Various instructions for subtraction are :-
  3. **SBIW**
  4. **SUB**
  5. **SUBI**  
- _**NOTE**_-_In all these instructions the all are subtracted from number present in Rd and then the resultant numbers are stored in Rd._  
+ _**NOTE**_-_In all these instructions the all are subtracted from number present in Rd and then the resultant numbers are stored in Rd._    
 ##Logical Instructions
 These are the instructions through with logical operations are performed like OR, AND etc.  Some of them are:-
  1. **AND** – Performs logical AND b/w contents of Rd and Rr and resultant is stored in Rd.
  2. **ANDI**- Logical and with immediate. It performs AND b/w contents of Rd and Constant K. d=16-23      K=0-255
  3. **OR and ORI** – Performs logical OR between Rd and Rr and Rd and constant K respectively. For ORI d=16-23      K=0-255.
  4. **EOR** – Exclusive OR.  
+
 ##SET Instructions
- 1. SEC – Set carry Flag. C<-1
-    After this command we can use ADC or SBC or SBCI
+ 1. **SEC** – Set carry Flag. C<-1. After this command we can use ADC or SBC or SBCI.
+ 2. **SEH** – Sets Half Carry flag. H<-1.
+ 3. **SEI** – Sets global interrupt. I<-1.  
+  **SEN , SES , SET , SEV , SEZ** are other set commands in which _Negative flag, signed flag , T flag, overflow flag_ respectively are set.  
+_**NOTE**_-These flags are there in SREG.
+ 4. **SBI** – Sets bit in I/O register.
+ 5. **SBR** – Sets bits in Register. Rd<-Rd v K.  
+
+
+ 
+ 
+
 
 
 
