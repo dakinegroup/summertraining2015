@@ -45,7 +45,15 @@ _**NOTE**_-These flags are there in SREG.
  2. **BCLR** – Bit clear from SREG. It clears a bit from SREG.  
                Difference between the clear commands used above and BCLR is that in this we specify the bit number of SREG which we want to get cleared. But in above instructions it is already given which we want to clear. It is hardcore instruction. And in BCLR we can change easily the flag we want to clear.
  3. **CBI** – Clear bit in i/o register . It clears 32 lower registers.I/O(A , b)=0 A =0-31 b=0-7
- 4. **CBR** – It clears specified bit in register Rd. It is done by ANDing it with the complement of the constant K. 
+ 4. **CBR** – It clears specified bit in register Rd. It is done by ANDing it with the complement of the constant K.  
+
+##Compare Instructions
+ 1. **CP** – Compare. It compares contents of Rd and Rr.
+ 2. **CPCI** – It compares Rd and Rr taking carry in previous stage into account.  
+ 3. **CPI** – Compare with Immediate. It compares with the constant K.
+_** NOTE**_After all these statements conditional branch statement can be executed 
+ 4. **CPSE** – Compare skip if Equal. If Rd and Rr are equal next statement is skipped.
+
 
 
 
