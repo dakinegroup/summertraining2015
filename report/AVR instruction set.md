@@ -54,6 +54,32 @@ _**NOTE**_-These flags are there in SREG.
 _** NOTE**_After all these statements conditional branch statement can be executed 
  4. **CPSE** – Compare skip if Equal. If Rd and Rr are equal next statement is skipped.
 
+##Conditional Branch Instructions
+ * These are the instructions which are executed when the condition specified is done and then these statements take those much steps further from that execution specified by the user.
+ * **BRBC , BRBS, BRCC, BRCS, BREQ, BRIE, BRLO, BRLT** are some of the conditional branch instructions.
+
+##Store Instructions
+ 1. **ST** – It stores indirect one byte from a register to data space. Data location space is provided by the X pointer register. It can be left unchanged , post incremented or pre decremented.
+ 2. **STD** – It stores data using Y pointer register. It can be left unchanged , pre decremented or post incremented.
+ 3. **STD** – It stores data using z indirect register.
+ 4. **STS** – It stores data direct from Rr to data space.
+
+##Load Instructions
+ 1. **LD** – It loads indirect one byte from a register to data space. Data location space is provided by the X pointer register. It can be left unchanged , post incremented or pre decremented.
+ 2. **LDD** – It loads data using Y pointer register. It can be left unchanged , pre decremented or post incremented.
+ 3. **LDD** – It loads data using Z indirect register.
+ 4. **LDS** – It Loads data direct from Rr to data space.
+
+##Jump Instructions
+ 1. **JMP** – It jumps to an address. Difference between Conditional branch and JMP instruction is that it is unconditional and it jumps directly to an address while in branch it takes steps further in a program specified by the user.
+ 2. **IJMP** – It is the indirect jump to an address pointed by Z Pointer register in the register file.
+ 3. **RJMP** – Relative Jump.
+
+
+
+
+
+
 
 
 
