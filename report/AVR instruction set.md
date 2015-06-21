@@ -17,6 +17,7 @@ Various instructions for subtraction are :-
  4. **SUB**
  5. **SUBI**  
  _**NOTE**_-_In all these instructions the all are subtracted from number present in Rd and then the resultant numbers are stored in Rd._    
+
 ##Logical Instructions
 These are the instructions through with logical operations are performed like OR, AND etc.  Some of them are:-
  1. **AND** – Performs logical AND b/w contents of Rd and Rr and resultant is stored in Rd.
