@@ -15,6 +15,7 @@
 
 ###Memory Map
 ###Instructions
+[AVR instruction set](https://github.com/dakinegroup/summertraining2015/blob/master/report/AVR%20instruction%20set.md)
 ###I/O Ports Registers
 Every port has three register bit.
  * DDxn
