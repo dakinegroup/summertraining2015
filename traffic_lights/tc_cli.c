@@ -8,6 +8,7 @@
  * -----------------------------------
  * 
  */
+#include "tc_ctrl.h"
 #include "tc_cli.h"
 
 #define CMD_SET_SIZE 10
@@ -37,8 +38,8 @@ void initCli() {
 	cmdHandler[1].cb = CLI_Go;
 
 	/* Third command */
-	cmdHandler[1].cmd = "get";
-	cmdHandler[1].cb = CLI_Get;
+	cmdHandler[2].cmd = "get";
+	cmdHandler[2].cb = CLI_Get;
 
 }
 
@@ -84,7 +85,7 @@ char cmdFound=0,argsCount=0,*args[6],*cmd;
    		break;
    	}
   }
-  if(i == CMD_SET_SIZE) {
+  if(i == CMD_SET_SIZE || cmdHandler[i].cb == 0 ) {
   	USART_Transmit_String2("Invalid Command\r\n");
   }
 }
@@ -130,6 +131,16 @@ int i =0, t_thr;
 		USART_Transmit_String2("Changed traffic threshold\r\n");
 	}
 
+	/* handling of second parameter */
+	if(strcmp(argv[0], "pts") == 0){
+		if(argc < 2) {
+			USART_Transmit_String2("Insufficient args\r\n");
+			return;
+		}
+		printTL = atoi(argv[1]);
+		USART_Transmit_String2("Changed print trf status\r\n");
+	}
+
 }
 
 /*
@@ -162,6 +173,16 @@ char msg[30];
 			return;
 		}
 		sprintf(msg, "TrThr: %d\r\n",trafficThreshold );
+		USART_Transmit_String2(msg);		
+	}
+
+	/* handling of second parameter */
+	if(strcmp(argv[0], "pts") == 0){
+		if(argc < 1) {
+			USART_Transmit_String2("Insufficient args\r\n");
+			return;
+		}
+		sprintf(msg, "PTS:(%04x): %d,\r\n",startingState, printTL );
 		USART_Transmit_String2(msg);		
 	}
 

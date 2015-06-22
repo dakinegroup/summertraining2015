@@ -25,25 +25,39 @@
 
 unsigned int startingState;
 unsigned int tick;
-unsigned int incomingTraffic[]={10,10,10,10};
+int incomingTraffic[]={10,10,10,10};
 unsigned int trafficThreshold;
+char printTL = 0;
 void initTrafficStateMachine() {
 DDROC = DDROC | _BV (OC1) | _BV(0) | _BV(DDB5) ;
 DDRD = DDRD | _BV(DDD2);
     startingState = 0x9114;
     shiftOutClockedData(startingState);
     tick = 0;
+    trafficThreshold = 100;
 }
 int processTrafficStateMachine(int x) {
 static unsigned int  i;
 static unsigned int tState;
-static int duration[]= {5,2,4};     
+static int duration[]= {5,6,16};     
 char msg[20];
 
     tick++;
     //USART_Transmit_String2("Tick");  
    for(i=0; i < 4; i ++) { 
      tState  = (startingState >> (i*4)) & 0x0F;
+           if(incomingTraffic[i] > trafficThreshold) {
+        if((tState & 0x06) == 0) {
+            YELLOW_ON_POLE(i);
+            RED_ON_POLE(i+1);
+            RED_ON_POLE(i+2);
+            RED_ON_POLE(i+3);
+            sprintf(msg, "Rst:(%04x),%02d\r\n", startingState, i);
+            USART_Transmit_String2(msg);
+            tick=0;
+        }
+      }
+
      if(tState & 0x01) { /* red light */
        
      } else if(tState & 0x02) { /* yellow light */
@@ -95,19 +109,31 @@ char msg[20];
                   counter = 0;
             */
         if (tick >= duration[2]) {
+          /*calling CLI_Set function from tc_cli.c ....
+            
             //USART_Transmit_String2("Green->Red");
     // sprintf(msg,"P#%d,Time:%d,Dur:%d, Green", i, tick, duration[2]);
     //USART_Transmit_String2(msg);  
             /* wait for green light is over */
+          if(incomingTraffic[i] < trafficThreshold) {
           RED_ON_POLE(i);
           YELLOW_ON_POLE(i+1);
           RED_ON_POLE(i-1);
+          }
           tick=0;
+          if(incomingTraffic[i] > 0)
+            incomingTraffic[i] = incomingTraffic[i] - 100;
+          if(incomingTraffic[i] < 0)
+            incomingTraffic[i] = 0;
           shiftOutClockedData(startingState);
         } else if(tState & 0x08) {
         
         }
      }
+   }
+   if(printTL == 1) {
+     sprintf(msg, "TLS:%04x, %03d\r\n", startingState, tick);
+     USART_Transmit_String2(msg);
    }
 }
 

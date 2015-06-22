@@ -10,6 +10,11 @@
  */
  #ifndef __TC_CTRL_H__
 #define __TC_CTRL_H__
+
+extern int incomingTraffic[];
+extern unsigned int trafficThreshold;
+extern unsigned int startingState;
+extern char printTL; 
 void initTrafficStateMachine();
 int processTrafficStateMachine(int);
 int checkTrafficStatus(int );
