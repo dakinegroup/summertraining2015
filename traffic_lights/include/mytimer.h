@@ -8,6 +8,7 @@ void initTimedTasks();
 void repeat(int, tTimedCallBack);
 void invokeScheduledItem();
 void doOnce( int ms, tTimedCallBack);
-#define USE_DEBUG_LED 0
+void wait(int ms);
+#define USE_DEBUG_LED 1
 void initTimer();
 #endif /* __MYTIMER_H__ */

@@ -1,5 +1,5 @@
 PRG            = traffic_lights
-OBJ            = tc_main.o tc_ctrl.o lib/usart_int.o lib/timer.o lib/timer_int.o
+OBJ            = tc_main.o tc_ctrl.o tc_cli.o  lib/usart_int.o lib/timer.o lib/timer_int.o lib/lcd.o light_driver.o
 #MCU_TARGET     = at90s2313
 #MCU_TARGET     = at90s2333
 #MCU_TARGET     = at90s4414
@@ -76,7 +76,7 @@ $(PRG).elf: $(OBJ)
 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $^ $(LIBS)
 
 # dependency:
-tc_main.o: tc_ctrl.c lib/usart_int.c iocompat.h lib/timer.c lib/timer.c
+tc_main.o: tc_ctrl.c tc_cli.c light_driver.c lib/usart_int.c iocompat.h lib/timer.c lib/timer.c lib/lcd.c
 
 clean:
 	rm -rf *.o $(PRG).elf *.eps *.png *.pdf *.bak 

@@ -17,6 +17,9 @@
 #include "usart.h"
 #include "mytimer.h"
 #include "iocompat.h" 
+#include "tc_ctrl.h"
+#include "lcd.h"
+#include "tc_cli.h"
 
 int toggleDebugLed(int x) {
     if(debug_led == 0) {
@@ -28,23 +31,24 @@ int toggleDebugLed(int x) {
     }
     return 0;
 }
-char userCommand[30];
-void processUserCommand() {
-  USART_Transmit_String2("Got a user command: ");
-  USART_Transmit_String2(userCommand);
-  USART_Transmit_String2("\r\n");
-}
+
 
 int main (void) {
   int i = 0;
+  char userCommand[20];
   initTimer();
-  initTimedTasks();
   USART_Init(51);
   USART_Transmit_String("Restarted: \r\n"); 
   USART_Transmit_String2("System Initializing\r\n");
+  initTimedTasks();
+  initTraffiStateMachine();
 
   //schedule heartbeat type of events here
   repeat(1000, toggleDebugLed);
+  /* get counters for incoming traffic at each pole*/
+  repeat(800, checkTrafficStatus); 
+  /* sequentially as per configured logic, lights should go on / off */
+  repeat(800, processTrafficStateMachine);
 
   USART_Transmit_String2("System ready\r\n");
   // loop and check for various flags
@@ -54,9 +58,7 @@ int main (void) {
     if(USART_Receive_String2(userCommand, 30) > 0) {
       processUserCommand();
     }
-    for(i=0; i < 4; i++) {
-      checkTrafficStatus(i); // check traffic status / volume and make changes
-    }
+    
       // ... check for scheduled events
       // ......glow an led, switch off led
       // ... check for user command from terminal

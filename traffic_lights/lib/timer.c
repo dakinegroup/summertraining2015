@@ -80,3 +80,33 @@ void invokeScheduledItem() {
 void doOnce( int ms, tTimedCallBack cb) {
     // to schedule a callback to be invoked after given seconds from now
 }
+
+void wait(int ms) {
+unsigned int ts[2], t[2];
+    cli();
+            ts[0] = timestamp[0];
+            ts[1] = timestamp[1];
+    sei();
+    if((0xFFFF - ts[0]) < ms) {
+        ts[1] += 1;
+    } 
+    ts[0] += ms;
+ while(1) {
+    asm("nop");
+    asm("nop");
+    asm("nop");
+    asm("nop");
+    cli();
+            t[0] = timestamp[0];
+            t[1] = timestamp[1];
+    sei();
+    if(ts[1] > timestamp[1]) {
+    } else if(ts[1] == timestamp[1]) {
+        if(ts[0] > timestamp[0]) {
+
+        } else {
+            break; //time up
+        }
+    }
+ }    
+}

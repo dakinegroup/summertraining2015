@@ -8,3 +8,10 @@
  * -----------------------------------
  * 
  */
+
+ char userCommand[30];
+void processUserCommand() {
+  USART_Transmit_String2("Got a user command: ");
+  USART_Transmit_String2(userCommand);
+  USART_Transmit_String2("\r\n");
+}
