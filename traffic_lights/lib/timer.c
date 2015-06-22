@@ -66,8 +66,8 @@ void invokeScheduledItem() {
     for (i = 0; i < 10; i++) {
         if(!scheduledItems[i].empty) {
             if(ts[0] > scheduledItems[i].timestamp[0]) {
-                sprintf(bytes,"%02x%02x: Thr: %02d, CB: %04x\r\n", timestamp[1], timestamp[0], i, scheduledItems[i].cb);
-                USART_Transmit_String2(bytes);
+                /*sprintf(bytes,"%02x%02x: Thr: %02d, CB: %04x\r\n", timestamp[1], timestamp[0], i, scheduledItems[i].cb);
+                USART_Transmit_String2(bytes);*/
              if(scheduledItems[i].cb != 0) {
                 (*scheduledItems[i].cb)(0);
             }

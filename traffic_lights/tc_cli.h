@@ -10,5 +10,8 @@
  */
  #ifndef __TC_CLI_H__
 #define __TC_CLI_H__
+ extern  char userCommand[];
+extern unsigned int incomingTraffic[];
+extern unsigned int trafficThreshold;
  void processUserCommand();
 #endif /* __TC_CLI_H__ */

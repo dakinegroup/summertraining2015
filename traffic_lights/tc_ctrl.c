@@ -16,15 +16,17 @@
 #include "tc_ctrl.h"
 #include "light_driver.h"
 
-#define CLEAR_POLE(i) (startingState & ~(0x0F << (i%4)*4))
+#define CLEAR_POLE(i)         (startingState & ~(0x0F << (((i)%4)*4)))
 
-#define RED_ON_POLE(i)  (CLEAR_POLE(i) | (0x01 << (i%4)*4))
-#define YELLOW_ON_POLE(i) (CLEAR_POLE(i) | (0x02 << ((i%4)*4)))
-#define GREEN_ON_POLE(i) (CLEAR_POLE(i) | (0x04 << ((i%4)*4)))
-#define LEFT_GREEN_ON_POLE(i) (CLEAR_POLE(i) | (0x09 << ((i%4)*4)))
+#define RED_ON_POLE(i)        startingState = (CLEAR_POLE(i) | (0x01 << (((i)%4)*4)))
+#define YELLOW_ON_POLE(i)     startingState = (CLEAR_POLE(i) | (0x02 << (((i)%4)*4)))
+#define GREEN_ON_POLE(i)      startingState = (CLEAR_POLE(i) | (0x04 << (((i)%4)*4)))
+#define LEFT_GREEN_ON_POLE(i) startingState = (CLEAR_POLE(i) | (0x09 << (((i)%4)*4)))
 
 unsigned int startingState;
 unsigned int tick;
+unsigned int incomingTraffic[]={10,10,10,10};
+unsigned int trafficThreshold;
 void initTrafficStateMachine() {
 DDROC = DDROC | _BV (OC1) | _BV(0) | _BV(DDB5) ;
 DDRD = DDRD | _BV(DDD2);
@@ -33,29 +35,29 @@ DDRD = DDRD | _BV(DDD2);
     tick = 0;
 }
 int processTrafficStateMachine(int x) {
-static int  i;
+static unsigned int  i;
 static unsigned int tState;
-static int duration[]= {5,4,8};     
+static int duration[]= {5,2,4};     
 char msg[20];
 
     tick++;
-    USART_Transmit_String2("Tick");  
+    //USART_Transmit_String2("Tick");  
    for(i=0; i < 4; i ++) { 
      tState  = (startingState >> (i*4)) & 0x0F;
      if(tState & 0x01) { /* red light */
        
      } else if(tState & 0x02) { /* yellow light */
           if (tick>=duration[1]) {
-            USART_Transmit_String2("Yellow->Green");
+           // USART_Transmit_String2("Yellow->Green");
     // sprintf(msg,"P#%d,Time:%d,Dur:%d, Yellow", i, tick, duration[1]);
     //USART_Transmit_String2(msg);  
             /* wait for duration of yellow light is over */
             /* move this pole to red light */
-             startingState = GREEN_ON_POLE(i) ;
+             GREEN_ON_POLE(i) ;
             /* restart counter */
              tick=0;
              /* glow left green on the next pole */
-                startingState = LEFT_GREEN_ON_POLE(i-1) ;
+                LEFT_GREEN_ON_POLE(i-1) ;
     // sprintf(msg,"SS:%0x4d", startingState);
              
             /*printf("set duration for green light");
@@ -93,14 +95,13 @@ char msg[20];
                   counter = 0;
             */
         if (tick >= duration[2]) {
-            USART_Transmit_String2("Green->Red");
+            //USART_Transmit_String2("Green->Red");
     // sprintf(msg,"P#%d,Time:%d,Dur:%d, Green", i, tick, duration[2]);
     //USART_Transmit_String2(msg);  
             /* wait for green light is over */
-          startingState = RED_ON_POLE(i);
-          startingState = YELLOW_ON_POLE(i+1);
-          startingState = RED_ON_POLE(i-1);
-    // sprintf(msg,"SS:%0x4d", startingState);
+          RED_ON_POLE(i);
+          YELLOW_ON_POLE(i+1);
+          RED_ON_POLE(i-1);
           tick=0;
           shiftOutClockedData(startingState);
         } else if(tState & 0x08) {

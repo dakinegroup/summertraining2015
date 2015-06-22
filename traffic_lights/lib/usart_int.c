@@ -347,6 +347,7 @@ unsigned char* USART_Receive_String() {
    to create receive routine here and identify frames, which are saved 
    in independent buffers 
 */
+   
 int USART_Receive_String2(char *buff, int len) {
     int i = 0;
     cli();

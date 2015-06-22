@@ -33,9 +33,7 @@ void shiftOutClockedData(unsigned int dat1) {
      char msg[10];
 
      unsigned int chgByte = (dat1 & 0x00F0) ;
-         sprintf(msg,"Inside:%04x",dat1);
-         USART_Transmit_String(msg);
-
+         
      if(chgByte == 0x10) {
         dat1 = (dat1 & 0xFF0F) | 0x80;      
      } else if (chgByte == 0x20) {

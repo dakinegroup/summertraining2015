@@ -35,13 +35,14 @@ int toggleDebugLed(int x) {
 
 int main (void) {
   int i = 0;
-  char userCommand[20];
+  //char userCommand[20];
   initTimer();
   USART_Init(51);
   USART_Transmit_String("Restarted: \r\n"); 
   USART_Transmit_String("System Initializing\r\n");
   initTimedTasks();
   initTrafficStateMachine();
+  initCli();
 
   //schedule heartbeat type of events here
   repeat(1000, toggleDebugLed);
@@ -56,7 +57,7 @@ int main (void) {
     asm("nop");
     invokeScheduledItem(); // includes - TL update, HeartBeat
     if(USART_Receive_String2(userCommand, 30) > 0) {
-      processUserCommand();
+      processUserCommand(userCommand);
     }
     
       // ... check for scheduled events
