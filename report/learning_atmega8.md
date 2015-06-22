@@ -132,6 +132,9 @@ Command used for flashing code to ATMEGA8
      - [RS485]()
  * MAX RS232 Interface -  [(Datasheet)](http://www.ti.com/lit/ds/symlink/max232.pdf), [(Example Circuitry)](https://arduinodiy.files.wordpress.com/2012/03/max232.jpg)
  * [LCD](http://www.limetrace.co.uk/how-to-connect-an-lcd-to-the-arduino)
+     - [LCD Instructions](http://web.alfredstate.edu/weimandn/lcd/lcd_initialization/lcd_initialization_index.html)
+     - [LCD Byte wise explanation for command](http://esd.cs.ucr.edu/labs/interface/interface.html)
+     - [LCD Command Referenec](https://www.openhacks.com/uploadsproductos/eone-1602a1.pdf)
 
 ## Software
 
