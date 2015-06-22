@@ -30,7 +30,12 @@ void digitalWrite(int pin, unsigned int state) {
 }
 void shiftOutClockedData(unsigned int dat1) {
      unsigned int i, opser, srclk=0,val=0;
+     char msg[10];
+
      unsigned int chgByte = (dat1 & 0x00F0) ;
+         sprintf(msg,"Inside:%04x",dat1);
+         USART_Transmit_String(msg);
+
      if(chgByte == 0x10) {
         dat1 = (dat1 & 0xFF0F) | 0x80;      
      } else if (chgByte == 0x20) {
@@ -42,15 +47,27 @@ void shiftOutClockedData(unsigned int dat1) {
      unsigned int data = 0xFFFF - dat1;
     //val=digitalRead(7);
     //Serial.println(val);
-    if (val==1){
+    //if (val==1){
     for(i=0;i<16;i++) {
       digitalWrite(8, data & 0x01);
-      data = data >>1;
+ /*     USART_Transmit_String("step1");
+    while (USART_Receive_String2(msg,10)<=0)
+      asm("nop");
+  */    data = data >>1;
       //ourDelay(500); 
       digitalWrite(13, HIGH); 
-      //ourDelay(500); 
+/*      USART_Transmit_String("step2");
+    while (USART_Receive_String2(msg,10)<=0)
+      asm("nop");
+*/      //ourDelay(500); 
       digitalWrite(13, LOW); 
+/*      USART_Transmit_String("step3");
+    while (USART_Receive_String2(msg,10)<=0)
+      asm("nop");*/
     }
-    }else{digitalWrite(8,LOW);}
-      //delay(10000);  
+    //}else{digitalWrite(8,LOW);}
+/*    USART_Transmit_String("end");
+    while (USART_Receive_String2(msg,10)<=0)
+      asm("nop");
+*/      //delay(10000);  
 }

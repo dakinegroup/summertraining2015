@@ -25,7 +25,7 @@
 
 unsigned int startingState;
 unsigned int tick;
-void initTraffiStateMachine() {
+void initTrafficStateMachine() {
 DDROC = DDROC | _BV (OC1) | _BV(0) | _BV(DDB5) ;
 DDRD = DDRD | _BV(DDD2);
     startingState = 0x9114;

@@ -39,16 +39,16 @@ int main (void) {
   initTimer();
   USART_Init(51);
   USART_Transmit_String("Restarted: \r\n"); 
-  USART_Transmit_String2("System Initializing\r\n");
+  USART_Transmit_String("System Initializing\r\n");
   initTimedTasks();
-  initTraffiStateMachine();
+  initTrafficStateMachine();
 
   //schedule heartbeat type of events here
   repeat(1000, toggleDebugLed);
   /* get counters for incoming traffic at each pole*/
   repeat(800, checkTrafficStatus); 
   /* sequentially as per configured logic, lights should go on / off */
-  repeat(800, processTrafficStateMachine);
+  repeat(260, processTrafficStateMachine);
 
   USART_Transmit_String2("System ready\r\n");
   // loop and check for various flags

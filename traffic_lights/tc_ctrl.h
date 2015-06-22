@@ -10,7 +10,7 @@
  */
  #ifndef __TC_CTRL_H__
 #define __TC_CTRL_H__
-void initTraffiStateMachine();
+void initTrafficStateMachine();
 int processTrafficStateMachine(int);
 int checkTrafficStatus(int );
 #endif /* __TC_CTRL_H__ */
