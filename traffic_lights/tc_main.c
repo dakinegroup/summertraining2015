@@ -18,23 +18,39 @@
 #include "mytimer.h"
 #include "iocompat.h" 
 #include "tc_ctrl.h"
+ #include "tc_cntr.h"
 #include "lcd.h"
 #include "tc_cli.h"
+ 
 
 int toggleDebugLed(int x) {
     if(debug_led == 0) {
       debug_led = 0x01;
-      PORTB = PORTB | _BV(1);
+      //PORTB = PORTB | _BV(1);
     } else {
       debug_led = 0;
-      PORTB = PORTB & ~(_BV(1));
+      //PORTB = PORTB & ~(_BV(1));
     }
     return 0;
+
+}
+int printCounters(int x) {
+  int counter,i;
+  char msg[20];
+    for(i=0;i<4;i++){
+      counter = readCounter(i);
+      sprintf(msg, "Ctr:%d:%04x,", i,counter);
+        USART_Transmit_String(msg);
+    }
+    USART_Transmit_String("\r\n");
+    
 }
 
 
 int main (void) {
   int i = 0;
+  char iteration[6];
+  unsigned char pin;
   //char userCommand[20];
   initTimer();
   USART_Init(51);
@@ -43,6 +59,10 @@ int main (void) {
   initTimedTasks();
   initTrafficStateMachine();
   initCli();
+  initLCD();
+
+  initTrafficCounters();
+
 
   //schedule heartbeat type of events here
   repeat(1000, toggleDebugLed);
@@ -50,8 +70,16 @@ int main (void) {
   repeat(800, checkTrafficStatus); 
   /* sequentially as per configured logic, lights should go on / off */
   repeat(260, processTrafficStateMachine);
-
+  repeat(260, printCounters);
   USART_Transmit_String2("System ready\r\n");
+  LCD_Write("Restarting...");
+  LCD_WriteXY(1,0,"Greetings!");
+  LCD_WriteXY(1,0,"Traffic Console");
+  wait(200);
+  LCD_Clear();
+   LCD_GotoHome();
+  
+   LCD_WriteXY(1,0,"Count: ");
   // loop and check for various flags
   while(1) {
     asm("nop");
