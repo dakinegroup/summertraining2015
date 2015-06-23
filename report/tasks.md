@@ -148,3 +148,14 @@ List of components to buy:
 * Potentio meter
 * induction coil?? -- varying
 * 
+
+#task9
+It was time to extend the USART synchronous implementation done so far to asynchronous one, with help of interrupt. A ping-pong buffer was used, which has it's limitations. Later it may be changed to circular buffer, an ideal solution for our use.
+
+Also, timer interrupt handling was implemented. It was help get precise timing information for task scheduling in traffic light system.
+
+#task10
+Here the objective was to make LCD work in our hardware setup. RG1602A - 16x2 display was used. We put up shift register to minimize use of controller pins at the cost of performance. A dedicated driver code is required to make the text visible on LCD, by way of using clocks, serial data.
+
+#task11
+Here the objective is to detect pulse because of interruption in the reflected IR ray from our sensors. This is to be used later in project to count traffic load.
