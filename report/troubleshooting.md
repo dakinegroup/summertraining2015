@@ -72,3 +72,33 @@ Now after this, even the UBRR of 51 is also working perfectly, 41 does not work 
 At times, processor was not able to run program as expected. It was suspected that it has to do with power supply quality, which was taken from regular phone charger. To eliminate this, we put up 7805 regulator with polarity protection diode and a filter circuit with 100uF capacitor. With this addition, circuit was 100% responding to our requests.
 
 Another side effect of poor quality power supply was failure of flash programming at times.
+
+### Mistakes in hardware, Software Workaround
+
+There were two instances, where hardware mistake occurred. One - LEDs for traffic lights were not in logical sequence. Second - Shift register output lowest bit (D0) was left unused for LCD data input. In both cases, software was enhanced to deal with situation. Clearly, it gives a performance penalty because of additional code. Code extract is captured below:
+```c
+void sendDataToLCD(unsigned char data, int delay) {
+    unsigned int i, bit;
+    char cmds[10];
+    sprintf(cmds, "%02x\r\n", data);
+    data = data << 1; /* workaround for the Q0 bit missed out in wiring */
+    for(i=0;i<8;i++) { 
+    /* though only 4bits are relevant, lets do it all */
+      /* extract bit - highest bit first on shift, 
+      it goes to MSB, after 8 shifts */
+```
+
+```c
+void shiftOutClockedData(unsigned int dat1) {
+     unsigned int i, opser, srclk=0,val=0;
+     char msg[10];
+
+     unsigned int chgByte = (dat1 & 0x00F0) ;
+     /* traffic lights in wiring is out of sequence, so fix them here */    
+     if(chgByte == 0x10) {
+        dat1 = (dat1 & 0xFF0F) | 0x80;      
+     } else if (chgByte == 0x20) {
+        dat1 = (dat1 & 0xFF0F) | 0x40;      
+     } else if (chgByte == 0x40) {
+        dat1 = (dat1 & 0xFF0F) | 0x20;
+     }
