@@ -21,4 +21,4 @@
 |18-June-2015| 8:45am | 5:30pm| DKTPL |Trafic Light counter|
 |19-June-2015| 8:45am | 5:30pm| DKTPL |Trafic Light counter|
 |22-June-2015| 8:45am | 5:30pm| DKTPL ||
-|22-June-2015| 8:45am | 5:30pm| DKTPL ||
+|23-June-2015| 8:45am | 5:30pm| DKTPL ||
