@@ -26,10 +26,10 @@
 int toggleDebugLed(int x) {
     if(debug_led == 0) {
       debug_led = 0x01;
-      //PORTB = PORTB | _BV(1);
+      PORTB = PORTB | _BV(1);
     } else {
       debug_led = 0;
-      //PORTB = PORTB & ~(_BV(1));
+      PORTB = PORTB & ~(_BV(1));
     }
     return 0;
 

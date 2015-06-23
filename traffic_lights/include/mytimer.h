@@ -9,6 +9,6 @@ void repeat(int, tTimedCallBack);
 void invokeScheduledItem();
 void doOnce( int ms, tTimedCallBack);
 void wait(int ms);
-#define USE_DEBUG_LED 1
+#define USE_DEBUG_LED 0
 void initTimer();
 #endif /* __MYTIMER_H__ */
