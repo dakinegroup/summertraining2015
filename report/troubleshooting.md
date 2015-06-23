@@ -44,13 +44,20 @@ As per specifications, 51 as UBRR worked, but still the desired output was not t
 
 As we discovered processor works at 8MHz because of unprogrammed fuse bits. So next step was to fuse them with desired bit status using AVRDude. As we fused high byte with 0xFF, it stopped interacting even with AVRdude, and even our running program of traffic lights stopped working. Now the task at hand was to see if this processor can be recovered, somehow. As advised from internet, several links, one has to use an external clock at XTAL1 (pin 9), to clock CPU and hence try programming it for new fuse values. It worked.
 
+We used Arduino Kit to generate clock and used AVRuPro to program the fuses.
+
 ## Making external 16MHz clock work
 
-Still unresolved.
+In previous problem controller was not responding because, it was now dependent on external Crystal clock after changing fuse settings. Crystal though put in the circuit was not responding. Several cleaning, re-soldering were done but of no use. In the end, crystal was removed and tested independently on breadboard for it's healthy condition. It was ok.
+
+Only option left was to try it on a different location. Earlier location on PCB was little crowded, which may have led to some stray resistances and capacitances at track level. So it was moved a little bit away at cleaner place and processor started to respond at 16MHz.
+
+With this another problem of USART not working as per UBRR calculation also started working.
 
 ## Heating up of MAX232, when powered with USB
 
-Still unresolved
+Still unresolved.
+Strangely enough, this heats up all of a sudden and new chip when placed, works well. After few hours, the chip that was heated, when again placed on circuit also works. Again, all possible tracks cleaning, connection re-check was done, but of not much use.
 
 ### Passing String or Array argument in a subroutine corrupts
 
@@ -59,3 +66,9 @@ Whenever a function was called with an argument, it was causing the processor to
 After long debugging, it was found that initially what was thought as relevant flag i.e. -mmcu=avr5 is not correct, -mmcu=atmega328p. Use of internet to solve one of the problems had led to induction of this fault and was never doubted in the whole process of debugging.
 
 Now after this, even the UBRR of 51 is also working perfectly, 41 does not work any more.
+
+### Intermittent behaviour of circuit when powered on
+
+At times, processor was not able to run program as expected. It was suspected that it has to do with power supply quality, which was taken from regular phone charger. To eliminate this, we put up 7805 regulator with polarity protection diode and a filter circuit with 100uF capacitor. With this addition, circuit was 100% responding to our requests.
+
+Another side effect of poor quality power supply was failure of flash programming at times.
