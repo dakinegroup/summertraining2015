@@ -18,7 +18,7 @@ If we see our past, nearly 20 years ago and compare it with present we come to k
 
 ##Introduction to VLSI
 **VLSI** - Very Large Scale Integration. Many ICs had a limited funtion to perform. VLSI overcame it. It is the process of creating an IC by combining thousands of transistors into a single chip.  
-
+![Moore's Law](images/slide_ite_alu_all_web-moores-law.jpg)
 
   * **TODO** What is the density of chips, in number. Checkout graph that shows this trend and paste it here.
 
