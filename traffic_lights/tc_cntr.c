@@ -31,7 +31,10 @@ ISR(PCINT2_vect) {
    gCounter[0]++;
   sei();
 }
-unsigned char pinb_history;
+
+unsigned char pinb_history=0;
+
+
 ISR(PCINT0_vect) {
 unsigned char chgBits=0;
   cli();
@@ -45,17 +48,22 @@ unsigned char chgBits=0;
   } 
   pinb_history = PINB;
   sei();
-
 }
 void initTrafficCounters() {
-    /* set PORTB for output*/
-    DDRB = 0xFF;
     /* set PORTD for input*/
     DDRD  &= ~(1 << 7);
     PORTD |= (1 << 7);
-    DDRB &= ~(_BV(0)|_BV(2) | _BV(3));
+
+    DDRB &= ~(1 << DDB3);
+    PORTB |= (1 << DDB3);
+    DDRB &= ~(1 << DDB2);
+    PORTB |= (1 << DDB2);
+    DDRB &= ~(1 << DDB0);
+    PORTB |= (1 << DDB0);
+
+/*    DDRB &= ~(_BV(0)|_BV(2) | _BV(3));
     PORTB |= (_BV(0)|_BV(2) | _BV(3));
-     /* enable pin change interrupt */
+*/     /* enable pin change interrupt */
     /* PIMSK */
     PCMSK2 |= _BV(PCINT23);
     PCMSK0 |= _BV(PCINT0);
@@ -70,13 +78,7 @@ void initTrafficCounters() {
 #define LOW 0
 
 int readCounter(int ctr) {
-	 char msg[10];int i=0,counter;
-	 initTrafficCounters();
-    /*while (1) {
-        if (PIND & 0x80)
-            PORTB &= ~0x02;
-        else
-            PORTB |= 0x02;*/
+	 int counter;
           cli();
           counter = gCounter[ctr];
           sei();
@@ -89,6 +91,15 @@ void resetCounter(int ctr){
 	gCounter[ctr]=0;
 	sei();
 
+}
+
+int resetAllCounters(int x ) {
+	int i;
+	cli();
+	for(i=0; i < 4; i++) {
+		gCounter[i] = 0;
+	}
+	sei();
 }
 
 

@@ -3,5 +3,5 @@
 void initTrafficCounters();
 int readCounter(int);
 void resetCounter(int);
-
+int resetAllCounters(int);
 #endif /* __TC_CNTR_H__ */

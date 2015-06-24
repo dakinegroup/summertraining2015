@@ -15,30 +15,43 @@
 #include <stdlib.h>
 #include "mytimer.h"
  #include "usart.h"
-
+#define MAX_TASKS 10
 struct {
     int empty;
     int timestamp[2];
     tTimedCallBack cb;
     int recurrence;
-} scheduledItems[10];
+} scheduledItems[MAX_TASKS];
 
 
 
 void initTimedTasks() {
     int i = 0;
-    for (i=0; i < 10; i++) {
+    for (i=0; i < MAX_TASKS; i++) {
         scheduledItems[i].empty = 1;
         scheduledItems[i].cb = 0;
         scheduledItems[i].timestamp[0] = 0;
         scheduledItems[i].timestamp[1] = 0;
     }
 }
+
+int resetAllTimers(int x)  {
+    int i;
+    cli();
+    timestamp[0] = 0;
+    timestamp[1] = 0;
+    for(i=0; i < MAX_TASKS; i++) {
+        scheduledItems[i].timestamp[0] = 0;
+        scheduledItems[i].timestamp[1] = 0;
+    }
+    sei();
+}
+
 void repeat(int ms, tTimedCallBack cb) {
 int i = 0;
 
     //add scheduled item to the queue
-    for (i = 0; i < 10; i++) {
+    for (i = 0; i < MAX_TASKS; i++) {
         if(scheduledItems[i].empty) {
             cli();
             scheduledItems[i].timestamp[0] = timestamp[0];
@@ -63,7 +76,7 @@ void invokeScheduledItem() {
     sei();
     
     //retrieve scheduled item from queue and mark it free for reuse
-    for (i = 0; i < 10; i++) {
+    for (i = 0; i < MAX_TASKS; i++) {
         if(!scheduledItems[i].empty) {
             if(ts[0] > scheduledItems[i].timestamp[0]) {
                 /*sprintf(bytes,"%02x%02x: Thr: %02d, CB: %04x\r\n", timestamp[1], timestamp[0], i, scheduledItems[i].cb);
