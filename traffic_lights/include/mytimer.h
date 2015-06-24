@@ -5,6 +5,7 @@ extern unsigned int timestamp[];
 extern unsigned char debug_led;
 typedef int (* tTimedCallBack)(int);
 void initTimedTasks();
+int resetAllTimers(int);
 void repeat(int, tTimedCallBack);
 void invokeScheduledItem();
 void doOnce( int ms, tTimedCallBack);

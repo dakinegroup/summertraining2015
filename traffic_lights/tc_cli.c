@@ -10,6 +10,8 @@
  */
 #include "tc_ctrl.h"
 #include "tc_cli.h"
+#include "mytimer.h"
+#include "tc_cntr.h"
 
 #define CMD_SET_SIZE 10
 char userCommand[20];
@@ -22,6 +24,7 @@ int CLI_Set(int argc, char* argsv[]);
 int CLI_Go(int argc, char* argsv[]);
 int CLI_ChgPo(int argc, char* argv[]);
 int CLI_Get(int argc, char* argsv[]);
+int CLI_Reset(int argc, char* argsv[]);
 
 void initCli() {
 	int i;
@@ -40,6 +43,10 @@ void initCli() {
 	/* Third command */
 	cmdHandler[2].cmd = "get";
 	cmdHandler[2].cb = CLI_Get;
+
+	/* Fourth command */
+	cmdHandler[3].cmd = "reset";
+	cmdHandler[3].cb = CLI_Reset;
 
 }
 
@@ -88,6 +95,7 @@ char cmdFound=0,argsCount=0,*args[6],*cmd;
   if(i == CMD_SET_SIZE || cmdHandler[i].cb == 0 ) {
   	USART_Transmit_String2("Invalid Command\r\n");
   }
+	return 0;
 }
 
 /*
@@ -140,7 +148,7 @@ int i =0, t_thr;
 		printTL = atoi(argv[1]);
 		USART_Transmit_String2("Changed print trf status\r\n");
 	}
-
+	return 0;
 }
 
 /*
@@ -185,7 +193,7 @@ char msg[30];
 		sprintf(msg, "PTS:(%04x): %d,\r\n",startingState, printTL );
 		USART_Transmit_String2(msg);		
 	}
-
+	return 0;
 }
 
 /*
@@ -199,6 +207,7 @@ int i =0;
 	for(i=0; i < argc; i++) {
 		USART_Transmit_String2(argv[i]);
 	}
+	return 0;
 	/* Change the startingState such that the pole desired has got yellow light on it */
 	/* Also, it may require, any counter running there to be stopped.. advance step */
 }
@@ -217,4 +226,24 @@ int i =0;
 	for(i=0; i < argc; i++) {
 		USART_Transmit_String2(argv[i]);
 	}
+	return 0;
+}
+
+int CLI_Reset(int argc, char* argv[]) {
+	USART_Transmit_String2("Cmd: Reset");
+	if(argc == 1) {
+		if(strcmp(argv[0], "counters") == 0) {
+			resetAllCounters(0);
+		}
+		if(strcmp(argv[0], "timers") == 0) {
+			resetAllTimers(0);
+		}
+	}
+	if(argc == 2) {
+		if(strcmp(argv[0], "counter") == 0) {
+			int c = atoi(argv[1]);
+			resetCounter(c);
+		}		
+	}
+	return 0;
 }

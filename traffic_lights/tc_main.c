@@ -39,11 +39,12 @@ int printCounters(int x) {
   char msg[20];
     for(i=0;i<4;i++){
       counter = readCounter(i);
-      sprintf(msg, "Ctr:%d:%04x,", i,counter);
-        USART_Transmit_String(msg);
-    }
-    USART_Transmit_String("\r\n");
-    
+      sprintf(msg, "%03x", i,counter);
+      USART_Transmit_String2(msg);
+      LCD_WriteXY(1, i*4, msg);
+   }
+     USART_Transmit_String2("\r\n");
+
 }
 
 
@@ -55,15 +56,14 @@ int main (void) {
   initTimer();
   USART_Init(51);
   USART_Transmit_String("Restarted: \r\n"); 
-  USART_Transmit_String("System Initializing\r\n");
+  //USART_Transmit_String("System Initializing\r\n");
   initTimedTasks();
   initTrafficStateMachine();
   initCli();
   initLCD();
 
   initTrafficCounters();
-
-
+  
   //schedule heartbeat type of events here
   repeat(1000, toggleDebugLed);
   /* get counters for incoming traffic at each pole*/
