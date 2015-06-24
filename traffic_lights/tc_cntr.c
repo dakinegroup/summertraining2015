@@ -37,11 +37,11 @@ unsigned char chgBits=0;
   cli();
   chgBits = pinb_history ^ PINB;
   if(chgBits & (1 << 0)) {
-    gCounter[0]++;
-  } else if (chgBits & (1 << 2)) {
     gCounter[1]++;
-  } else if (chgBits & (1 << 3)) {
+  } else if (chgBits & (1 << 2)) {
     gCounter[2]++;
+  } else if (chgBits & (1 << 3)) {
+    gCounter[3]++;
   } 
   pinb_history = PINB;
   sei();
