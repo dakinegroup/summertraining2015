@@ -107,6 +107,12 @@ Suppose there
 ![Arduino Uno and Traffic Lights](images/IMG_20150601_153505.jpg)
 
 #### Working on PCB, hard-wired
+#####Circuit for ATMega328
+#####Circuit for Traffic Sensor
+#####Circuit for LCD
+#####Circuit for Traffic Lights
+#####Circuit for Power Regulator
+#####Circuit for Motor Control to simulate traffic
 
 ### Extracts of code and explanation
 #### Pushing data to shift register
@@ -152,16 +158,20 @@ A major challenge for the system to operate without operating system and having 
 
 Using 16-bit timer and function pointers above requirement was fulfilled. A code extract to explain this is captured below.
 
-```c
+```C
   // in main code, this is the way a task was scheduled.
   // it says.. in 1 second repeat task called toggleDebugLed
   repeat(1000, toggleDebugLed);
+```
 
+```C
   // here is how in a infinite loop, scheduled items are triggered for invocation
   while(1) {
     asm("nop");
     invokeScheduledItem(); // includes - TL updat
+```
 
+```C
   // this is the call back called in above 'repeat'
   int toggleDebugLed(int x) {
     if(debug_led == 0) {
@@ -173,7 +183,9 @@ Using 16-bit timer and function pointers above requirement was fulfilled. A code
     }
     return 0;
   }
+```
 
+```C
   // structure used to store task information
   struct {
     int empty;
@@ -181,7 +193,9 @@ Using 16-bit timer and function pointers above requirement was fulfilled. A code
     tTimedCallBack cb;
     int recurrence;
   } scheduledItems[10];
+```
 
+```C
   // register a task for repetition after ms interval
   void repeat(int ms, tTimedCallBack cb) {
   int i = 0;
@@ -202,8 +216,9 @@ Using 16-bit timer and function pointers above requirement was fulfilled. A code
         }
     }
   }
+```
 
-
+```C
   void invokeScheduledItem() {
     int ts[2], i;
     char bytes[30];
@@ -227,6 +242,28 @@ Using 16-bit timer and function pointers above requirement was fulfilled. A code
     }
   }
 
+```
+
+#### ISR for counting multiplexed traffic input
+It was tricky to find out which pin has got changed when out of three counter input pins, one has changed. As guided through manual, a history is to be maintained and we have to do exclusive OR. By doing so, whichever bit has changed will result into that bit getting set.
+
+```C
+unsigned char pinb_history;
+ISR(PCINT0_vect) {
+unsigned char chgBits=0;
+  cli();
+  chgBits = pinb_history ^ PINB;
+  if(chgBits & (1 << 0)) {
+    gCounter[1]++;
+  } else if (chgBits & (1 << 2)) {
+    gCounter[2]++;
+  } else if (chgBits & (1 << 3)) {
+    gCounter[3]++;
+  } 
+  pinb_history = PINB;
+  sei();
+
+}
 ```
 
 ##Project - Remote Monitor for analog levels

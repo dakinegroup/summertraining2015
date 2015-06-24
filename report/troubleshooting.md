@@ -76,7 +76,8 @@ Another side effect of poor quality power supply was failure of flash programmin
 ## Mistakes in hardware, Software Workaround
 
 There were two instances, where hardware mistake occurred. One - LEDs for traffic lights were not in logical sequence. Second - Shift register output lowest bit (D0) was left unused for LCD data input. In both cases, software was enhanced to deal with situation. Clearly, it gives a performance penalty because of additional code. Code extract is captured below:
-```c
+
+```C
 void sendDataToLCD(unsigned char data, int delay) {
     unsigned int i, bit;
     char cmds[10];
@@ -88,7 +89,7 @@ void sendDataToLCD(unsigned char data, int delay) {
       it goes to MSB, after 8 shifts */
 ```
 
-```c
+```C
 void shiftOutClockedData(unsigned int dat1) {
      unsigned int i, opser, srclk=0,val=0;
      char msg[10];
@@ -102,3 +103,12 @@ void shiftOutClockedData(unsigned int dat1) {
      } else if (chgByte == 0x40) {
         dat1 = (dat1 & 0xFF0F) | 0x20;
      }
+```
+
+## Auto-Incrementing Counters
+After trying in independent task for getting traffic count on input. It failed on integrated setup. All the counters, kept incrementing continuously. Following suspision came to mind and were tested negative:
+* There may be spurious signal
+* There is some wrong setting for the interrupts related to input compare
+* There is some wrong setting for detecting edge versus levels
+
+While doing line by line elimination and comparison with working code, it was found that in a loop, counter related interrupts were being initialized again and again. How this led to weird behaviour is not known though.
