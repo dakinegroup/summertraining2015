@@ -31,7 +31,7 @@ File description:
 #include "usart.h"
 
 /* Remember there is only 2k of RAM */
-#define BUFFER_SIZE  200
+#define BUFFER_SIZE  100
 #define RX_BUFFER_SIZE  100
 
 struct{
@@ -197,7 +197,7 @@ char c;
 ISR(USART_TX_vect)
 {
   cli();
-  if(txQueue.last_read < txQueue.last_write) {
+  if(txQueue.last_read <= txQueue.last_write) {
       UDR0 = txQueue.buffer[txQueue.last_read];
       txQueue.last_read=txQueue.last_read+1;    
   } else {
