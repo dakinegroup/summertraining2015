@@ -23,9 +23,11 @@ void initTimer() {
   sei();
   TIMSK1 = TIMSK1 | _BV(TOIE1);
   TCCR1B = (TCCR1B & 0xF8) | 0x01;
+  #if USE_DEBUG_LED
   DDRB = DDRB | _BV(DDB1);
   PORTB = PORTB & ~(_BV(1));
   debug_led = 0;
+  #endif
 }
 ISR(TIMER1_OVF_vect)
 {
