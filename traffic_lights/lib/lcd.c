@@ -115,9 +115,9 @@ void enableLCD(int delay) {
 int i;
   PORTD = PORTD | _BV(LCD_EN);
 
-  wait(10);/* is it required??*/
+  //wait(1);/* is it required??*/
   PORTD = PORTD & (~ _BV(LCD_EN));
-  wait(10);/* is it required, may be to give time for data to 
+  wait(1); /*is it required, may be to give time for data to 
     latch at rising edge??*/
 }
 void sendDataToLCD(unsigned char data, int delay) {
@@ -155,15 +155,19 @@ void sendDataToLCD(unsigned char data, int delay) {
 */
 void LCD_gotoXY(int r, int c) {
   int i;
-  USART_Transmit_String("LCD Goto");
+  unsigned char ddram_address;
+  //USART_Transmit_String("LCD Goto");
   /* Goto to home first */
    sendDataToLCD(0x00 , 0);
-   sendDataToLCD(0x02 , 100); 
+   sendDataToLCD(0x02 , 0); 
 /* Goto 30 character */
-  for(i=0; i < (r*40+c); i++) {
+  /*for(i=0; i < (r*40+c); i++) {
     sendDataToLCD(0x01,0);
     sendDataToLCD(0x04,0);        
-  }
+  }*/
+    ddram_address = (r*40+c) & 0x7F;
+    sendDataToLCD(0x08 | ((ddram_address & 0xF0)>>4), 0);
+    sendDataToLCD(0x00 | (ddram_address & 0x0F), 0);
 }
 
 void LCD_WriteXY(int r, int c, char *str) {

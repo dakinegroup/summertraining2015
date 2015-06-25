@@ -140,3 +140,4 @@ char msg[20];
 int checkTrafficStatus(int i) {
   // check traffic status / volume and make changes
 }
+

@@ -37,16 +37,31 @@ int toggleDebugLed(int x) {
 int printCounters(int x) {
   int counter,i;
   char msg[20];
+      LCD_gotoXY(1,0);
     for(i=0;i<4;i++){
       counter = readCounter(i);
-      sprintf(msg, "%03x", i,counter);
+      sprintf(msg, "%03x:", counter);
       USART_Transmit_String2(msg);
-      LCD_WriteXY(1, i*4, msg);
+      LCD_Write(msg);
    }
-     USART_Transmit_String2("\r\n");
-
+   USART_Transmit_String2("\r\n");
 }
-
+int printTrafficStatus(int x) {
+  int i;
+  LCD_gotoXY(0,0);
+  for(i=3; i >= 0; i--) {
+    int st = (startingState >>i*4) & 0x000F;
+    if(st == 0x09) {
+      LCD_Write("Lft:");
+    } else if(st==0x04) {
+      LCD_Write("Grn:");
+    } else if(st == 0x02) {
+      LCD_Write("Ylw:");
+    } else if(st == 0x01) {
+      LCD_Write("Red:");
+    }
+  }
+}
 
 int main (void) {
   int i = 0;
@@ -70,7 +85,8 @@ int main (void) {
   repeat(800, checkTrafficStatus); 
   /* sequentially as per configured logic, lights should go on / off */
   repeat(260, processTrafficStateMachine);
-  repeat(260, printCounters);
+  repeat(500, printCounters);
+  repeat(500, printTrafficStatus);
   USART_Transmit_String2("System ready\r\n");
   LCD_Write("Restarting...");
   LCD_WriteXY(1,0,"Greetings!");
@@ -79,7 +95,7 @@ int main (void) {
   LCD_Clear();
    LCD_GotoHome();
   
-   LCD_WriteXY(1,0,"Count: ");
+   LCD_WriteXY(0,0,"Count: ");
   // loop and check for various flags
   while(1) {
     asm("nop");
