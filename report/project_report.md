@@ -108,7 +108,7 @@ Suppose there
 
 #### Working on PCB, hard-wired
 #####Circuit for ATMega328
-![ATMega328 main board](images/tc_main.png)
+![ATMega328 main board](images/tc_main.jpg)
 #####Circuit for Traffic Sensor
 ![Traffic Counting Sensor](images/sensor1-sensor_module.png)
 #####Circuit for LCD
