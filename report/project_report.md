@@ -108,10 +108,15 @@ Suppose there
 
 #### Working on PCB, hard-wired
 #####Circuit for ATMega328
+![ATMega328 main board](images/tc_main.png)
 #####Circuit for Traffic Sensor
+![Traffic Counting Sensor](images/sensor1-sensor_module.png)
 #####Circuit for LCD
+![LCD Display](images/lcd_display.png)
 #####Circuit for Traffic Lights
+![LEDs array](images/traffic_leds.png)
 #####Circuit for Power Regulator
+![Power Circuit](images/power.png)
 #####Circuit for Motor Control to simulate traffic
 
 ### Extracts of code and explanation
