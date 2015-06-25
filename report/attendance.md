@@ -23,5 +23,5 @@
 |19-June-2015| 8:45am | 5:30pm| DKTPL ||
 |22-June-2015| 8:45am | 5:30pm| DKTPL ||
 |23-June-2015| 8:45am | 5:30pm| DKTPL ||
-|24-June-2015| 8:45am | 5:30pm| DKTPL ||
-|25-June-2015| 8:45am | 5:30pm| DKTPL ||
+|24-June-2015| 8:45am | 5:30pm| DKTPL |Project Report|
+|25-June-2015| 8:45am | 5:30pm| DKTPL |Project Report|

@@ -112,7 +112,7 @@ Suppose there
 #####Circuit for Traffic Sensor
 ![Traffic Counting Sensor](images/sensor1-sensor_module.png)
 #####Circuit for LCD
-![LCD Display](images/lcd_display.png)
+![LCD Display](images/lcd_module.png)
 #####Circuit for Traffic Lights
 ![LEDs array](images/traffic_leds.png)
 #####Circuit for Power Regulator
