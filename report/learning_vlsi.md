@@ -30,6 +30,8 @@ It is a HDL which is used in design automation to describe the behavior and stru
 
 **Verilog** - It is a HDL used to model electronic systems. It is used for design and verification of digital circuits at RTL.
    * **TODO** Is it from Open Source, under which license. Get that link and add here.
+   * CVC is a Verilog HDL compiled simulator. CVC has the ability to simulate in either interpreted or compiled mode. OSS CVC is licensed under a Perl style artistic open source license.
+   * [Link for downloading CVC](http://www.tachyon-da.com/)
 
 **RTL**-Register Transfer Level. It is a design abstraction which models a  synchronous digital circuit in terms of the flow of digital signals between hardware registers, and the logical operations performed on those signals.  
 It focuses on describing how the signal will flow in the circuit. It is used in logic design phase on IC design cycle.  
