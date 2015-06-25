@@ -8,6 +8,20 @@
  * -----------------------------------
  * 
  */
+
+ /* Important developer notes
+   In given circuit design, OC2 and OC0 are consumed in LCD driver 
+   and sensor inputs for traffic counters.
+
+   Therefore, if at all it is required to make PWM, as is done in this file,
+   following needs to be done:
+   Timer 2 is to be used for timing implementation, so remove timer_int, timer.c
+   files from make
+   Add pwm.c
+
+   Using pwm.c for OC0/2 together will make LCD non-working
+   OC1 is not availbale as Timer 1 is being used for timing purposes.
+ */
 #include <inttypes.h>
 #include <avr/io.h>
 #include <avr/sleep.h>
