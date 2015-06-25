@@ -80,7 +80,7 @@ main (void)
 {
   char msg[30];
   unsigned char c; int i=0;
-  int counter[2];
+  int counter[3];
   ioinit();
   USART_Transmit_String("Restarting..\r\n");
      while (1) {
