@@ -100,6 +100,8 @@ Suppose there
 ### Schematic Diagram
 
 ### Snap of actual circuitry
+![circuit](images/20150626_092536.jpg)
+![circuit](images/20150626_092902.jpg)
 
 #### Working on breadboard
 ![ATmega8 and Traffic Lights](images/IMG_20150601_110247.jpg)
