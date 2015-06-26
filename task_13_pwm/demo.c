@@ -99,7 +99,7 @@ ISR(TIMER2_OVF_vect) {
   if((topup_timer2 & 0x01F) == 0) {
     topup_timer2 = 0;
     timestamp[0] ++;
-    if(timestamp == 0) {
+    if(timestamp[0] == 0) {
       timestamp[1] ++;
     }
     if(debug_led_timer2  == 0) {
@@ -137,14 +137,21 @@ TIMSK2 |= _BV (TOIE2);
 
 void wait(int ms) {
 unsigned int ts[2], t[2];
+char msg[30];
     cli();
             ts[0] = timestamp[0];
             ts[1] = timestamp[1];
     sei();
+    /* suspected area of system hang, to be removed after fix*/
+    sprintf(msg, "W:%04x%04x,%04x%04x", ts[1],ts[0], timestamp[1], timestamp[0]);
+    USART_Transmit_String(msg);
+    /* suspected area of system hang, to be removed after fix - ends*/
+
     if((0xFFFF - ts[0]) < ms) {
         ts[1] += 1;
-    } 
-    ts[0] += ms;
+        ts[0] = ms-(0xFFFF - ts[0]);
+    } else
+      ts[0] += ms;
  while(1) {
     asm("nop");
     asm("nop");
@@ -154,20 +161,22 @@ unsigned int ts[2], t[2];
             t[0] = timestamp[0];
             t[1] = timestamp[1];
     sei();
+    /* suspected area of system hang*/
     if(ts[1] > timestamp[1]) {
     } else if(ts[1] == timestamp[1]) {
         if(ts[0] > timestamp[0]) {
-
+          // still to wait
         } else {
             break; //time up
         }
+    } else if(ts[1] < timestamp[1]) {
+      break; //time up
     }
  }    
 }
 
 int
-main (void)
-{
+main (void) {
   char msg[30];
   unsigned char c; int i=0;
   int counter[3];

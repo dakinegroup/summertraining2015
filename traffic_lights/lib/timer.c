@@ -120,6 +120,8 @@ unsigned int ts[2], t[2];
         } else {
             break; //time up
         }
+    } else if(ts[1] < timestamp[1]) {
+        break; //time up
     }
  }    
 }

@@ -34,7 +34,7 @@ ISR(TIMER1_OVF_vect)
   cli();
  //     PORTB = PORTB | _BV(1);
   timestamp[0] ++;
-  if(timestamp == 0) {
+  if(timestamp[0] == 0) {
     timestamp[1] ++;
   }
   #if USE_DEBUG_LED
