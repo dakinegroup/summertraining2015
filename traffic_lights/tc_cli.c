@@ -8,6 +8,10 @@
  * -----------------------------------
  * 
  */
+#include <inttypes.h>
+#include <avr/io.h>
+#include <avr/interrupt.h>
+
 #include "tc_ctrl.h"
 #include "tc_cli.h"
 #include "mytimer.h"
@@ -106,7 +110,7 @@ Developer Notes:
    rest of the arugments depending on first parameter
    */
 int CLI_Set(int argc, char* argv[]) {
-int i =0, t_thr;
+int i =0, t_thr,cnt[4];
 	USART_Transmit_String2("Cmd:Set\r\n");
 	
 
@@ -116,11 +120,18 @@ int i =0, t_thr;
 			USART_Transmit_String2("Insufficient args\r\n");
 			return;
 		}
-		
-		incomingTraffic[0] = atoi(argv[1]);
-		incomingTraffic[1] = atoi(argv[2]);
-		incomingTraffic[2] = atoi(argv[3]);
-		incomingTraffic[3] = atoi(argv[4]);
+        cnt[0] = atoi(argv[1]);
+        cnt[1] = atoi(argv[2]);
+        cnt[2] = atoi(argv[3]);
+        cnt[3] = atoi(argv[4]);
+
+        cli();
+		incomingTraffic[0] = cnt[0];
+		incomingTraffic[1] = cnt[1];
+		incomingTraffic[2] = cnt[2];
+		incomingTraffic[3] = cnt[3];
+        sei();
+
 		USART_Transmit_String2("Changed Traffic Load\r\n");
 	}
 
@@ -158,7 +169,7 @@ Developer Notes:
                    "thr" - threshold value
    */
 int CLI_Get(int argc, char* argv[]) {
-int i =0, t_thr;
+int i =0, t_thr, cnt[4];
 char msg[30];
 	USART_Transmit_String2("Cmd:Get\r\n");
 	
@@ -169,8 +180,14 @@ char msg[30];
 			USART_Transmit_String2("Insufficient args\r\n");
 			return;
 		}
-		sprintf(msg, "TrLd: %d, %d, %d, %d\r\n",incomingTraffic[0], incomingTraffic[1], \
-						incomingTraffic[2],incomingTraffic[3] );
+        cli();
+        cnt[0] = incomingTraffic[0];
+        cnt[1] = incomingTraffic[1];
+        cnt[2] = incomingTraffic[2];
+        cnt[3] = incomingTraffic[3];
+        sei();
+		sprintf(msg, "TrLd: %d, %d, %d, %d\r\n",cnt[0], cnt[1], \
+						cnt[2],cnt[3] );
 		USART_Transmit_String2(msg);		
 	}
 

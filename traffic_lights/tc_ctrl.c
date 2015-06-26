@@ -13,6 +13,7 @@
 #include <avr/interrupt.h>
 #include <stdlib.h>
 #include "iocompat.h"
+ #include "tc_cntr.h"
 #include "tc_ctrl.h"
 #include "light_driver.h"
 
@@ -25,7 +26,7 @@
 
 unsigned int startingState;
 unsigned int tick;
-int incomingTraffic[]={10,10,10,10};
+//int incomingTraffic[]={10,10,10,10};
 unsigned int trafficThreshold;
 char printTL = 0;
 void initTrafficStateMachine() {

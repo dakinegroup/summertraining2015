@@ -113,14 +113,14 @@ unsigned int ts[2], t[2];
             t[0] = timestamp[0];
             t[1] = timestamp[1];
     sei();
-    if(ts[1] > timestamp[1]) {
-    } else if(ts[1] == timestamp[1]) {
-        if(ts[0] > timestamp[0]) {
+    if(ts[1] > t[1]) {
+    } else if(ts[1] == t[1]) {
+        if(ts[0] > t[0]) {
 
         } else {
             break; //time up
         }
-    } else if(ts[1] < timestamp[1]) {
+    } else if(ts[1] < t[1]) {
         break; //time up
     }
  }    

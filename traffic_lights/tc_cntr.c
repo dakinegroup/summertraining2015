@@ -20,15 +20,16 @@
 #define FOSC 16000000UL // Clock Speed
 #define BAUD 19200
 #define MYUBRR FOSC/16/BAUD-1
+int incomingTraffic[]={10,10,10,10};
 
 enum { UP, DOWN };
-unsigned int gCounter[]={0,0,0,0};
+//unsigned int incomingTraffic[]={0,0,0,0};
 ISR(BADISR_vect) {
 }
 
 ISR(PCINT2_vect) {
   cli();
-   gCounter[0]++;
+   incomingTraffic[0]++;
   sei();
 }
 
@@ -40,11 +41,11 @@ unsigned char chgBits=0;
   cli();
   chgBits = pinb_history ^ PINB;
   if(chgBits & (1 << 0)) {
-    gCounter[1]++;
+    incomingTraffic[1]++;
   } else if (chgBits & (1 << 2)) {
-    gCounter[2]++;
+    incomingTraffic[2]++;
   } else if (chgBits & (1 << 3)) {
-    gCounter[3]++;
+    incomingTraffic[3]++;
   } 
   pinb_history = PINB;
   sei();
@@ -80,7 +81,7 @@ void initTrafficCounters() {
 int readCounter(int ctr) {
 	 int counter;
           cli();
-          counter = gCounter[ctr];
+          counter = incomingTraffic[ctr];
           sei();
         
     return counter;
@@ -88,7 +89,7 @@ int readCounter(int ctr) {
 }
 void resetCounter(int ctr){
 	cli();
-	gCounter[ctr]=0;
+	incomingTraffic[ctr]=0;
 	sei();
 
 }
@@ -97,7 +98,7 @@ int resetAllCounters(int x ) {
 	int i;
 	cli();
 	for(i=0; i < 4; i++) {
-		gCounter[i] = 0;
+		incomingTraffic[i] = 0;
 	}
 	sei();
 }
