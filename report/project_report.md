@@ -270,6 +270,79 @@ unsigned char chgBits=0;
 
 }
 ```
+####Command Handler
+```C
+void initCli() {
+	int i;
+	/* initialize commands callback to zero */
+	for(i=0; i < CMD_SET_SIZE; i++) {
+		cmdHandler[1].cb = 0;
+	}
+	/* First command */
+	cmdHandler[0].cmd = "set";
+	cmdHandler[0].cb = CLI_Set;
+
+	/* Second command */
+	cmdHandler[1].cmd = "go";
+	cmdHandler[1].cb = CLI_Go;
+
+	/* Third command */
+	cmdHandler[2].cmd = "get";
+	cmdHandler[2].cb = CLI_Get;
+
+	/* Fourth command */
+	cmdHandler[3].cmd = "reset";
+	cmdHandler[3].cb = CLI_Reset;
+
+}
+```
+```C
+int CLI_Set(int argc, char* argv[]) {
+int i =0, t_thr;
+	USART_Transmit_String2("Cmd:Set\r\n");
+	
+
+	/* handling of first parameter */
+	if(strcmp(argv[0], "it") == 0){
+		if(argc < 5) {
+			USART_Transmit_String2("Insufficient args\r\n");
+			return;
+		}
+		
+		incomingTraffic[0] = atoi(argv[1]);
+		incomingTraffic[1] = atoi(argv[2]);
+		incomingTraffic[2] = atoi(argv[3]);
+		incomingTraffic[3] = atoi(argv[4]);
+		USART_Transmit_String2("Changed Traffic Load\r\n");
+	}
+
+	/* handling of second parameter */
+	if(strcmp(argv[0], "thr") == 0){
+		if(argc < 2) {
+			USART_Transmit_String2("Insufficient args\r\n");
+			return;
+		}
+		t_thr = atoi(argv[1]);
+		/*if(t_thr < 100 && t_thr > 1000) {
+			USART_Transmit_String2("Must be between 100 and 1000\r\n");
+			return;
+		}*/
+		trafficThreshold = t_thr;
+		USART_Transmit_String2("Changed traffic threshold\r\n");
+	}
+
+	/* handling of second parameter */
+	if(strcmp(argv[0], "pts") == 0){
+		if(argc < 2) {
+			USART_Transmit_String2("Insufficient args\r\n");
+			return;
+		}
+		printTL = atoi(argv[1]);
+		USART_Transmit_String2("Changed print trf status\r\n");
+	}
+	return 0;
+}
+```
 
 #### Timer Implementation
 Timer1 is used for timing inside the system. Timer1 Overflow interrupt is used here. Two integer word is used for recording timestamp. On every interrupt, it is incremented, if certain number of ticks have passed by.
