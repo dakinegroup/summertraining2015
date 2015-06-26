@@ -112,3 +112,19 @@ After trying in independent task for getting traffic count on input. It failed o
 * There is some wrong setting for detecting edge versus levels
 
 While doing line by line elimination and comparison with working code, it was found that in a loop, counter related interrupts were being initialized again and again. How this led to weird behaviour is not known though.
+
+## System Hangs after an hour of running
+This problem was found after lot of code reading and analyzing various symptoms detected at the time of hangup, some of them are:
+* All transmission stops
+* Interrupt specific functionality continues to work
+* No corruption on display (LCD)
+* Time after which it hangs was predictable
+
+It was challenging as the time to wait for this to recur was more than an hour. In one of the experiments with PWM, system started to hang within 5 minutes and it was suspected that it is the same issue. In this case, an additional symptom surfaced. LCD display could not show up what was displayed on USART. Both were supposed to print the same. Timer overflow counter was being displayed. This had reached FFFA. This pointed to some problem related to variable overflow.
+
+Investigation into the Interrupt Routine led to uncovering one fault, but that didn't help. It was
+```
+timestamp written for assignment instead of timestamp[0]
+```
+
+Next place for investigation were the users of this ISR. Wait function. Here detailed review, helped identify that a case of counter overflow, where higher word of timestamp becomes less than compared number, while lower byte was greater. This case was not handled and hence wait never used to get over when it reaches this scenario.

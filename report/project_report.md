@@ -477,29 +477,26 @@ int i = 0;
 ```
 
 **Handling of command**
+Example for "set it 0 10 12 14" i.e. incoming traffic with respective counters
 ```C
-void invokeScheduledItem() {
-    int ts[2], i;
-    char bytes[30];
-    cli();
-            ts[0] = timestamp[0];
-            ts[1] = timestamp[1];
-    sei();
-    
-    //retrieve scheduled item from queue and mark it free for reuse
-    for (i = 0; i < MAX_TASKS; i++) {
-        if(!scheduledItems[i].empty) {
-            if(ts[0] > scheduledItems[i].timestamp[0]) {
-                /*sprintf(bytes,"%02x%02x: Thr: %02d, CB: %04x\r\n", timestamp[1], timestamp[0], i, scheduledItems[i].cb);
-                USART_Transmit_String2(bytes);*/
-             if(scheduledItems[i].cb != 0) {
-                (*scheduledItems[i].cb)(0);
-            }
-            scheduledItems[i].timestamp[0] += scheduledItems[i].recurrence;
-            }                           
-        }
+int CLI_Set(int argc, char* argv[]) {
+int i =0, t_thr,cnt[4];
+  USART_Transmit_String2("Cmd:Set\r\n");
+  
+
+  /* handling of first parameter */
+  if(strcmp(argv[0], "it") == 0){
+    if(argc < 5) {
+      USART_Transmit_String2("Insufficient args\r\n");
+      return;
     }
-}
+        cnt[0] = atoi(argv[1]);
+        cnt[1] = atoi(argv[2]);
+        cnt[2] = atoi(argv[3]);
+        cnt[3] = atoi(argv[4]);
+
+        cli();
+
 ```
 
 **Parsing and Validation of user input**
