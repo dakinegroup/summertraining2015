@@ -271,6 +271,203 @@ unsigned char chgBits=0;
 }
 ```
 
+#### Timer Implementation
+Timer1 is used for timing inside the system. Timer1 Overflow interrupt is used here. Two integer word is used for recording timestamp. On every interrupt, it is incremented, if certain number of ticks have passed by.
+
+There is wait function, which records the ending timestamp by adding the "ms" milliseconds to wait. As soon as it expires, it returns from function call.
+**ISR for Timer**
+```
+ISR(TIMER1_OVF_vect)
+{
+  cli();
+  timestamp[0] ++;
+  if(timestamp[0] == 0) {
+    timestamp[1] ++;
+  }
+  sei();
+}
+```
+
+**Wait Function**
+```
+void wait(int ms) {
+unsigned int ts[2], t[2];
+    cli();
+            ts[0] = timestamp[0];
+            ts[1] = timestamp[1];
+    sei();
+    if((0xFFFF - ts[0]) < ms) {
+        ts[1] += 1;
+    } 
+    ts[0] += ms;
+ while(1) {
+    cli();
+            t[0] = timestamp[0];
+            t[1] = timestamp[1];
+    sei();
+    if(ts[1] > t[1]) {
+    } else if(ts[1] == t[1]) {
+        if(ts[0] > t[0]) {
+
+        } else {
+            break; //time up
+        }
+    } else if(ts[1] < t[1]) {
+        break; //time up
+    }
+ }    
+}
+```
+
+#### User Interface - Serial
+
+USART Based, serial interface is provided in the system to access and modify system variables. Some of them are:
+* Traffic Counters
+* Timers
+* Traffic Threshold
+* Change Green Light instantly
+* Get Traffic Light Status
+
+This module is implemented by breaking functionality into following sub-parts
+a. Init timer for CLI, CLI for commands
+b. Registeration of new command
+c. Interface / Parsing
+d. Handling of a valid command received (Handler)
+
+**Init**
+```C
+struct {
+    int empty;
+    int timestamp[2];
+    tTimedCallBack cb;
+    int recurrence;
+} scheduledItems[MAX_TASKS];
+
+
+
+void initTimedTasks() {
+    int i = 0;
+    for (i=0; i < MAX_TASKS; i++) {
+        scheduledItems[i].empty = 1;
+        scheduledItems[i].cb = 0;
+        scheduledItems[i].timestamp[0] = 0;
+        scheduledItems[i].timestamp[1] = 0;
+    }
+}
+
+void initCli() {
+  int i;
+  /* initialize commands callback to zero */
+  for(i=0; i < CMD_SET_SIZE; i++) {
+    cmdHandler[1].cb = 0;
+  }
+  /* First command */
+  cmdHandler[0].cmd = "set";
+  cmdHandler[0].cb = CLI_Set;
+
+  /* Second command */
+  cmdHandler[1].cmd = "go";
+  cmdHandler[1].cb = CLI_Go;
+
+  /* Third command */
+  cmdHandler[2].cmd = "get";
+  cmdHandler[2].cb = CLI_Get;
+
+  /* Fourth command */
+  cmdHandler[3].cmd = "reset";
+  cmdHandler[3].cb = CLI_Reset;
+
+}
+```
+
+**Registration of new command**
+```C
+void repeat(int ms, tTimedCallBack cb) {
+int i = 0;
+
+    //add scheduled item to the queue
+    for (i = 0; i < MAX_TASKS; i++) {
+        if(scheduledItems[i].empty) {
+            cli();
+            scheduledItems[i].timestamp[0] = timestamp[0];
+            scheduledItems[i].timestamp[1] = timestamp[1];
+            sei();
+            scheduledItems[i].timestamp[0] += ms;
+            scheduledItems[i].recurrence = ms;
+            scheduledItems[i].cb = cb;
+            
+            scheduledItems[i].empty = 0;
+            break;
+        }
+    }
+}
+```
+
+**Handling of command**
+```C
+void invokeScheduledItem() {
+    int ts[2], i;
+    char bytes[30];
+    cli();
+            ts[0] = timestamp[0];
+            ts[1] = timestamp[1];
+    sei();
+    
+    //retrieve scheduled item from queue and mark it free for reuse
+    for (i = 0; i < MAX_TASKS; i++) {
+        if(!scheduledItems[i].empty) {
+            if(ts[0] > scheduledItems[i].timestamp[0]) {
+                /*sprintf(bytes,"%02x%02x: Thr: %02d, CB: %04x\r\n", timestamp[1], timestamp[0], i, scheduledItems[i].cb);
+                USART_Transmit_String2(bytes);*/
+             if(scheduledItems[i].cb != 0) {
+                (*scheduledItems[i].cb)(0);
+            }
+            scheduledItems[i].timestamp[0] += scheduledItems[i].recurrence;
+            }                           
+        }
+    }
+}
+```
+
+**Parsing and Validation of user input**
+```C
+void processUserCommand() {
+int i=0;
+char msg[10];
+char cmdFound=0,argsCount=0,*args[6],*cmd;
+  /* Acknowledge to user the command typed */
+  USART_Transmit_String2("Got a user command: ");
+  USART_Transmit_String2(userCommand);
+  USART_Transmit_String2("\r\n");
+  cmd=&userCommand[0];
+
+  /* parse and retrieve command , arguments */
+  while(userCommand[i]!=0){
+    USART_Transmit_String2(msg);
+    if(userCommand[i]==' '){
+          userCommand[i++]=0;
+          argsCount++;
+          args[argsCount-1]=&userCommand[i];
+    }else i++;
+   }
+
+  sprintf(msg, "Cmd:%s:Arg(%d)\r\n", cmd, argsCount);
+  USART_Transmit_String2(msg);
+  for(i=0; i < CMD_SET_SIZE; i++) {
+    sprintf(msg, "Cmd:%s:(%s), %04x\r\n", cmdHandler[i].cmd, cmd, cmdHandler[i].cb);
+    USART_Transmit_String2(msg);
+    if(cmdHandler[i].cb == 0) break;
+    if(strcmp(cmdHandler[i].cmd, cmd) == 0) {
+      (*cmdHandler[i].cb)(argsCount, args); //<---- this is the place where command is executed
+      break;
+    }
+  }
+  if(i == CMD_SET_SIZE || cmdHandler[i].cb == 0 ) {
+    USART_Transmit_String2("Invalid Command\r\n");
+  }
+  return 0;
+}
+```
 ##Project - Remote Monitor for analog levels
 
 ### Problem Statement
