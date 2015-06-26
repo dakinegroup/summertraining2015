@@ -395,6 +395,7 @@ unsigned int ts[2], t[2];
 #### User Interface - Serial
 
 USART Based, serial interface is provided in the system to access and modify system variables. Some of them are:
+
 * Traffic Counters
 * Timers
 * Traffic Threshold
@@ -402,10 +403,11 @@ USART Based, serial interface is provided in the system to access and modify sys
 * Get Traffic Light Status
 
 This module is implemented by breaking functionality into following sub-parts
-a. Init timer for CLI, CLI for commands
-b. Registeration of new command
-c. Interface / Parsing
-d. Handling of a valid command received (Handler)
+
+* Init timer for CLI, CLI for commands
+* Registeration of new command
+* Interface / Parsing
+* Handling of a valid command received (Handler)
 
 **Init**
 ```C
