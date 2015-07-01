@@ -7,6 +7,50 @@ At run time objects interact with each other by sending messages.
 For example - there are fruits in a basket like banana, orange and apple. In this example fruit is a class and banana , orange and apple are its objects.
 #### Inheritance 
 It is the property in oop in which sub classes  inherit or acquire the properties of its main class.
+####Class Access Modifiers
+Data hiding in object oriented programming allows preventing the functions of a program to access directly the internal representation of a class type. It can be specified by labelling public, private or protected in the class. The default members in the class are private.  
+**Public** - A public member is accessible from anywhere outside the class but within a program. You can set and get the value of public variables without any member function.
+```C
+#include <iostream>
+ 
+using namespace std;
+ 
+class Line
+{
+   public:
+      double length;
+      void setLength( double len );
+      double getLength( void );
+};
+ 
+// Member functions definitions
+double Line::getLength(void)
+{
+    return length ;
+}
+ 
+void Line::setLength( double len )
+{
+    length = len;
+}
+ 
+// Main function for the program
+int main( )
+{
+   Line line;
+ 
+   // set line length
+   line.setLength(6.0); 
+   cout << "Length of line : " << line.getLength() <<endl;
+ 
+   // set line length without member function
+   line.length = 10.0; // OK: because length is public
+   cout << "Length of line : " << line.length <<endl;
+   return 0;
+}
+```
+
+
 
 #### Polymorphism
 Means the ability to take more than on form.  
