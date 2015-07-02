@@ -89,7 +89,7 @@ int main( )
    return 0;
 }
 ```
-
+**Protected**- It is similar to private but with an additional feature of being accessed in derived classes or child classes.
 
 
 #### Polymorphism
