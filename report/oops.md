@@ -49,6 +49,46 @@ int main( )
    return 0;
 }
 ```
+**Private**-  The private member of the class cannot be accessed or viewed from outside the class. Only the other members of that class can access that member. 
+```C
+#include <iostream>
+ 
+using namespace std;
+ 
+class Box
+{
+   public:
+      double length;
+      void setWidth( double wid );
+      double getWidth( void );
+ 
+   private:
+      double width;
+};
+ 
+
+double Box::getWidth(void)
+{
+    return width ;
+}
+ 
+void Box::setWidth( double wid )
+{
+    width = wid;
+}
+ 
+
+int main( )
+{
+   Box box;
+   box.length = 10.0; 
+   cout << "Length of box : " << box.length <<endl;
+   box.setWidth(10.0); 
+   cout << "Width of box : " << box.getWidth() <<endl;
+ 
+   return 0;
+}
+```
 
 
 
